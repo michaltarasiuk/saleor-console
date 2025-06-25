@@ -133,6 +133,7 @@
   --spacing-none: 0rem; /* 0px */
 
   --font-primary: var(--font-inter);
+  --font-secondary: var(--font-inter);
 
   --text-extra-large: 1.3125rem; /* 21px */
   --text-large: 1.1875rem; /* 19px */
