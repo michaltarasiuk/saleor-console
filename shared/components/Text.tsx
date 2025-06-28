@@ -54,6 +54,7 @@ export function Text({
   return (
     <AriaText
       elementType="span"
+      {...props}
       className={cn(
         text({
           appearance,
@@ -61,8 +62,7 @@ export function Text({
           size,
         }),
         props.className,
-      )}
-      {...props}>
+      )}>
       {children}
     </AriaText>
   );
