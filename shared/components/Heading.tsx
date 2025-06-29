@@ -15,8 +15,8 @@ const heading = cva(
   {
     variants: {
       level: {
-        1: "text-extra-large font-secondary font-bold",
-        2: "text-medium font-secondary font-bold",
+        1: "text-extra-large font-secondary font-semibold",
+        2: "text-medium font-secondary font-semibold",
       } satisfies Partial<Record<Level, string>>,
     },
   },

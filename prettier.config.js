@@ -5,7 +5,6 @@
 const config = {
   bracketSameLine: true,
   bracketSpacing: false,
-  experimentalTernaries: true,
   tailwindFunctions: ["cva", "cn"],
   plugins: ["prettier-plugin-tailwindcss"],
 };

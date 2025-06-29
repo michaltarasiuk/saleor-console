@@ -5,11 +5,11 @@ import {RouterProvider} from "react-aria-components";
 
 declare module "react-aria-components" {
   type AppRouterInstance = ReturnType<typeof useRouter>;
-  type RouterOptions =
-    AppRouterInstance["push"] extends (
-      (href: string, options?: infer NavigateOptions) => void
-    ) ?
-      NavigateOptions
+  type RouterOptions = AppRouterInstance["push"] extends (
+    href: string,
+    options?: infer NavigateOptions,
+  ) => void
+    ? NavigateOptions
     : never;
   interface RouterConfig {
     routerOptions: RouterOptions;

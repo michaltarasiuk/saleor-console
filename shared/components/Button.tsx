@@ -10,7 +10,7 @@ import {cn} from "@/shared/utils/cn";
 
 const button = cva(
   [
-    "rounded-base font-primary cursor-pointer border text-base font-bold transition-all",
+    "rounded-base font-primary cursor-pointer border text-base font-medium transition-all",
     "outline-none focus-visible:ring-3",
     "disabled:cursor-default",
   ],

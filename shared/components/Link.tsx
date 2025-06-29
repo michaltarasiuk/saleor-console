@@ -9,9 +9,9 @@ export function Link({children, ...props}: LinkProps) {
     <AriaLink
       {...props}
       className={cn(
-        "rounded-base font-primary text-base-accent text-base leading-none",
+        "rounded-base font-primary text-base-accent text-base",
         "hover:underline",
-        "focus-visible:ring-control-accent focus-visible:ring-offset-base-background outline-none focus-visible:ring-2 focus-visible:ring-offset-3",
+        "focus-visible:ring-control-accent outline-none focus-visible:ring-2 focus-visible:ring-offset-3",
         props.className,
       )}>
       {children}
