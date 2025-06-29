@@ -46,19 +46,20 @@ function ViewToggleButton({
         "selected:bg-base-background",
         props.className,
       )}>
-      {({isSelected, ...renderProps}) => (
+      {({isSelected, isFocusVisible, ...renderProps}) => (
         <>
           <Icon
             aria-hidden
             className={cn(
               "stroke-base-text-subdued",
-              isSelected && "stroke-control-accent",
+              (isSelected || isFocusVisible) && "stroke-control-accent",
             )}
           />
           <span className={cn("sr-only")}>
             {typeof children === "function"
               ? children({
                   isSelected,
+                  isFocusVisible,
                   ...renderProps,
                 })
               : children}
