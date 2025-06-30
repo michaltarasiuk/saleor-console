@@ -26,7 +26,7 @@ export default function SettingsPage() {
 
 function LogoutEverywhereHeader() {
   return (
-    <header className={cn("gap-base flex flex-col")}>
+    <header className={cn("gap-base flex flex-col justify-center")}>
       <div className={cn("gap-small-200 flex items-center")}>
         <LockIcon aria-hidden="true" />
         <Heading id="logout-everywhere-heading">Log out everywhere</Heading>

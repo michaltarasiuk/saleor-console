@@ -26,7 +26,7 @@ function OrderCard() {
         "bg-base-background p-large-200 rounded-large",
         "gap-large-200 flex flex-col",
       )}>
-      <div className={cn("bg-base-background-subdued rounded-large p-5")}>
+      <div className={cn("bg-base-background-subdued rounded-base p-5")}>
         <div
           className={cn(
             "grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-1.5",
