@@ -8,7 +8,7 @@ import {PageTitle} from "../_components/PageTitie";
 
 export default function SettingsPage() {
   return (
-    <main>
+    <>
       <PageTitle title="Settings" />
       <HeadingGroup>
         <section
@@ -20,7 +20,7 @@ export default function SettingsPage() {
           <LogoutEverywhereActions />
         </section>
       </HeadingGroup>
-    </main>
+    </>
   );
 }
 
