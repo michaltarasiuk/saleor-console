@@ -5,6 +5,7 @@ import {Button} from "react-aria-components";
 
 import {Avatar} from "@/shared/components/Avatar";
 import {Menu, MenuItem, MenuTrigger} from "@/shared/components/Menu";
+import {Routes} from "@/shared/consts/routes";
 import {ChevronDownIcon} from "@/shared/icons/ChevronDownIcon";
 import {ChevronUpIcon} from "@/shared/icons/ChevronUpIcon";
 import {cn} from "@/shared/utils/cn";
@@ -33,8 +34,8 @@ export function ProfileSwitcher() {
         )}
       </Button>
       <Menu>
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>Settings</MenuItem>
+        <MenuItem href={Routes.profile}>Profile</MenuItem>
+        <MenuItem href={Routes.settings}>Settings</MenuItem>
         <MenuItem>Log out</MenuItem>
       </Menu>
     </MenuTrigger>
