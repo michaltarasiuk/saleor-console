@@ -51,7 +51,7 @@ function ViewToggleButton({
           <Icon
             aria-hidden
             className={cn(
-              "stroke-base-text-subdued transition-colors",
+              "stroke-base-text-subdued",
               (isHovered || isSelected || isFocusVisible) &&
                 "stroke-control-accent",
             )}
