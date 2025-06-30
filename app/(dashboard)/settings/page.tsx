@@ -28,7 +28,7 @@ function LogoutEverywhereHeader() {
   return (
     <header className={cn("gap-small-400 flex flex-col justify-center")}>
       <div className={cn("gap-small-200 flex items-center")}>
-        <LockIcon aria-hidden="true" />
+        <LockIcon aria-hidden />
         <Heading id="logout-everywhere-heading">Log out everywhere</Heading>
       </div>
       <TextBlock appearance="subdued">

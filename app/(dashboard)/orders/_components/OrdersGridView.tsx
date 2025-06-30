@@ -21,12 +21,12 @@ export function OrdersGridView() {
 
 function OrderCard() {
   return (
-    <div
+    <article
       className={cn(
         "bg-base-background p-large-200 rounded-large",
         "gap-large-200 flex flex-col",
       )}>
-      <div className={cn("bg-base-background-subdued rounded-base p-5")}>
+      <header className={cn("bg-base-background-subdued rounded-base p-5")}>
         <div
           className={cn(
             "grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-1.5",
@@ -36,21 +36,27 @@ function OrderCard() {
             aria-hidden
             className={cn("stroke-base-text [grid-area:icon]")}
           />
-          <Text emphasis="semibold" className={cn("[grid-area:status]")}>
+          <Text
+            emphasis="semibold"
+            className={cn("[grid-area:status]")}
+            role="status"
+            aria-live="polite">
             Confirmed
           </Text>
-          <Text className={cn("[grid-area:updated]")}>Updated Oct 17</Text>
+          <Text className={cn("[grid-area:updated]")}>
+            <time dateTime="2024-10-17">Updated Oct 17</time>
+          </Text>
         </div>
-      </div>
+      </header>
       <div className={cn("flex flex-col")}>
         <Text emphasis="semibold">3 items</Text>
         <Text appearance="subdued">Order #1014</Text>
       </div>
       <Text emphasis="semibold">$75.55</Text>
-      <div className={cn("grid grid-cols-2 gap-3.5")}>
+      <footer className={cn("grid grid-cols-2 gap-3.5")}>
         <Button>Pay now</Button>
-        <Button kind="secondary">Manager</Button>
-      </div>
-    </div>
+        <Button kind="secondary">Manage</Button>
+      </footer>
+    </article>
   );
 }
