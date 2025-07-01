@@ -10,13 +10,13 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({children}: DashboardLayoutProps) {
   return (
     <div className={cn("flex min-h-dvh flex-col")}>
-      <div className={cn("bg-base-background")}>
+      <div className={cn("bg-base-background px-5")}>
         <Header />
       </div>
-      <div className={cn("bg-base-background-subdued grow")}>
-        <main className={cn("container px-5 sm:px-0")}>{children}</main>
+      <div className={cn("bg-base-background-subdued grow px-5")}>
+        <main className={cn("mx-auto max-w-6xl")}>{children}</main>
       </div>
-      <div className={cn("bg-base-background-subdued")}>
+      <div className={cn("bg-base-background-subdued px-5")}>
         <Footer />
       </div>
     </div>

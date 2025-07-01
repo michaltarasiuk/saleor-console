@@ -3,7 +3,8 @@ import {cn} from "@/shared/utils/cn";
 
 export function Footer() {
   return (
-    <footer className={cn("border-base-border container border-t py-5")}>
+    <footer
+      className={cn("border-base-border border-t py-5", "mx-auto max-w-6xl")}>
       <ul
         className={cn(
           "flex flex-col items-center gap-3.5 sm:flex-row sm:items-start sm:gap-5",
