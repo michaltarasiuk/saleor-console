@@ -11,7 +11,7 @@ import {ProfileSwitcher} from "./ProfileSwitcher";
 
 export function Header() {
   return (
-    <header className={cn("container mx-auto")}>
+    <header className={cn("container")}>
       {/* Desktop Header */}
       <div className={cn("hidden items-center justify-between py-6 sm:flex")}>
         <nav className={cn("flex items-center gap-12")}>
