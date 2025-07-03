@@ -25,7 +25,7 @@ export function OrderCard() {
             className={cn("[grid-area:status]")}
             role="status"
             aria-live="polite">
-            Confirmedo2
+            Confirmed
           </Text>
           <Text className={cn("[grid-area:updated]")}>
             <time dateTime="2024-10-17">Updated Oct 17</time>
