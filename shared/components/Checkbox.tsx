@@ -34,8 +34,9 @@ export function Checkbox({children, ...props}: CheckboxProps) {
                 "ring-base-accent/50 ring-2": isFocusVisible,
                 "border-base-accent": isFocused || isPressed,
                 "border-critical ring-critical/50 border-2": isInvalid,
-                "bg-control-accent border-control-accent ring-base-accent/50":
-                  isSelected,
+                "bg-critical border-critical": isInvalid && isSelected,
+                "bg-control-accent border-control-accent":
+                  isSelected && !isInvalid,
               },
             )}>
             <CheckmarkIcon
