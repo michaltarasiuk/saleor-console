@@ -1,18 +1,46 @@
 "use client";
 
+import {cva, VariantProps} from "class-variance-authority";
 import {Button, ButtonProps} from "react-aria-components";
 
 import {cn} from "../utils/cn";
 
-export function IconButton({children, ...props}: ButtonProps) {
+const iconButton = cva(
+  [
+    "rounded-base flex cursor-pointer items-center justify-center",
+    "outline-none focus-visible:ring-2",
+    "disabled:cursor-default disabled:opacity-50",
+  ],
+  {
+    variants: {
+      appearance: {
+        base: "focus-visible:ring-base-accent",
+        info: "focus-visible:ring-info-border",
+        success: "focus-visible:ring-success-border",
+        warning: "focus-visible:ring-warning-border",
+        critical: "focus-visible:ring-critical-border",
+      },
+    },
+    defaultVariants: {
+      appearance: "base",
+    },
+  },
+);
+
+interface IconButtonProps
+  extends ButtonProps,
+    VariantProps<typeof iconButton> {}
+
+export function IconButton({children, appearance, ...props}: IconButtonProps) {
   return (
     <Button
       {...props}
       className={cn(
-        "rounded-base flex size-10 cursor-pointer items-center justify-center",
-        "hover:bg-base-background-subdued",
-        "focus-visible:ring-base-accent focus-visible:bg-base-background-subdued outline-none focus-visible:ring-2",
-        "disabled:cursor-default disabled:opacity-50",
+        cn(
+          iconButton({
+            appearance,
+          }),
+        ),
         props.className,
       )}>
       {children}

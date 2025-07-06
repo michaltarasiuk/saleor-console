@@ -25,7 +25,7 @@ export function Header() {
       </div>
       {/* Mobile Header */}
       <div className={cn("flex items-center justify-between py-5 sm:hidden")}>
-        <IconButton aria-label="Open menu">
+        <IconButton aria-label="Open menu" className={cn("size-10")}>
           <HamburgerIcon aria-hidden />
         </IconButton>
         <LogoLink />

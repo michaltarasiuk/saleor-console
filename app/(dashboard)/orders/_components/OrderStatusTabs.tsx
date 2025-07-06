@@ -26,8 +26,8 @@ export function OrderStatusTabs() {
           Pending
         </OrderStatusTab>
       </TabList>
-      <TabPanel id={confirmedTabId}></TabPanel>
-      <TabPanel id={pendingTabId}></TabPanel>
+      <TabPanel id={confirmedTabId} />
+      <TabPanel id={pendingTabId} />
     </Tabs>
   );
 }
