@@ -33,7 +33,7 @@ const banner = cva("p-base rounded-base flex max-w-96 border", {
   },
 });
 
-const bannerCloseButton = cva(["ml-small-300 size-6", "[&_svg]:size-3"], {
+const bannerCloseButton = cva("ml-small-300 size-6 [&_svg]:size-3", {
   variants: {
     status: {
       info: "[&_svg]:stroke-info-text",
@@ -124,10 +124,7 @@ function BannerIcon({status, ...props}: BannerIconProps) {
 }
 
 const bannerHeading = cva(
-  [
-    "font-primary flex h-6 items-center text-base font-semibold",
-    "[&_svg]:size-3",
-  ],
+  "font-primary flex h-6 items-center text-base font-semibold [&_svg]:size-3",
   {
     variants: {
       status: {
