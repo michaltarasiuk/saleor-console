@@ -38,17 +38,6 @@ const banner = cva("p-base rounded-base flex max-w-96 border", {
   },
 });
 
-const bannerCloseButton = cva(["ml-small-300 size-6", "[&_svg]:size-3"], {
-  variants: {
-    status: {
-      info: "[&_svg]:stroke-info-text",
-      success: "[&_svg]:stroke-success-text",
-      warning: "[&_svg]:stroke-warning-text",
-      critical: "[&_svg]:stroke-critical-text",
-    } satisfies StatusRecord,
-  },
-});
-
 interface BannerProps extends Partial<StatusProps> {
   title: string;
   children?: React.ReactNode;
@@ -76,17 +65,7 @@ export function Banner({
         {children}
       </BannerDisclosure>
       {isDefined(onClose) && (
-        <IconButton
-          aria-label={`Dismiss ${status} banner: ${title}`}
-          appearance={status}
-          className={cn(
-            bannerCloseButton({
-              status,
-            }),
-          )}
-          onClick={onClose}>
-          <CloseIcon aria-hidden />
-        </IconButton>
+        <BannerCloseButton status={status} onClose={onClose} />
       )}
     </div>
   );
@@ -222,5 +201,35 @@ function BannerDisclosure({status, title, children}: BannerDisclosureProps) {
         </>
       )}
     </Disclosure>
+  );
+}
+
+const bannerCloseButton = cva(["ml-small-300 size-6", "[&_svg]:size-3"], {
+  variants: {
+    status: {
+      info: "[&_svg]:stroke-info-text",
+      success: "[&_svg]:stroke-success-text",
+      warning: "[&_svg]:stroke-warning-text",
+      critical: "[&_svg]:stroke-critical-text",
+    } satisfies StatusRecord,
+  },
+});
+
+interface BannerCloseButtonProps extends StatusProps {
+  onClose: () => void;
+}
+
+function BannerCloseButton({status, onClose}: BannerCloseButtonProps) {
+  return (
+    <IconButton
+      appearance={status}
+      className={cn(
+        bannerCloseButton({
+          status,
+        }),
+      )}
+      onClick={onClose}>
+      <CloseIcon aria-hidden />
+    </IconButton>
   );
 }
