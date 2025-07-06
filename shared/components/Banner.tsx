@@ -33,7 +33,7 @@ const banner = cva("p-base rounded-base flex max-w-96 border", {
   },
 });
 
-const bannerCloseButton = cva("ml-small-300 size-6 [&_svg]:size-3", {
+const bannerCloseButton = cva("ms-small-300 size-6 [&_svg]:size-3", {
   variants: {
     status: {
       info: "[&_svg]:stroke-info-text",
@@ -65,7 +65,7 @@ export function Banner({
           status,
         }),
       )}>
-      <div className={cn("mr-small-100 flex h-6 items-center")}>
+      <div className={cn("me-small-100 flex h-6 items-center")}>
         <BannerIcon aria-hidden status={status} />
       </div>
       <BannerDisclosure status={status} title={title}>

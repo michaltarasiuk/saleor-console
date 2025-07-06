@@ -51,7 +51,7 @@ export function ProductThumbnail({
       )}
       <div
         className={cn(
-          "absolute top-0 right-0",
+          "absolute end-0 top-0",
           "translate-x-1/2 -translate-y-1/2",
         )}>
         <Badge size={size}>{badge}</Badge>

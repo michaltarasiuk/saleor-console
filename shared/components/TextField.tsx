@@ -24,7 +24,7 @@ export function TextField({label, ...props}: TextFieldProps) {
       )}>
       <Label
         className={cn(
-          "text-control-text-subdued text-small pointer-events-none absolute top-3 left-3 ml-px translate-y-full leading-[1] opacity-0 transition-all duration-300",
+          "text-control-text-subdued text-small pointer-events-none absolute start-3 top-3 ms-px translate-y-full leading-[1] opacity-0 transition-all duration-300",
           "group-has-[input:not(:placeholder-shown)]:translate-y-0 group-has-[input:not(:placeholder-shown)]:opacity-100",
         )}>
         {label}
