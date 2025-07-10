@@ -1,7 +1,11 @@
 import {cva} from "class-variance-authority";
 
-export const text = cva("font-primary", {
+export const text = cva(null, {
   variants: {
+    font: {
+      primary: "font-primary",
+      secondary: "font-secondary",
+    },
     appearance: {
       base: "text-base-text",
       accent: "text-base-accent",
@@ -27,6 +31,7 @@ export const text = cva("font-primary", {
     },
   },
   defaultVariants: {
+    font: "primary",
     appearance: "base",
     emphasis: "base",
     size: "base",

@@ -1,6 +1,7 @@
 import {cn} from "@/shared/utils/cn";
 
 import {PageTitle} from "../_components/PageTitie";
+import {OrdersFilterSortSheet} from "./_components/OrdersFilterSortSheet";
 import {OrderStatusTabs} from "./_components/OrderStatusTabs";
 import {OrdersView} from "./_components/OrdersView";
 import {OrderViewProvider} from "./_components/OrderViewProvider";
@@ -10,8 +11,11 @@ export default function OrdersPage() {
   return (
     <OrderViewProvider>
       <PageTitle title="Orders">
-        <div className={cn("hidden sm:block")}>
-          <OrderViewToggle />
+        <div className={cn("gap-base flex items-center")}>
+          <OrdersFilterSortSheet />
+          <div className={cn("hidden sm:block")}>
+            <OrderViewToggle />
+          </div>
         </div>
       </PageTitle>
       <div className={cn("bg-base-background rounded-large mb-6 p-5")}>

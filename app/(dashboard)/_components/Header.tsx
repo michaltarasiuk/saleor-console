@@ -12,7 +12,6 @@ import {ProfileSwitcher} from "./ProfileSwitcher";
 export function Header() {
   return (
     <header className={cn("mx-auto max-w-6xl")}>
-      {/* Desktop Header */}
       <div className={cn("hidden items-center justify-between py-6 sm:flex")}>
         <nav className={cn("flex items-center gap-12")}>
           <LogoLink />
@@ -23,9 +22,8 @@ export function Header() {
           <Button>Go to store</Button>
         </div>
       </div>
-      {/* Mobile Header */}
       <div className={cn("flex items-center justify-between py-5 sm:hidden")}>
-        <IconButton aria-label="Open menu" className={cn("size-10")}>
+        <IconButton aria-label="Open main navigation" className={cn("size-10")}>
           <HamburgerIcon aria-hidden />
         </IconButton>
         <LogoLink />

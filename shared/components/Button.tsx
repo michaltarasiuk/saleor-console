@@ -55,7 +55,7 @@ const button = cva(
         appearance: "base",
         kind: "plain",
         className: [
-          "text-base-accent border-transparent underline underline-offset-2",
+          "text-base-accent border-transparent",
           "focus-visible:ring-base-accent/50",
         ],
       },
@@ -79,7 +79,7 @@ const button = cva(
         appearance: "critical",
         kind: "plain",
         className: [
-          "text-critical border-transparent underline underline-offset-2",
+          "text-critical border-transparent",
           "focus-visible:ring-critical/50",
         ],
       },

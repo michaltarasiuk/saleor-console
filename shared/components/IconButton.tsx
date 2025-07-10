@@ -7,7 +7,7 @@ import {cn} from "../utils/cn";
 
 const iconButton = cva(
   [
-    "rounded-base flex cursor-pointer items-center justify-center",
+    "rounded-base flex aspect-square cursor-pointer items-center justify-center",
     "outline-none focus-visible:ring-2",
     "disabled:cursor-default disabled:opacity-50",
   ],

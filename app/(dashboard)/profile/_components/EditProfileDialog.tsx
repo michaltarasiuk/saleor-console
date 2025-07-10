@@ -1,0 +1,57 @@
+"use client";
+
+import {Dialog, DialogTrigger} from "@/shared/components/Dialog";
+import {Form} from "@/shared/components/Form";
+import {IconButton} from "@/shared/components/IconButton";
+import {Modal} from "@/shared/components/Modal";
+import {TextField} from "@/shared/components/TextField";
+import {PenIcon} from "@/shared/icons/PenIcon";
+import {cn} from "@/shared/utils/cn";
+
+import {CancelButton} from "./CancelButton";
+import {DialogHeader} from "./DialogHeader";
+import {FullNameFieldset} from "./Fieldset";
+import {SaveButton} from "./SaveButton";
+
+export function EditProfileDialog() {
+  return (
+    <DialogTrigger>
+      <IconButton
+        aria-label="Edit profile"
+        className={cn("rounded-fully size-5.5")}>
+        <PenIcon aria-hidden className={cn("stroke-base-accent")} />
+      </IconButton>
+      <Modal size="large" isDismissable>
+        <Dialog className={cn("space-y-base")}>
+          {({close}) => (
+            <>
+              <DialogHeader title="Edit profile" onClose={close} />
+              <ProfileForm cancelButton={<CancelButton onClick={close} />} />
+            </>
+          )}
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
+  );
+}
+
+function ProfileForm({cancelButton}: {cancelButton: React.ReactNode}) {
+  return (
+    <Form className={cn("space-y-base")}>
+      <FullNameFieldset />
+      <TextField
+        name="email"
+        type="email"
+        label="Email"
+        description="Email used for login can't be changed"
+        value="john.doe@example.com"
+        isDisabled
+        isReadOnly
+      />
+      <div className={cn("gap-base flex justify-end")}>
+        {cancelButton}
+        <SaveButton />
+      </div>
+    </Form>
+  );
+}

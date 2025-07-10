@@ -6,13 +6,12 @@ import {
   MenuItem as AriaMenuItem,
   type MenuItemProps as AriaMenuItemProps,
   type MenuProps,
-  MenuTrigger,
   Popover,
 } from "react-aria-components";
 
 import {cn} from "../utils/cn";
 
-export {MenuTrigger};
+export {MenuTrigger} from "react-aria-components";
 
 export function Menu<T extends Record<PropertyKey, unknown>>({
   children,

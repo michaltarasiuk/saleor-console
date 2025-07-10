@@ -52,25 +52,25 @@ function OrderViewToggleButton({
     <ToggleButton
       {...props}
       className={cn(
-        "cursor-pointer rounded-lg p-2.5",
+        "rounded-base flex size-9 cursor-pointer items-center justify-center",
         "focus-visible:ring-base-accent outline-none focus-visible:ring-2",
         "selected:bg-base-background",
         props.className,
       )}>
-      {({isSelected, isFocusVisible, ...renderProps}) => (
+      {({isFocusVisible, isSelected, ...renderProps}) => (
         <>
           <Icon
             aria-hidden
             className={cn(
               "stroke-base-text-subdued",
-              (isSelected || isFocusVisible) && "stroke-control-accent",
+              (isFocusVisible || isSelected) && "stroke-control-accent",
             )}
           />
           <span className={cn("sr-only")}>
             {typeof children === "function"
               ? children({
-                  isSelected,
                   isFocusVisible,
+                  isSelected,
                   ...renderProps,
                 })
               : children}

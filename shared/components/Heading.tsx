@@ -23,13 +23,14 @@ const heading = cva(
 );
 
 export function Heading({children, ...props}: HeadingProps) {
-  const level = use(HeadingLevelContext);
+  const contextLevel = use(HeadingLevelContext);
+  const level = props.level ?? contextLevel;
   return (
     <AriaHeading
       {...props}
-      level={props.level ?? level}
+      level={level}
       className={cn(
-        heading(level === 1 || level === 2 ? {level} : {}),
+        heading({...((level === 1 || level === 2) && {level})}),
         props.className,
       )}>
       {children}
