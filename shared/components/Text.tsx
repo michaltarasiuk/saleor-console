@@ -1,6 +1,6 @@
 "use client";
 
-import {VariantProps} from "class-variance-authority";
+import type {VariantProps} from "class-variance-authority";
 import {
   Text as AriaText,
   TextProps as AriaTextProps,

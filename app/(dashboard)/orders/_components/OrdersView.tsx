@@ -3,39 +3,33 @@
 import {use} from "react";
 
 import {assertNever} from "@/shared/utils/assert-never";
-import {cn} from "@/shared/utils/cn";
 
 import {OrderViewContext} from "../_utils/order-view-context";
-import {OrderCard} from "./OrderCard";
+import {OrdersGrid, OrdersGridSkeleton} from "./OrdersGrid";
+
+const wait = new Promise((resolve) => setTimeout(resolve, 1_000));
 
 export function OrdersView() {
+  use(wait);
   const {orderView} = use(OrderViewContext);
   switch (orderView) {
     case "grid":
       return <OrdersGrid />;
     case "table":
-      return <OrdersTable />;
+      return null;
     default:
       assertNever(orderView);
   }
 }
 
-function OrdersGrid() {
-  return (
-    <ul className={cn("grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3")}>
-      <li>
-        <OrderCard />
-      </li>
-      <li>
-        <OrderCard />
-      </li>
-      <li>
-        <OrderCard />
-      </li>
-    </ul>
-  );
-}
-
-function OrdersTable() {
-  return null;
+export function OrdersViewSkeleton() {
+  const {orderView} = use(OrderViewContext);
+  switch (orderView) {
+    case "grid":
+      return <OrdersGridSkeleton />;
+    case "table":
+      return null;
+    default:
+      assertNever(orderView);
+  }
 }

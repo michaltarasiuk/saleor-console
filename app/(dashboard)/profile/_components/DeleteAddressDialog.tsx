@@ -12,22 +12,32 @@ export function DeleteAddressDialog() {
       <Button kind="plain" appearance="critical">
         Delete
       </Button>
-      <Modal size="medium" isDismissable>
+      <Modal isDismissable>
         <Dialog>
           {({close}) => (
             <>
               <DialogHeader title="Delete address?" onClose={close} />
-              <Text>Existing orders are not affected.</Text>
-              <div className={cn("gap-small-200 mt-base flex justify-end")}>
-                <Button kind="plain" onClick={close}>
-                  Back
-                </Button>
-                <Button appearance="critical">Delete address</Button>
-              </div>
+              <DeleteAddressDialogContent />
+              <DeleteAddressDialogActions onClose={close} />
             </>
           )}
         </Dialog>
       </Modal>
     </DialogTrigger>
+  );
+}
+
+function DeleteAddressDialogContent() {
+  return <Text>Existing orders are not affected.</Text>;
+}
+
+function DeleteAddressDialogActions({onClose}: {onClose: () => void}) {
+  return (
+    <div className={cn("gap-small-200 mt-base flex justify-end")}>
+      <Button kind="plain" onClick={onClose}>
+        Back
+      </Button>
+      <Button appearance="critical">Delete address</Button>
+    </div>
   );
 }

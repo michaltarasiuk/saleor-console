@@ -1,21 +1,14 @@
 import {Button} from "@/shared/components/Button";
+import {Skeleton, SkeletonText} from "@/shared/components/Skeleton";
 import {Text} from "@/shared/components/Text";
 import {SuccessIcon} from "@/shared/icons/SuccessIcon";
 import {cn} from "@/shared/utils/cn";
 
 export function OrderCard() {
   return (
-    <article
-      className={cn(
-        "bg-base-background p-large-200 rounded-large",
-        "gap-large-200 flex flex-col",
-      )}>
-      <header className={cn("bg-base-background-subdued rounded-base p-5")}>
-        <div
-          className={cn(
-            "grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-1.5",
-            "[grid-template-areas:'icon_status'_'empty_updated']",
-          )}>
+    <OrderCardRoot>
+      <OrderCardHeader>
+        <OrderCardStatus>
           <SuccessIcon
             aria-hidden
             className={cn("stroke-base-text [grid-area:icon]")}
@@ -30,17 +23,87 @@ export function OrderCard() {
           <Text className={cn("[grid-area:updated]")}>
             <time dateTime="2024-10-17">Updated Oct 17</time>
           </Text>
+        </OrderCardStatus>
+      </OrderCardHeader>
+      <OrderCardContent>
+        <div className={cn("flex flex-col")}>
+          <Text emphasis="semibold">3 items</Text>
+          <Text appearance="subdued">Order #1014</Text>
         </div>
-      </header>
-      <div className={cn("flex flex-col")}>
-        <Text emphasis="semibold">3 items</Text>
-        <Text appearance="subdued">Order #1014</Text>
-      </div>
-      <Text emphasis="semibold">$75.55</Text>
-      <footer className={cn("grid grid-cols-2 gap-3.5")}>
+        <Text emphasis="semibold">$75.55</Text>
+      </OrderCardContent>
+      <OrderCardContextualButtons>
         <Button>Pay now</Button>
         <Button kind="secondary">Manage</Button>
-      </footer>
+      </OrderCardContextualButtons>
+    </OrderCardRoot>
+  );
+}
+
+export function SkeletonOrderCard() {
+  return (
+    <OrderCardRoot>
+      <OrderCardHeader>
+        <OrderCardStatus>
+          <Skeleton className={cn("size-4.5 [grid-area:icon]")} />
+          <SkeletonText
+            inlineSize="large"
+            className={cn("[grid-area:status]")}
+          />
+          <SkeletonText className={cn("[grid-area:updated]")} />
+        </OrderCardStatus>
+      </OrderCardHeader>
+      <OrderCardContent>
+        <div className={cn("flex flex-col")}>
+          <SkeletonText />
+          <SkeletonText inlineSize="small" />
+        </div>
+        <SkeletonText inlineSize="small" />
+      </OrderCardContent>
+      <OrderCardContextualButtons>
+        <Button>Pay now</Button>
+        <Button kind="secondary">Manage</Button>
+      </OrderCardContextualButtons>
+    </OrderCardRoot>
+  );
+}
+
+function OrderCardRoot({children}: {children: React.ReactNode}) {
+  return (
+    <article
+      className={cn(
+        "bg-base-background p-large-200 rounded-large",
+        "gap-large-200 flex flex-col",
+      )}>
+      {children}
     </article>
   );
+}
+
+function OrderCardHeader({children}: {children: React.ReactNode}) {
+  return (
+    <header className={cn("bg-base-background-subdued rounded-base p-5")}>
+      {children}
+    </header>
+  );
+}
+
+function OrderCardStatus({children}: {children: React.ReactNode}) {
+  return (
+    <div
+      className={cn(
+        "grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-1.5",
+        "[grid-template-areas:'icon_status'_'empty_updated']",
+      )}>
+      {children}
+    </div>
+  );
+}
+
+function OrderCardContent({children}: {children: React.ReactNode}) {
+  return <div className={cn("gap-base flex flex-col")}>{children}</div>;
+}
+
+function OrderCardContextualButtons({children}: {children: React.ReactNode}) {
+  return <footer className={cn("grid grid-cols-2 gap-3.5")}>{children}</footer>;
 }

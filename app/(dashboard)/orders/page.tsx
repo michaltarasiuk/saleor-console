@@ -1,9 +1,11 @@
+import {Suspense} from "react";
+
 import {cn} from "@/shared/utils/cn";
 
 import {PageTitle} from "../_components/PageTitie";
 import {OrdersFilterSortSheet} from "./_components/OrdersFilterSortSheet";
 import {OrderStatusTabs} from "./_components/OrderStatusTabs";
-import {OrdersView} from "./_components/OrdersView";
+import {OrdersView, OrdersViewSkeleton} from "./_components/OrdersView";
 import {OrderViewProvider} from "./_components/OrderViewProvider";
 import {OrderViewToggle} from "./_components/OrderViewToggle";
 
@@ -22,7 +24,9 @@ export default function OrdersPage() {
         <OrderStatusTabs />
       </div>
       <div className={cn("mb-9")}>
-        <OrdersView />
+        <Suspense fallback={<OrdersViewSkeleton />}>
+          <OrdersView />
+        </Suspense>
       </div>
     </OrderViewProvider>
   );

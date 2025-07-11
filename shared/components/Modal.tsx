@@ -20,13 +20,13 @@ const modal = cva(
       size: {
         auto: "sm:w-auto",
         small: "sm:w-full sm:max-w-2xs",
-        medium: "sm:w-full sm:max-w-md",
+        base: "sm:w-full sm:max-w-md",
         large: "sm:w-full sm:max-w-xl",
         max: "size-full",
       },
     },
     defaultVariants: {
-      size: "auto",
+      size: "base",
     },
   },
 );

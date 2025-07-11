@@ -41,10 +41,10 @@ function ProfileForm({cancelButton}: {cancelButton: React.ReactNode}) {
       <FullNameFieldset />
       <TextField
         name="email"
+        value="john.doe@example.com"
         type="email"
         label="Email"
         description="Email used for login can't be changed"
-        value="john.doe@example.com"
         isDisabled
         isReadOnly
       />
