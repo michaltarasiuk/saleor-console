@@ -3,9 +3,8 @@
 import {Button} from "react-aria-components";
 
 import {Checkbox} from "@/shared/components/Checkbox";
-import {Dialog, DialogTrigger} from "@/shared/components/Dialog";
+import {Dialog, DialogTrigger, Modal} from "@/shared/components/Dialog";
 import {Form} from "@/shared/components/Form";
-import {Modal} from "@/shared/components/Modal";
 import {PlusIcon} from "@/shared/icons/PlusIcon";
 import {cn} from "@/shared/utils/cn";
 

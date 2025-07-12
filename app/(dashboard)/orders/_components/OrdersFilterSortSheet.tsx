@@ -55,7 +55,7 @@ export function OrdersFilterSortSheet() {
 
 function SortOptions() {
   return (
-    <RadioGroup>
+    <RadioGroup aria-label="Sort orders">
       <Radio value="newest">Newest to oldest</Radio>
       <Radio value="oldest">Oldest to newest</Radio>
       <Radio value="numberHigh">Order number (high to low)</Radio>

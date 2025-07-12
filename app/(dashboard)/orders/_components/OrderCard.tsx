@@ -1,12 +1,16 @@
+import {Link} from "react-aria-components";
+
 import {Button} from "@/shared/components/Button";
 import {Skeleton, SkeletonText} from "@/shared/components/Skeleton";
 import {Text} from "@/shared/components/Text";
+import {Routes} from "@/shared/consts/routes";
 import {SuccessIcon} from "@/shared/icons/SuccessIcon";
 import {cn} from "@/shared/utils/cn";
 
 export function OrderCard() {
   return (
     <OrderCardRoot>
+      <OrderCardLink id="1" />
       <OrderCardHeader>
         <OrderCardStatus>
           <SuccessIcon
@@ -72,11 +76,24 @@ function OrderCardRoot({children}: {children: React.ReactNode}) {
   return (
     <article
       className={cn(
-        "bg-base-background p-large-200 rounded-large",
         "gap-large-200 flex flex-col",
+        "bg-base-background p-large-200 rounded-large relative",
       )}>
       {children}
     </article>
+  );
+}
+
+function OrderCardLink({id}: {id: string}) {
+  return (
+    <Link
+      href={Routes.order(id)}
+      className={cn(
+        "rounded-large absolute inset-0",
+        "hover:shadow-small transition-shadow",
+        "focus-visible:ring-base-accent focus-visible:ring-offset-base-background-subdued outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+      )}
+    />
   );
 }
 
@@ -105,5 +122,9 @@ function OrderCardContent({children}: {children: React.ReactNode}) {
 }
 
 function OrderCardContextualButtons({children}: {children: React.ReactNode}) {
-  return <footer className={cn("grid grid-cols-2 gap-3.5")}>{children}</footer>;
+  return (
+    <footer className={cn("grid grid-cols-2 gap-3.5", "z-10")}>
+      {children}
+    </footer>
+  );
 }

@@ -1,9 +1,8 @@
 "use client";
 
 import {Button} from "@/shared/components/Button";
-import {Dialog, DialogTrigger} from "@/shared/components/Dialog";
+import {Dialog, DialogTrigger, Modal} from "@/shared/components/Dialog";
 import {Form} from "@/shared/components/Form";
-import {Modal} from "@/shared/components/Modal";
 import {cn} from "@/shared/utils/cn";
 
 import {CancelButton} from "./CancelButton";

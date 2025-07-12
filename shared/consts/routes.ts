@@ -5,4 +5,7 @@ export const Routes = {
   orders: "/orders",
   profile: "/profile",
   settings: "/settings",
+  order(id: string) {
+    return `/orders/${id}`;
+  },
 };

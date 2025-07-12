@@ -11,7 +11,7 @@ type Side = "start" | "end";
 
 const modalOverlay = cva(
   [
-    "fixed inset-0 flex items-stretch bg-black/60",
+    "fixed inset-0 z-50 flex items-stretch bg-black/60",
     "entering:animate-in entering:fade-in-0",
     "exiting:animate-out exiting:fade-out-0",
   ],

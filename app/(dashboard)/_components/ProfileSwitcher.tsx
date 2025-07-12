@@ -4,9 +4,8 @@ import {useId, useState} from "react";
 import {Button} from "react-aria-components";
 
 import {Avatar} from "@/shared/components/Avatar";
-import {Dialog} from "@/shared/components/Dialog";
+import {Dialog, Modal} from "@/shared/components/Dialog";
 import {Menu, MenuItem, MenuTrigger} from "@/shared/components/Menu";
-import {Modal} from "@/shared/components/Modal";
 import {Text} from "@/shared/components/Text";
 import {Routes} from "@/shared/consts/routes";
 import {ChevronDownIcon} from "@/shared/icons/ChevronDownIcon";

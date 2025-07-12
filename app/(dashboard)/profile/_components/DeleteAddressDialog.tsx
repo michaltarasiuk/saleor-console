@@ -1,6 +1,5 @@
 import {Button} from "@/shared/components/Button";
-import {Dialog, DialogTrigger} from "@/shared/components/Dialog";
-import {Modal} from "@/shared/components/Modal";
+import {Dialog, DialogTrigger, Modal} from "@/shared/components/Dialog";
 import {Text} from "@/shared/components/Text";
 import {cn} from "@/shared/utils/cn";
 

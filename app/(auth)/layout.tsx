@@ -15,7 +15,9 @@ export default function AuthLayout({children}: {children: React.ReactNode}) {
           "p-large-500 px-large-200 sm:p-large-500",
           "bg-base-background sm:rounded-large",
         )}>
-        <LogoLink className={cn("mx-auto")} />
+        <div className={cn("mx-auto")}>
+          <LogoLink />
+        </div>
         {children}
       </main>
     </div>
