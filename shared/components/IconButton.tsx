@@ -1,7 +1,12 @@
 "use client";
 
 import {cva, VariantProps} from "class-variance-authority";
-import {Button, ButtonProps} from "react-aria-components";
+import {
+  Button,
+  type ButtonProps,
+  Link,
+  type LinkProps,
+} from "react-aria-components";
 
 import {cn} from "../utils/cn";
 
@@ -45,5 +50,24 @@ export function IconButton({children, appearance, ...props}: IconButtonProps) {
       )}>
       {children}
     </Button>
+  );
+}
+
+interface IconLinkProps extends LinkProps, VariantProps<typeof iconButton> {}
+
+export function IconLink({children, appearance, ...props}: IconLinkProps) {
+  return (
+    <Link
+      {...props}
+      className={cn(
+        cn(
+          iconButton({
+            appearance,
+          }),
+        ),
+        props.className,
+      )}>
+      {children}
+    </Link>
   );
 }

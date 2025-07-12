@@ -46,7 +46,7 @@ const button = cva(
         appearance: "base",
         kind: "secondary",
         className: [
-          "text-secondary-button-text border-secondary-button-border",
+          "text-secondary-button-text border-secondary-button-border bg-base-background",
           "hover:text-secondary-button-hover-text hover:border-secondary-button-hover-border",
           "focus-visible:ring-secondary-button-border/50",
         ],
@@ -71,7 +71,7 @@ const button = cva(
         appearance: "critical",
         kind: "secondary",
         className: [
-          "text-critical border-critical",
+          "text-critical border-critical bg-base-background",
           "focus-visible:ring-critical/50",
         ],
       },
