@@ -1,6 +1,7 @@
 "use client";
 
-import {Button} from "@/shared/components/Button";
+import {Button} from "react-aria-components";
+
 import {Dialog, DialogTrigger, Modal} from "@/shared/components/Dialog";
 import {Form} from "@/shared/components/Form";
 import {cn} from "@/shared/utils/cn";
@@ -11,10 +12,18 @@ import {DialogHeader} from "./DialogHeader";
 import {AddressFieldset} from "./Fieldset";
 import {SaveButton} from "./SaveButton";
 
-export function EditAddressDialog() {
+export function EditAddressDialog({children}: {children: React.ReactNode}) {
   return (
     <DialogTrigger>
-      <Button>Edit Address</Button>
+      <Button
+        className={cn(
+          "rounded-base relative size-full cursor-pointer",
+          "hover:before:bg-base-background-subdued",
+          "focus-visible:ring-base-accent focus-visible:ring-offset-base-background outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+          "before:-top-small-200 before:-start-small-200 before:rounded-base before:absolute before:inset-0 before:size-[calc(100%+(var(--spacing-small-200))*2)]",
+        )}>
+        <div className={cn("relative z-10")}>{children}</div>
+      </Button>
       <Modal size="large" isDismissable>
         <Dialog className={cn("space-y-base")}>
           {({close}) => (

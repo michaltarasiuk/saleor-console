@@ -2,6 +2,7 @@ import {cn} from "@/shared/utils/cn";
 
 import {PageTitle} from "../_components/PageTitie";
 import {AddAddressDialog} from "./_components/AddAddressDialog";
+import {AddressCards} from "./_components/AddressCards";
 import {Card, CardHeader, CardTitle} from "./_components/Card";
 import {ContactInfo} from "./_components/ContactInfo";
 import {EditProfileDialog} from "./_components/EditProfileDialog";
@@ -23,6 +24,7 @@ export default function ProfilePage() {
             <CardTitle>Address</CardTitle>
             <AddAddressDialog />
           </CardHeader>
+          <AddressCards />
         </Card>
       </div>
     </>
