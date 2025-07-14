@@ -17,38 +17,32 @@ export function OrderHeader() {
 
 function PageTitle() {
   return (
-    <hgroup
+    <div
       className={cn(
         "my-large-300 gap-x-small-300 grid grid-cols-[auto_1fr] grid-rows-2 items-center",
         "[grid-template-areas:'back_heading'_'empty_date']",
       )}>
-      <nav className={cn("[grid-area:back]")}>
-        <IconLink
-          aria-label="Go back to orders"
-          href={Routes.orders}
-          className={cn("size-6 rounded-full")}>
-          <ArrowLeft aria-hidden />
-        </IconLink>
-      </nav>
+      <IconLink
+        aria-label="Go back to orders"
+        href={Routes.orders}
+        className={cn("size-6 rounded-full [grid-area:back]")}>
+        <ArrowLeft aria-hidden />
+      </IconLink>
       <Heading className={cn("[grid-area:heading]")}>Order #1013</Heading>
       <Text appearance="subdued" className={cn("[grid-area:date]")}>
         <time dateTime="2024-10-14">Oct 14</time>
       </Text>
-    </hgroup>
+    </div>
   );
 }
 
 function OrderActions() {
   return (
-    <section
+    <div
       aria-label="Order actions"
       className={cn("gap-base flex flex-col md:flex-row md:items-center")}>
-      <Button kind="secondary" type="button">
-        Buy again
-      </Button>
-      <Button kind="secondary" type="button">
-        Manage
-      </Button>
-    </section>
+      <Button kind="secondary">Buy again</Button>
+      <Button kind="secondary">Manage</Button>
+    </div>
   );
 }
