@@ -1,5 +1,6 @@
 import {Suspense} from "react";
 
+import type {Locale} from "@/i18n/consts";
 import {cn} from "@/utils/cn";
 
 import {OrderHeader} from "./_components/OrderHeader";
@@ -8,21 +9,28 @@ import {
   SkeletonOrderSummaryDisclosure,
 } from "./_components/OrderSummaryDisclosure";
 
-export default function OrderPage() {
+interface OrderPageProps {
+  params: Promise<{
+    locale: Locale;
+  }>;
+}
+
+export default async function OrderPage({params}: OrderPageProps) {
+  const {locale} = await params;
   return (
     <Suspense fallback={<SkeletonOrder />}>
-      <Order />
+      <Order locale={locale} />
     </Suspense>
   );
 }
 
-function Order() {
+function Order({locale}: {locale: Locale}) {
   return (
     <>
       <div className={cn("mb-small-200 md:hidden")}>
         <OrderSummaryDisclosure />
       </div>
-      <OrderHeader />
+      <OrderHeader locale={locale} />
     </>
   );
 }

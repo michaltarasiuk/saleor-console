@@ -1,5 +1,6 @@
 import {Suspense} from "react";
 
+import type {Locale} from "@/i18n/consts";
 import {getIntl} from "@/i18n/utils/get-intl";
 import {cn} from "@/utils/cn";
 
@@ -10,8 +11,15 @@ import {OrdersView, OrdersViewSkeleton} from "./_components/OrdersView";
 import {OrderViewProvider} from "./_components/OrderViewProvider";
 import {OrderViewToggle} from "./_components/OrderViewToggle";
 
-export default async function OrdersPage() {
-  const intl = await getIntl();
+interface OrdersPageProps {
+  params: Promise<{
+    locale: Locale;
+  }>;
+}
+
+export default async function OrdersPage({params}: OrdersPageProps) {
+  const {locale} = await params;
+  const intl = await getIntl(locale);
   return (
     <OrderViewProvider>
       <PageTitle

@@ -1,14 +1,15 @@
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
 import {TextField} from "@/components/TextField";
+import type {Locale} from "@/i18n/consts";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {getIntl} from "@/i18n/utils/get-intl";
 import {cn} from "@/utils/cn";
 
 import {FormHeader} from "./FormHeader";
 
-export async function SignupForm() {
-  const intl = await getIntl();
+export async function SignupForm({locale}: {locale: Locale}) {
+  const intl = await getIntl(locale);
   return (
     <Form className={cn("gap-small-100 flex flex-col")}>
       <FormHeader

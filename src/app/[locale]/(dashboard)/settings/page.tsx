@@ -1,6 +1,7 @@
 import {Button} from "@/components/Button";
 import {Heading, HeadingGroup} from "@/components/Heading";
 import {TextBlock} from "@/components/Text";
+import type {Locale} from "@/i18n/consts";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {getIntl} from "@/i18n/utils/get-intl";
 import {LockIcon} from "@/icons/LockIcon";
@@ -8,8 +9,15 @@ import {cn} from "@/utils/cn";
 
 import {PageTitle} from "../_components/PageTitie";
 
-export default async function SettingsPage() {
-  const intl = await getIntl();
+interface SettingsPageProps {
+  params: Promise<{
+    locale: Locale;
+  }>;
+}
+
+export default async function SettingsPage({params}: SettingsPageProps) {
+  const {locale} = await params;
+  const intl = await getIntl(locale);
   return (
     <>
       <PageTitle

@@ -1,17 +1,25 @@
+import type {Locale} from "@/i18n/consts";
 import {cn} from "@/utils/cn";
 
 import {Footer} from "./_components/Footer";
 import {Header} from "./_components/Header";
 
-export default function DashboardLayout({
-  children,
-}: {
+interface DashboardLayoutProps {
   children: React.ReactNode;
-}) {
+  params: Promise<{
+    locale: Locale;
+  }>;
+}
+
+export default async function DashboardLayout({
+  children,
+  params,
+}: DashboardLayoutProps) {
+  const {locale} = await params;
   return (
     <div className={cn("flex min-h-dvh flex-col")}>
       <div className={cn("bg-base-background px-large-200")}>
-        <Header />
+        <Header locale={locale} />
       </div>
       <div className={cn("bg-base-background-subdued px-large-200 grow")}>
         <main className={cn("mx-auto mb-9 max-w-6xl")}>{children}</main>

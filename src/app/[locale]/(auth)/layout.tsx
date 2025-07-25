@@ -1,7 +1,16 @@
 import {LogoLink} from "@/components/LogoLink";
+import type {Locale} from "@/i18n/consts";
 import {cn} from "@/utils/cn";
 
-export default function AuthLayout({children}: {children: React.ReactNode}) {
+interface AuthLayoutProps {
+  children: React.ReactNode;
+  params: Promise<{
+    locale: Locale;
+  }>;
+}
+
+export default async function AuthLayout({children, params}: AuthLayoutProps) {
+  const {locale} = await params;
   return (
     <div
       className={cn(
@@ -13,7 +22,7 @@ export default function AuthLayout({children}: {children: React.ReactNode}) {
           "sm:p-large-500 sm:rounded-large sm:h-auto sm:w-auto sm:basis-md",
         )}>
         <div className="mx-auto">
-          <LogoLink />
+          <LogoLink locale={locale} />
         </div>
         {children}
       </main>

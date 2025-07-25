@@ -3,13 +3,14 @@ import {Heading} from "@/components/Heading";
 import {IconLink} from "@/components/IconButton";
 import {Text} from "@/components/Text";
 import {Routes} from "@/consts/routes";
+import type {Locale} from "@/i18n/consts";
 import {FormattedDate, FormattedMessage} from "@/i18n/react-intl";
 import {getIntl} from "@/i18n/utils/get-intl";
 import {ArrowLeft} from "@/icons/ArrowLeft";
 import {cn} from "@/utils/cn";
 
-export async function OrderHeader() {
-  const intl = await getIntl();
+export async function OrderHeader({locale}: {locale: Locale}) {
+  const intl = await getIntl(locale);
   return (
     <header className={cn("flex flex-col justify-between md:flex-row")}>
       <div

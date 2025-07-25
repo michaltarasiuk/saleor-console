@@ -1,3 +1,4 @@
+import type {Locale} from "@/i18n/consts";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {getIntl} from "@/i18n/utils/get-intl";
 import {cn} from "@/utils/cn";
@@ -9,8 +10,15 @@ import {Card, CardHeader, CardTitle} from "./_components/Card";
 import {ContactInfo} from "./_components/ContactInfo";
 import {EditProfileDialog} from "./_components/EditProfileDialog";
 
-export default async function ProfilePage() {
-  const intl = await getIntl();
+interface ProfilePageProps {
+  params: Promise<{
+    locale: Locale;
+  }>;
+}
+
+export default async function ProfilePage({params}: ProfilePageProps) {
+  const {locale} = await params;
+  const intl = await getIntl(locale);
   return (
     <>
       <PageTitle
@@ -25,7 +33,7 @@ export default async function ProfilePage() {
             <CardTitle>Kristin Watson</CardTitle>
             <EditProfileDialog />
           </CardHeader>
-          <ContactInfo />
+          <ContactInfo locale={locale} />
         </Card>
         <Card>
           <CardHeader>

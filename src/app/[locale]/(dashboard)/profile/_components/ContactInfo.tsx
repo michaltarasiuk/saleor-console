@@ -1,9 +1,10 @@
+import type {Locale} from "@/i18n/consts";
 import {getIntl} from "@/i18n/utils/get-intl";
 import {text} from "@/styles/text";
 import {cn} from "@/utils/cn";
 
-export async function ContactInfo() {
-  const intl = await getIntl();
+export async function ContactInfo({locale}: {locale: Locale}) {
+  const intl = await getIntl(locale);
   return (
     <dl
       className={cn(

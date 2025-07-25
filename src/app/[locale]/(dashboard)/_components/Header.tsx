@@ -2,6 +2,7 @@ import {IconButton} from "@/components/IconButton";
 import {LogoLink} from "@/components/LogoLink";
 import {SheetTrigger} from "@/components/Sheet";
 import {Routes} from "@/consts/routes";
+import type {Locale} from "@/i18n/consts";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {getIntl} from "@/i18n/utils/get-intl";
 import {HamburgerIcon} from "@/icons/HamburgerIcon";
@@ -11,13 +12,13 @@ import {MenuItemLink} from "./MenuItem";
 import {MobileNavigationSheet} from "./MobileNavigationSheet";
 import {ProfileSwitcher} from "./ProfileSwitcher";
 
-export async function Header() {
-  const intl = await getIntl();
+export async function Header({locale}: {locale: Locale}) {
+  const intl = await getIntl(locale);
   return (
     <header className={cn("mx-auto max-w-6xl")}>
       <div className={cn("hidden items-center justify-between py-6 md:flex")}>
         <nav className={cn("gap-large-500 flex items-center")}>
-          <LogoLink />
+          <LogoLink locale={locale} />
           <div className={cn("gap-small-300 flex items-center")}>
             <MenuItemLink href={Routes.home}>
               <FormattedMessage id="Dxd1uB" defaultMessage="Shop" />
@@ -44,7 +45,7 @@ export async function Header() {
           </IconButton>
           <MobileNavigationSheet />
         </SheetTrigger>
-        <LogoLink />
+        <LogoLink locale={locale} />
       </div>
     </header>
   );
