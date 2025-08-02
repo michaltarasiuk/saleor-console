@@ -21,7 +21,11 @@ const spinner = cva("animate-spin [animation-duration:0.5s]", {
   },
 });
 
-export function Spinner({size}: VariantProps<typeof spinner>) {
+interface SpinnerProps extends VariantProps<typeof spinner> {
+  className?: string;
+}
+
+export function Spinner({size, className}: SpinnerProps) {
   const intl = useIntl();
   return (
     <SpinnerIcon
@@ -33,6 +37,7 @@ export function Spinner({size}: VariantProps<typeof spinner>) {
         spinner({
           size,
         }),
+        className,
       )}
     />
   );

@@ -12,7 +12,7 @@ import {Spinner} from "./Spinner";
 
 const button = cva(
   [
-    "rounded-base font-primary flex cursor-pointer justify-center border text-base font-medium transition-all",
+    "rounded-base font-primary relative flex cursor-pointer items-center justify-center border text-base font-medium transition-all",
     "outline-none focus-visible:ring-3",
     "disabled:cursor-default",
   ],
@@ -115,7 +115,6 @@ export function Button({
   appearance,
   kind,
   size,
-  isPending,
   ...props
 }: ButtonProps) {
   return (
@@ -129,7 +128,23 @@ export function Button({
         }),
         props.className,
       )}>
-      {isPending ? <Spinner /> : children}
+      {({isPending, ...renderProps}) => (
+        <>
+          <span
+            aria-hidden={isPending}
+            className={cn({
+              invisible: isPending,
+            })}>
+            {typeof children === "function"
+              ? children({
+                  isPending,
+                  ...renderProps,
+                })
+              : children}
+          </span>
+          {isPending && <Spinner className={cn("absolute")} />}
+        </>
+      )}
     </AriaButton>
   );
 }

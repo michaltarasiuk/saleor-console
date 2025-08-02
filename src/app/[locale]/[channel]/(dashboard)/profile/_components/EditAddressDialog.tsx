@@ -59,7 +59,7 @@ function EditAddressForm({cancelButton}: {cancelButton: React.ReactNode}) {
       <AddressFieldset />
       <div className={cn("gap-base flex justify-between")}>
         <DeleteAddressDialog />
-        <div className={cn("space-x-base")}>
+        <div className={cn("space-x-base flex")}>
           {cancelButton}
           <SaveButton />
         </div>
