@@ -1,4 +1,5 @@
 /* eslint-disable */
+import {TypedDocumentNode as DocumentNode} from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends {[key: string]: unknown}> = {[K in keyof T]: T[K]};
@@ -29655,3 +29656,217 @@ export type _Service = {
   __typename?: "_Service";
   sdl?: Maybe<Scalars["String"]["output"]>;
 };
+
+export type SigninMutationVariables = Exact<{
+  email: Scalars["String"]["input"];
+  password: Scalars["String"]["input"];
+}>;
+
+export type SigninMutation = {
+  __typename?: "Mutation";
+  tokenCreate?: {__typename?: "CreateToken"; token?: string | null} | null;
+};
+
+export type SignupMutationVariables = Exact<{
+  input: AccountRegisterInput;
+}>;
+
+export type SignupMutation = {
+  __typename?: "Mutation";
+  accountRegister?: {__typename: "AccountRegister"} | null;
+};
+
+export type ChannelSlugsQueryVariables = Exact<{[key: string]: never}>;
+
+export type ChannelSlugsQuery = {
+  __typename?: "Query";
+  channels?: Array<{
+    __typename?: "Channel";
+    slug: string;
+    isActive: boolean;
+  }> | null;
+};
+
+export type ChannelsWithCountryQueryVariables = Exact<{[key: string]: never}>;
+
+export type ChannelsWithCountryQuery = {
+  __typename?: "Query";
+  channels?: Array<{
+    __typename?: "Channel";
+    slug: string;
+    defaultCountry: {
+      __typename?: "CountryDisplay";
+      code: string;
+      country: string;
+    };
+  }> | null;
+};
+
+export const SigninDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: {kind: "Name", value: "Signin"},
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {kind: "Variable", name: {kind: "Name", value: "email"}},
+          type: {
+            kind: "NonNullType",
+            type: {kind: "NamedType", name: {kind: "Name", value: "String"}},
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {kind: "Variable", name: {kind: "Name", value: "password"}},
+          type: {
+            kind: "NonNullType",
+            type: {kind: "NamedType", name: {kind: "Name", value: "String"}},
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "tokenCreate"},
+            arguments: [
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "email"},
+                value: {kind: "Variable", name: {kind: "Name", value: "email"}},
+              },
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "password"},
+                value: {
+                  kind: "Variable",
+                  name: {kind: "Name", value: "password"},
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "token"}},
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SigninMutation, SigninMutationVariables>;
+export const SignupDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: {kind: "Name", value: "Signup"},
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {kind: "Variable", name: {kind: "Name", value: "input"}},
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: {kind: "Name", value: "AccountRegisterInput"},
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "accountRegister"},
+            arguments: [
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "input"},
+                value: {kind: "Variable", name: {kind: "Name", value: "input"}},
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "__typename"}},
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SignupMutation, SignupMutationVariables>;
+export const ChannelSlugsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: {kind: "Name", value: "ChannelSlugs"},
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "channels"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "slug"}},
+                {kind: "Field", name: {kind: "Name", value: "isActive"}},
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ChannelSlugsQuery, ChannelSlugsQueryVariables>;
+export const ChannelsWithCountryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: {kind: "Name", value: "ChannelsWithCountry"},
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "channels"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "slug"}},
+                {
+                  kind: "Field",
+                  name: {kind: "Name", value: "defaultCountry"},
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {kind: "Field", name: {kind: "Name", value: "code"}},
+                      {kind: "Field", name: {kind: "Name", value: "country"}},
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  ChannelsWithCountryQuery,
+  ChannelsWithCountryQueryVariables
+>;

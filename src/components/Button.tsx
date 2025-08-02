@@ -3,14 +3,16 @@
 import {cva, type VariantProps} from "class-variance-authority";
 import {
   Button as AriaButton,
-  ButtonProps as AriaButtonProps,
+  type ButtonProps as AriaButtonProps,
 } from "react-aria-components";
 
 import {cn} from "@/utils/cn";
 
+import {Spinner} from "./Spinner";
+
 const button = cva(
   [
-    "rounded-base font-primary cursor-pointer border text-base font-medium transition-all",
+    "rounded-base font-primary flex cursor-pointer justify-center border text-base font-medium transition-all",
     "outline-none focus-visible:ring-3",
     "disabled:cursor-default",
   ],
@@ -109,10 +111,11 @@ const button = cva(
 interface ButtonProps extends AriaButtonProps, VariantProps<typeof button> {}
 
 export function Button({
+  children,
   appearance,
   kind,
   size,
-  children,
+  isPending,
   ...props
 }: ButtonProps) {
   return (
@@ -126,7 +129,7 @@ export function Button({
         }),
         props.className,
       )}>
-      {children}
+      {isPending ? <Spinner /> : children}
     </AriaButton>
   );
 }

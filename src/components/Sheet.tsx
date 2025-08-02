@@ -1,7 +1,7 @@
 "use client";
 
 import {cva} from "class-variance-authority";
-import {Dialog, DialogProps, Modal, ModalOverlay} from "react-aria-components";
+import {Dialog, type DialogProps, Modal, ModalOverlay} from "react-aria-components";
 
 import {cn} from "../utils/cn";
 

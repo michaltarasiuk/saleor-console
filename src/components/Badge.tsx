@@ -1,9 +1,10 @@
-import {cva, VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "class-variance-authority";
 
+import {text} from "@/styles/text";
 import {cn} from "@/utils/cn";
 
 const badge = cva(
-  "px-small-300 gap-small-400 rounded-fully font-primary inline-flex items-center justify-center border py-px font-semibold",
+  "px-small-300 gap-small-400 rounded-fully inline-flex items-center justify-center border py-px",
   {
     variants: {
       tone: {
@@ -39,6 +40,9 @@ export function Badge({children, icon, tone, size, iconPosition}: BadgeProps) {
     <div
       role={tone === "critical" ? "alert" : "status"}
       className={cn(
+        text({
+          emphasis: "semibold",
+        }),
         badge({
           tone,
           size,

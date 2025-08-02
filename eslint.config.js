@@ -28,12 +28,24 @@ const eslintConfig = [
           allow: ["warn", "error"],
         },
       ],
+    },
+  },
+  {
+    rules: {
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
           argsIgnorePattern: "^_",
         },
       ],
+      "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        {
+          fixStyle: "inline-type-imports",
+        },
+      ],
+      "@typescript-eslint/no-import-type-side-effects": "error",
     },
   },
   {
@@ -43,7 +55,9 @@ const eslintConfig = [
     rules: {
       "formatjs/enforce-id": [
         "error",
-        {idInterpolationPattern: "[sha512:contenthash:base64:6]"},
+        {
+          idInterpolationPattern: "[sha512:contenthash:base64:6]",
+        },
       ],
     },
   },

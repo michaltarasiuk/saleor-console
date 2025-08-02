@@ -3,6 +3,10 @@ import "server-only";
 import * as z from "zod";
 
 const ServerEnvSchema = z.object({
-  SALEOR_GRAPHQL_URL: z.url(),
+  SALEOR_AUTH_TOKEN: z.string(),
+  NEXT_PUBLIC_SALEOR_GRAPHQL_URL: z.url(),
 });
-export const serverEnv = ServerEnvSchema.parse(process.env);
+export const serverEnv = ServerEnvSchema.parse({
+  SALEOR_AUTH_TOKEN: process.env.SALEOR_AUTH_TOKEN,
+  NEXT_PUBLIC_SALEOR_GRAPHQL_URL: process.env.NEXT_PUBLIC_SALEOR_GRAPHQL_URL,
+});

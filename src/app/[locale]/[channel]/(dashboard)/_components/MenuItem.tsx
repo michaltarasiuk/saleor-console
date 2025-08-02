@@ -5,10 +5,11 @@ import {usePathname} from "next/navigation";
 import {Button, type ButtonProps, type LinkProps} from "react-aria-components";
 
 import {IntlLink} from "@/i18n/components/IntlLink";
+import {useChannel} from "@/i18n/hooks/use-channel";
 import {useLocale} from "@/i18n/hooks/use-locale";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
-import {joinPathname} from "@/utils/join-pathname";
+import {joinPathSegments} from "@/utils/join-path-segments";
 
 const menuItem = cva(
   [
@@ -26,16 +27,19 @@ const menuItem = cva(
 );
 
 export function MenuItemLink({children, href, ...props}: LinkProps) {
-  const locale = useLocale();
   const pathname = usePathname();
-  const hrefWithLocale = isDefined(href) ? joinPathname(locale, href) : href;
+  const locale = useLocale();
+  const channel = useChannel();
+  const hrefWithLocaleAndChannel = isDefined(href)
+    ? joinPathSegments(locale, channel, href)
+    : href;
   return (
     <IntlLink
       href={href}
       {...props}
       className={cn(
         menuItem({
-          current: isDefined(hrefWithLocale) && hrefWithLocale === pathname,
+          current: hrefWithLocaleAndChannel === pathname,
         }),
         props.className,
       )}>

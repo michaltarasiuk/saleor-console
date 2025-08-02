@@ -1,6 +1,6 @@
 "use client";
 
-import {cva, VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "class-variance-authority";
 import {Button, type ButtonProps, type LinkProps} from "react-aria-components";
 
 import {IntlLink} from "@/i18n/components/IntlLink";

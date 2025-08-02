@@ -1,6 +1,6 @@
 "use client";
 
-import {cva, VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "class-variance-authority";
 import {usePathname} from "next/navigation";
 import {
   Menu as AriaMenu,
@@ -10,9 +10,10 @@ import {
   Popover,
 } from "react-aria-components";
 
+import {useChannel} from "@/i18n/hooks/use-channel";
 import {useLocale} from "@/i18n/hooks/use-locale";
 import {isDefined} from "@/utils/is-defined";
-import {joinPathname} from "@/utils/join-pathname";
+import {joinPathSegments} from "@/utils/join-path-segments";
 
 import {cn} from "../utils/cn";
 
@@ -63,17 +64,20 @@ export function MenuItem<T extends object>({
   href,
   ...props
 }: MenuItemProps<T>) {
-  const locale = useLocale();
   const pathname = usePathname();
-  const hrefWithLocale = isDefined(href) ? joinPathname(locale, href) : href;
+  const locale = useLocale();
+  const channel = useChannel();
+  const hrefWithLocaleAndChannel = isDefined(href)
+    ? joinPathSegments(locale, channel, href)
+    : href;
   return (
     <AriaMenuItem
-      href={hrefWithLocale}
+      href={hrefWithLocaleAndChannel}
       {...props}
       className={cn(
         menuItem({
           critical,
-          current: isDefined(hrefWithLocale) && hrefWithLocale === pathname,
+          current: hrefWithLocaleAndChannel === pathname,
         }),
         props.className,
       )}>

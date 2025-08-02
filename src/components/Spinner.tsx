@@ -1,5 +1,8 @@
+"use client";
+
 import {cva, type VariantProps} from "class-variance-authority";
 
+import {useIntl} from "@/i18n/react-intl";
 import {SpinnerIcon} from "@/icons/SpinnerIcon";
 import {cn} from "@/utils/cn";
 
@@ -19,9 +22,13 @@ const spinner = cva("animate-spin [animation-duration:0.5s]", {
 });
 
 export function Spinner({size}: VariantProps<typeof spinner>) {
+  const intl = useIntl();
   return (
     <SpinnerIcon
-      aria-hidden
+      aria-label={intl.formatMessage({
+        id: "iFsDVR",
+        defaultMessage: "Loading",
+      })}
       className={cn(
         spinner({
           size,

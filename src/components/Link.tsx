@@ -1,6 +1,6 @@
 "use client";
 
-import {Link as AriaLink, LinkProps} from "react-aria-components";
+import {Link as AriaLink, type LinkProps} from "react-aria-components";
 
 import {text} from "@/styles/text";
 

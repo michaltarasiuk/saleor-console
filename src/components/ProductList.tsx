@@ -1,4 +1,4 @@
-import {ComponentProps} from "react";
+import type {ComponentProps} from "react";
 
 import {cn} from "../utils/cn";
 import {List, ListItem} from "./List";
@@ -7,15 +7,13 @@ import {Text} from "./Text";
 
 export function ProductList() {
   return (
-    <section>
-      <List>
-        {Products.map((product, i) => (
-          <ListItem key={i}>
-            <Product {...product} />
-          </ListItem>
-        ))}
-      </List>
-    </section>
+    <List>
+      {Products.map((product, i) => (
+        <ListItem key={i}>
+          <Product {...product} />
+        </ListItem>
+      ))}
+    </List>
   );
 }
 
@@ -25,16 +23,11 @@ interface ProductProps extends ComponentProps<typeof ProductThumbnail> {
   price: string;
 }
 
-export function Product({
-  title,
-  description,
-  price,
-  ...productThumbnailProps
-}: ProductProps) {
+export function Product({title, description, price, ...props}: ProductProps) {
   return (
     <article className={cn("flex w-full items-center justify-between")}>
       <div className={cn("gap-base flex")}>
-        <ProductThumbnail {...productThumbnailProps} />
+        <ProductThumbnail {...props} />
         <div className={cn("flex flex-col justify-center")}>
           <Text>{title}</Text>
           <Text appearance="subdued">{description}</Text>

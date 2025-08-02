@@ -1,6 +1,6 @@
 "use client";
 
-import {cva, VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "class-variance-authority";
 import Image from "next/image";
 import {useState} from "react";
 
@@ -45,7 +45,7 @@ export function ProductThumbnail({
             size,
           }),
         )}>
-        {isDefined(src) && !error ? (
+        {!error && isDefined(src) ? (
           <Image src={src} alt={alt} fill onError={() => setError(true)} />
         ) : (
           <PlaceholderImageIcon aria-hidden />

@@ -8,6 +8,8 @@ import {
   Heading,
 } from "react-aria-components";
 
+import {text} from "@/styles/text";
+
 import {ChevronDownIcon} from "../icons/ChevronDownIcon";
 import {ChevronUpIcon} from "../icons/ChevronUpIcon";
 import {CloseIcon} from "../icons/CloseIcon";
@@ -22,97 +24,14 @@ import {IconButton} from "./IconButton";
 
 type Status = "info" | "success" | "warning" | "critical";
 
-const banner = cva("p-base rounded-base flex max-w-96 border", {
-  variants: {
-    status: {
-      info: "border-info-border bg-info-background",
-      success: "border-success-border bg-success-background",
-      warning: "border-warning-border bg-warning-background",
-      critical: "border-critical-border bg-critical-background",
-    } satisfies Record<Status, string>,
-  },
-});
-
-const bannerHeading = cva(
-  "font-primary flex h-6 items-center text-base font-semibold [&_svg]:size-3",
-  {
-    variants: {
-      status: {
-        info: "text-info-text [&_svg]:stroke-info-text",
-        success: "text-success-text [&_svg]:stroke-success-text",
-        warning: "text-warning-text [&_svg]:stroke-warning-text",
-        critical: "text-critical-text [&_svg]:stroke-critical-text",
-      } satisfies Record<Status, string>,
-    },
-  },
-);
-
-const bannerButton = cva(
-  [
-    "rounded-base flex w-full cursor-pointer items-center justify-between text-start",
-    "outline-none focus-visible:ring-2",
-  ],
-  {
-    variants: {
-      status: {
-        info: "focus-visible:ring-info-border",
-        success: "focus-visible:ring-success-border",
-        warning: "focus-visible:ring-warning-border",
-        critical: "focus-visible:ring-critical-border",
-      } satisfies Record<Status, string>,
-      isDisabled: {
-        true: "cursor-default",
-      },
-    },
-  },
-);
-
-const bannerIcon = cva("size-5", {
-  variants: {
-    status: {
-      info: "stroke-info-icon",
-      success: "stroke-success",
-      warning: "stroke-warning",
-      critical: "stroke-critical",
-    } satisfies Record<Status, string>,
-  },
-});
-
-const bannerCloseButton = cva("ms-small-300 size-6 [&_svg]:size-3", {
-  variants: {
-    status: {
-      info: "[&_svg]:stroke-info-text",
-      success: "[&_svg]:stroke-success-text",
-      warning: "[&_svg]:stroke-warning-text",
-      critical: "[&_svg]:stroke-critical-text",
-    } satisfies Record<Status, string>,
-  },
-});
-
-const bannerDisclosurePanel = cva("font-primary text-base font-normal", {
-  variants: {
-    status: {
-      info: "text-info-text-subdued",
-      success: "text-success-text-subdued",
-      warning: "text-warning-text-subdued",
-      critical: "text-critical-text-subdued",
-    } satisfies Record<Status, string>,
-  },
-});
-
 interface BannerProps {
+  status: Status;
   title: string;
-  status?: Status;
-  children?: React.ReactNode;
+  description?: string;
   onClose?: () => void;
 }
 
-export function Banner({
-  title,
-  children,
-  status = "info",
-  onClose,
-}: BannerProps) {
+export function Banner({status, title, description, onClose}: BannerProps) {
   return (
     <div
       role={status === "critical" ? "alert" : "status"}
@@ -124,9 +43,47 @@ export function Banner({
       <div className={cn("me-small-100 flex h-6 items-center")}>
         <BannerIcon aria-hidden status={status} />
       </div>
-      <BannerDisclosure status={status} title={title}>
-        {children}
-      </BannerDisclosure>
+      <Disclosure
+        isDisabled={!isDefined(description)}
+        className={cn(
+          "flex flex-1 flex-col justify-center",
+          "expanded:gap-small-500",
+        )}>
+        {({isDisabled, isExpanded}) => (
+          <>
+            <Heading
+              className={cn(
+                bannerHeading({
+                  status,
+                }),
+              )}>
+              <Button
+                slot="trigger"
+                className={cn(
+                  bannerButton({
+                    status,
+                    isDisabled,
+                  }),
+                )}>
+                {title}
+                {isDisabled ? null : isExpanded ? (
+                  <ChevronUpIcon aria-hidden />
+                ) : (
+                  <ChevronDownIcon aria-hidden />
+                )}
+              </Button>
+            </Heading>
+            <DisclosurePanel
+              className={cn(
+                bannerDisclosurePanel({
+                  status,
+                }),
+              )}>
+              {description}
+            </DisclosurePanel>
+          </>
+        )}
+      </Disclosure>
       {isDefined(onClose) && (
         <IconButton
           appearance={status}
@@ -168,54 +125,85 @@ function BannerIcon({status, ...props}: BannerIconProps) {
   }
 }
 
-interface BannerDisclosureProps {
-  title: string;
-  status: Status;
-  children?: React.ReactNode;
-}
+const banner = cva("p-base rounded-base flex max-w-96 border", {
+  variants: {
+    status: {
+      info: "border-info-border bg-info-background",
+      success: "border-success-border bg-success-background",
+      warning: "border-warning-border bg-warning-background",
+      critical: "border-critical-border bg-critical-background",
+    } satisfies Record<Status, string>,
+  },
+});
 
-function BannerDisclosure({title, status, children}: BannerDisclosureProps) {
-  return (
-    <Disclosure
-      isDisabled={!isDefined(children)}
-      className={cn(
-        "flex flex-1 flex-col justify-center",
-        "expanded:gap-small-500",
-      )}>
-      {({isDisabled, isExpanded}) => (
-        <>
-          <Heading
-            className={cn(
-              bannerHeading({
-                status,
-              }),
-            )}>
-            <Button
-              slot="trigger"
-              className={cn(
-                bannerButton({
-                  status,
-                  isDisabled,
-                }),
-              )}>
-              {title}
-              {isDisabled ? null : isExpanded ? (
-                <ChevronUpIcon aria-hidden />
-              ) : (
-                <ChevronDownIcon aria-hidden />
-              )}
-            </Button>
-          </Heading>
-          <DisclosurePanel
-            className={cn(
-              bannerDisclosurePanel({
-                status,
-              }),
-            )}>
-            {children}
-          </DisclosurePanel>
-        </>
-      )}
-    </Disclosure>
-  );
-}
+const bannerHeading = cva(
+  [
+    "flex h-6 items-center [&_svg]:size-3",
+    text({
+      emphasis: "semibold",
+    }),
+  ],
+  {
+    variants: {
+      status: {
+        info: "text-info-text [&_svg]:stroke-info-text",
+        success: "text-success-text [&_svg]:stroke-success-text",
+        warning: "text-warning-text [&_svg]:stroke-warning-text",
+        critical: "text-critical-text [&_svg]:stroke-critical-text",
+      } satisfies Record<Status, string>,
+    },
+  },
+);
+
+const bannerButton = cva(
+  [
+    "rounded-base flex w-full cursor-pointer items-center justify-between text-start",
+    "outline-none focus-visible:ring-2",
+  ],
+  {
+    variants: {
+      status: {
+        info: "focus-visible:ring-info-border",
+        success: "focus-visible:ring-success-border",
+        warning: "focus-visible:ring-warning-border",
+        critical: "focus-visible:ring-critical-border",
+      } satisfies Record<Status, string>,
+      isDisabled: {
+        true: "cursor-default",
+      },
+    },
+  },
+);
+
+const bannerDisclosurePanel = cva(text(), {
+  variants: {
+    status: {
+      info: "text-info-text-subdued",
+      success: "text-success-text-subdued",
+      warning: "text-warning-text-subdued",
+      critical: "text-critical-text-subdued",
+    } satisfies Record<Status, string>,
+  },
+});
+
+const bannerCloseButton = cva("ms-small-300 size-6 [&_svg]:size-3", {
+  variants: {
+    status: {
+      info: "[&_svg]:stroke-info-text",
+      success: "[&_svg]:stroke-success-text",
+      warning: "[&_svg]:stroke-warning-text",
+      critical: "[&_svg]:stroke-critical-text",
+    } satisfies Record<Status, string>,
+  },
+});
+
+const bannerIcon = cva("size-5", {
+  variants: {
+    status: {
+      info: "stroke-info-icon",
+      success: "stroke-success",
+      warning: "stroke-warning",
+      critical: "stroke-critical",
+    } satisfies Record<Status, string>,
+  },
+});

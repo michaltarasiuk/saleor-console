@@ -10,6 +10,6 @@ dotenvExpand.expand(
 );
 
 const EnvSchema = z.object({
-  SALEOR_GRAPHQL_URL: z.url(),
+  NEXT_PUBLIC_SALEOR_GRAPHQL_URL: z.url(),
 });
 export const env = EnvSchema.parse(process.env);

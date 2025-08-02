@@ -1,6 +1,6 @@
 "use client";
 
-import {cva, VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "class-variance-authority";
 import {
   Modal as AriaModal,
   ModalOverlay,

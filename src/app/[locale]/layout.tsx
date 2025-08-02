@@ -1,33 +1,25 @@
-import "@/styles/globals.css";
-
-import {Locale, Locales} from "@/i18n/consts";
+import {type Locale, Locales} from "@/i18n/consts";
 import {IntlProvider} from "@/i18n/IntlProvider";
 
-import {Html} from "./_components/Html";
-import {RouterProvider} from "./_components/RouterProvider";
-
-interface Params {
-  locale: Locale;
-}
-
-interface RootLayoutProps {
+interface LocaleLayoutProps {
   children: React.ReactNode;
-  params: Promise<Params>;
+  params: Promise<{
+    locale: Locale;
+  }>;
 }
 
-export default async function RootLayout({children, params}: RootLayoutProps) {
+export default async function LocaleLayout({
+  children,
+  params,
+}: LocaleLayoutProps) {
   const {locale} = await params;
-  return (
-    <Html>
-      <body>
-        <IntlProvider locale={locale}>
-          <RouterProvider>{children}</RouterProvider>
-        </IntlProvider>
-      </body>
-    </Html>
-  );
+  return <IntlProvider locale={locale}>{children}</IntlProvider>;
 }
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return Locales.map((locale) => ({locale}) satisfies Params);
+  return Locales.map((locale) => ({
+    locale,
+  }));
 }

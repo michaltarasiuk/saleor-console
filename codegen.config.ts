@@ -3,10 +3,10 @@ import type {CodegenConfig} from "@graphql-codegen/cli";
 import {env} from "./env";
 
 const config: CodegenConfig = {
-  schema: env.SALEOR_GRAPHQL_URL,
+  schema: env.NEXT_PUBLIC_SALEOR_GRAPHQL_URL,
   documents: ["src/**/*.{ts,tsx}"],
   generates: {
-    "./src/graphql/": {
+    "./src/graphql/codegen/": {
       preset: "client",
     },
   },

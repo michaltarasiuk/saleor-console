@@ -2,8 +2,9 @@
 
 import {Link} from "@/components/Link";
 import {isDefined} from "@/utils/is-defined";
-import {joinPathname} from "@/utils/join-pathname";
+import {joinPathSegments} from "@/utils/join-path-segments";
 
+import {useChannel} from "../hooks/use-channel";
 import {useLocale} from "../hooks/use-locale";
 
 export function IntlLink({
@@ -12,9 +13,12 @@ export function IntlLink({
   ...props
 }: React.ComponentProps<typeof Link>) {
   const locale = useLocale();
-  const hrefWithLocale = isDefined(href) ? joinPathname(locale, href) : href;
+  const channel = useChannel();
+  const hrefWithLocaleAndChannel = isDefined(href)
+    ? joinPathSegments(locale, channel, href)
+    : href;
   return (
-    <Link href={hrefWithLocale} {...props}>
+    <Link href={hrefWithLocaleAndChannel} {...props}>
       {children}
     </Link>
   );

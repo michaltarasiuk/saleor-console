@@ -31,12 +31,12 @@ export function Avatar({size, initials, className}: AvatarProps) {
   return (
     <div
       className={cn(
-        avatar({
-          size,
-        }),
         text({
           size,
           appearance: "subdued",
+        }),
+        avatar({
+          size,
         }),
         className,
       )}>

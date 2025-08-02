@@ -1,3 +1,5 @@
+import {joinPathSegments} from "@/utils/join-path-segments";
+
 export const Routes = {
   home: "/",
   signin: "/signin",
@@ -6,6 +8,6 @@ export const Routes = {
   profile: "/profile",
   settings: "/settings",
   order(id: string) {
-    return `${this.orders}/${id}`;
+    return joinPathSegments(this.orders, id);
   },
 };

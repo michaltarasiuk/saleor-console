@@ -5,24 +5,24 @@ import {NextResponse, URLPattern} from "next/server";
 
 import {ciEquals} from "@/utils/ci-equals";
 import {isDefined} from "@/utils/is-defined";
-import {joinPathname} from "@/utils/join-pathname";
+import {joinPathSegments} from "@/utils/join-path-segments";
 
 import {DefaultLocale, Locales, NextLocaleCookieName} from "./consts";
 
 export async function intlMiddleware(request: Request) {
   const requestUrl = new URL(request.url);
-  if (!hasLocaleInUrl(requestUrl)) {
+  if (!hasLocale(requestUrl)) {
     const locale =
       (await getLocaleByCookies()) ??
       (await getLocaleByHeaders()) ??
       DefaultLocale;
     return NextResponse.redirect(
-      new URL(joinPathname(locale, requestUrl.pathname), request.url),
+      new URL(joinPathSegments(locale, requestUrl.pathname), request.url),
     );
   }
 }
 
-function hasLocaleInUrl(url: URL) {
+function hasLocale(url: URL) {
   const pattern = new URLPattern({
     pathname: `/:locale(${Locales.join("|")})/:path*`,
   });

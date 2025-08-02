@@ -23,7 +23,7 @@ export function OrderSummaryDisclosure() {
             <Button
               slot="trigger"
               className={cn(
-                "p-large-200 border-base-border flex w-full cursor-pointer items-center justify-between border-b",
+                "p-large-200 border-base-border gap-base flex w-full cursor-pointer items-center justify-between border-b",
                 "focus-visible:ring-base-accent focus-visible:ring-offset-base-background-subdued outline-none focus-visible:ring-2 focus-visible:ring-offset-1",
               )}>
               <div className={cn("gap-small-200 flex items-center")}>
@@ -64,7 +64,7 @@ export function SkeletonOrderSummaryDisclosure() {
   return (
     <div
       className={cn(
-        "-mx-large-200 p-large-200 flex justify-between",
+        "-mx-large-200 p-large-200 gap-base flex justify-between",
         "bg-base-background-subdued border-base-border border-b",
       )}>
       <SkeletonText />

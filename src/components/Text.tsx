@@ -3,7 +3,7 @@
 import type {VariantProps} from "class-variance-authority";
 import {
   Text as AriaText,
-  TextProps as AriaTextProps,
+  type TextProps as AriaTextProps,
 } from "react-aria-components";
 
 import {cn} from "@/utils/cn";

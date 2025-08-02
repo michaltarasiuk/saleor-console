@@ -12,6 +12,7 @@ import {
 interface OrderPageProps {
   params: Promise<{
     locale: Locale;
+    id: string;
   }>;
 }
 

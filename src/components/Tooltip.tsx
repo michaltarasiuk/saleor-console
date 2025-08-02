@@ -3,7 +3,7 @@
 import {
   OverlayArrow,
   Tooltip as AriaTooltip,
-  TooltipProps,
+  type TooltipProps,
 } from "react-aria-components";
 
 import {text} from "@/styles/text";

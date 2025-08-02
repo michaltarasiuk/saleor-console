@@ -1,4 +1,4 @@
-export function joinPathname(...segments: string[]) {
+export function joinPathSegments(...segments: string[]) {
   function trimLeadingSlash(s: string) {
     return s.startsWith("/") ? s.slice(1) : s;
   }
