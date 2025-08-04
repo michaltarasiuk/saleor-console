@@ -2,8 +2,9 @@ import "@/styles/globals.css";
 
 import type {ApolloClient} from "@apollo/client";
 
+import {serverEnv} from "@/env-server";
+import {getClient} from "@/graphql/client";
 import {graphql} from "@/graphql/codegen";
-import {getClient} from "@/graphql/server-client";
 
 interface ChannelLayoutProps {
   children: React.ReactNode;
@@ -26,6 +27,11 @@ export async function generateStaticParams() {
 async function getActiveChannelSlugs(client: ApolloClient<unknown>) {
   const {data} = await client.query({
     query: ChannelSlugsQuery,
+    context: {
+      headers: {
+        Authorization: `Bearer ${serverEnv.SALEOR_AUTH_TOKEN}`,
+      },
+    },
   });
   const slugs: string[] = [];
   for (const channel of data.channels ?? []) {

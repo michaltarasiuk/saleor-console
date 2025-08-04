@@ -2,8 +2,8 @@ import {type NextRequest, NextResponse} from "next/server";
 import * as z from "zod";
 
 import {Routes} from "@/consts/routes";
+import {getClient} from "@/graphql/client";
 import {graphql} from "@/graphql/codegen";
-import {getClient} from "@/graphql/server-client";
 import type {Locale} from "@/i18n/consts";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments, splitPathSegments} from "@/utils/pathname";

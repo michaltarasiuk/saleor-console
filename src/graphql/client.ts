@@ -8,15 +8,15 @@ import {
 } from "@apollo/client-integration-nextjs";
 
 import {serverEnv} from "@/env-server";
+import introspection from "@/graphql/codegen/introspection.json";
 
 export const {getClient, query, PreloadQuery} = registerApolloClient(() => {
   return new ApolloClient({
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      possibleTypes: introspection.possibleTypes,
+    }),
     link: new HttpLink({
       uri: serverEnv.NEXT_PUBLIC_SALEOR_GRAPHQL_URL,
-      headers: {
-        Authorization: `Bearer ${serverEnv.SALEOR_AUTH_TOKEN}`,
-      },
     }),
   });
 });

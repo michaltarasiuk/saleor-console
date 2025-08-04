@@ -1,7 +1,8 @@
 import {notFound, redirect} from "next/navigation";
 
+import {serverEnv} from "@/env-server";
+import {query} from "@/graphql/client";
 import {graphql} from "@/graphql/codegen";
-import {query} from "@/graphql/server-client";
 import type {Locale} from "@/i18n/consts";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
@@ -20,6 +21,11 @@ export default async function LocalePage({params}: LocalePageProps) {
   }
   const {data} = await query({
     query: ChannelsWithCountryQuery,
+    context: {
+      headers: {
+        Authorization: `Bearer ${serverEnv.SALEOR_AUTH_TOKEN}`,
+      },
+    },
   });
   const regionChannel = data.channels?.find(
     (channel) => channel.defaultCountry.code === region,

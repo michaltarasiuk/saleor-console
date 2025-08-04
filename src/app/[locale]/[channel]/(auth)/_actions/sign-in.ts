@@ -4,8 +4,8 @@ import {redirect} from "next/navigation";
 import * as z from "zod";
 
 import {Routes} from "@/consts/routes";
+import {getClient} from "@/graphql/client";
 import {graphql} from "@/graphql/codegen";
-import {getClient} from "@/graphql/server-client";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
 import {setAccessTokenCookie, setRefreshTokenCookie} from "@/utils/session";

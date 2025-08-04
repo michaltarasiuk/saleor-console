@@ -9,6 +9,9 @@ const config: CodegenConfig = {
     "./src/graphql/codegen/": {
       preset: "client",
     },
+    "./src/graphql/codegen/introspection.json": {
+      plugins: ["fragment-matcher"],
+    },
   },
   ignoreNoDocuments: true,
   hooks: {
