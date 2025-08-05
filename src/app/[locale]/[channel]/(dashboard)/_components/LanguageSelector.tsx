@@ -6,6 +6,7 @@ import {Button} from "react-aria-components";
 import {Autocomplete, AutocompleteItem} from "@/components/Autocomplete";
 import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
 import {Popover, PopoverTrigger} from "@/components/Popover";
+import {useIsMobile} from "@/hooks/use-is-mobile";
 import {Locales} from "@/i18n/consts";
 import {useLocale} from "@/i18n/hooks/use-locale";
 import {useSetLocale} from "@/i18n/hooks/use-set-locale";
@@ -21,48 +22,42 @@ import {DialogHeader} from "../profile/_components/DialogHeader";
 
 export function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
   const intl = useIntl();
-  return (
-    <>
+  if (!isMobile) {
+    return (
       <PopoverTrigger isOpen={isOpen} onOpenChange={setIsOpen}>
-        <LanguageSelectorButton
-          isOpen={isOpen}
-          className={cn("hidden sm:flex")}
-        />
+        <LanguageSelectorButton isOpen={isOpen} />
         <Popover>
           <LanguageSelectorAutocomplete />
         </Popover>
       </PopoverTrigger>
-      <DialogTrigger>
-        <LanguageSelectorButton className={cn("flex sm:hidden")} />
-        <Modal isDismissable>
-          <Dialog className={cn("space-y-base")}>
-            {({close}) => (
-              <>
-                <DialogHeader
-                  title={intl.formatMessage({
-                    id: "ZMXbRJ",
-                    defaultMessage: "Select Language",
-                  })}
-                  onClose={close}
-                />
-                <LanguageSelectorAutocomplete />
-              </>
-            )}
-          </Dialog>
-        </Modal>
-      </DialogTrigger>
-    </>
+    );
+  }
+  return (
+    <DialogTrigger isOpen={isOpen} onOpenChange={setIsOpen}>
+      <LanguageSelectorButton isOpen={isOpen} />
+      <Modal isDismissable>
+        <Dialog className={cn("space-y-base")}>
+          {({close}) => (
+            <>
+              <DialogHeader
+                title={intl.formatMessage({
+                  id: "ZMXbRJ",
+                  defaultMessage: "Select Language",
+                })}
+                onClose={close}
+              />
+              <LanguageSelectorAutocomplete />
+            </>
+          )}
+        </Dialog>
+      </Modal>
+    </DialogTrigger>
   );
 }
 
-export function LanguageSelectorButton({
-  isOpen,
-  className,
-}: {
-  isOpen?: boolean;
-  className?: string;
-}) {
+export function LanguageSelectorButton({isOpen}: {isOpen?: boolean}) {
   const currentLocale = useLocale();
   return (
     <Button
@@ -73,7 +68,6 @@ export function LanguageSelectorButton({
         text({
           appearance: "accent",
         }),
-        className,
       )}>
       {getLanguageDisplayName(currentLocale)}
       {isOpen ? (

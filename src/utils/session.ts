@@ -32,9 +32,9 @@ export async function setAccessTokenCookie(token: string) {
   const payload = AccessTokenPayloadSchema.parse(decoded);
 
   (await cookies()).set(CookieNames.accessToken, token, {
-    sameSite: "lax",
     httpOnly: true,
     secure: true,
+    sameSite: "lax",
     expires: new Date(payload.exp * 1_000),
   });
 }
@@ -44,9 +44,9 @@ export async function setRefreshTokenCookie(token: string) {
   const payload = RefreshTokenPayloadSchema.parse(decoded);
 
   (await cookies()).set(CookieNames.refreshToken, token, {
-    sameSite: "strict",
     httpOnly: true,
     secure: true,
+    sameSite: "strict",
     expires: new Date(payload.exp * 1_000),
   });
 }

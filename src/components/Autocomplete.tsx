@@ -36,7 +36,7 @@ export function Autocomplete<T>({
   return (
     <div className={cn("space-y-base")}>
       <AriaAutocomplete filter={contains} {...props}>
-        <SearchField placeholder={placeholder} />
+        <SearchField aria-label={placeholder} placeholder={placeholder} />
         <Menu
           selectionMode={selectionMode}
           selectedKeys={selectedKeys}
