@@ -29,5 +29,11 @@ export default function SigninPage() {
 function SigninFormWithParams() {
   const searchParams = useSearchParams();
   const defaultEmail = searchParams.get("email");
-  return <SigninForm {...(isDefined(defaultEmail) && {defaultEmail})} />;
+  return (
+    <SigninForm
+      {...(isDefined(defaultEmail) && {
+        defaultEmail,
+      })}
+    />
+  );
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import {useActionState} from "react";
+import {useActionState, useTransition} from "react";
 import {Input} from "react-aria-components";
-import {useFormStatus} from "react-dom";
 
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
@@ -24,14 +23,19 @@ export function SigninForm({defaultEmail}: SigninFormProps) {
   const [{errors}, formAction] = useActionState(signIn, {
     errors: {},
   });
+  const [isPending, startTransition] = useTransition();
   const locale = useLocale();
   const channel = useChannel();
   const intl = useIntl();
   return (
     <Form
       validationErrors={errors}
-      className={cn("gap-small-100 flex flex-col")}
-      action={formAction}>
+      onSubmit={(event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target as HTMLFormElement);
+        startTransition(() => formAction(formData));
+      }}
+      className={cn("gap-small-100 flex flex-col")}>
       <FormHeader
         title={intl.formatMessage({
           id: "SQJto2",
@@ -47,33 +51,28 @@ export function SigninForm({defaultEmail}: SigninFormProps) {
         name="email"
         type="email"
         defaultValue={defaultEmail}
-        placeholder={intl.formatMessage({
+        label={intl.formatMessage({
           id: "sy+pv5",
           defaultMessage: "Email",
         })}
+        isRequired
       />
       <TextField
         name="password"
         type="password"
-        placeholder={intl.formatMessage({
+        label={intl.formatMessage({
           id: "5sg7KC",
           defaultMessage: "Password",
         })}
         autoComplete="current-password"
         autoFocus={isDefined(defaultEmail)}
+        isRequired
       />
       <Input name="locale" type="hidden" value={locale} />
       <Input name="channel" type="hidden" value={channel} />
-      <SubmitButton />
+      <Button type="submit" isDisabled={isPending} isPending={isPending}>
+        <FormattedMessage id="SQJto2" defaultMessage="Sign in" />
+      </Button>
     </Form>
-  );
-}
-
-function SubmitButton() {
-  const {pending} = useFormStatus();
-  return (
-    <Button type="submit" isDisabled={pending} isPending={pending}>
-      <FormattedMessage id="SQJto2" defaultMessage="Sign in" />
-    </Button>
   );
 }

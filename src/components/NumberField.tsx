@@ -2,8 +2,8 @@
 
 import {
   Label,
-  TextField as AriaTextField,
-  type TextFieldProps as AriaTextFieldProps,
+  NumberField as AriaNumberField,
+  type NumberFieldProps as AriaNumberFieldProps,
 } from "react-aria-components";
 
 import {cn} from "../utils/cn";
@@ -11,17 +11,23 @@ import {isDefined} from "../utils/is-defined";
 import {FieldError} from "./FieldError";
 import {Text} from "./Text";
 import {Input} from "./Input";
+import {IconButton} from "./IconButton";
+import {MinusIcon} from "@/icons/MinusIcon";
+import {PlusIcon} from "@/icons/PlusIcon";
 
-interface TextFieldProps extends AriaTextFieldProps {
+interface NumberFieldProps extends AriaNumberFieldProps {
   label: string;
   description?: string;
 }
 
-export function TextField({label, description, ...props}: TextFieldProps) {
+export function NumberField({label, description, ...props}: NumberFieldProps) {
   return (
-    <AriaTextField
+    <AriaNumberField
       {...props}
-      className={cn("group relative flex flex-col", props.className)}>
+      className={cn(
+        "group relative flex flex-col justify-center",
+        props.className,
+      )}>
       <Label
         className={cn(
           "text-control-text-subdued font-primary text-small pointer-events-none absolute start-3 top-3 ms-px translate-y-full leading-[1] opacity-0 transition-all duration-300",
@@ -30,12 +36,26 @@ export function TextField({label, description, ...props}: TextFieldProps) {
         {label}
       </Label>
       <Input placeholder={label} />
+      <NumberFieldControls />
       {isDefined(description) && (
         <Text slot="description" appearance="subdued" size="small">
           {description}
         </Text>
       )}
       <FieldError className={cn("mt-small-400")} />
-    </AriaTextField>
+    </AriaNumberField>
+  );
+}
+
+function NumberFieldControls() {
+  return (
+    <div className={cn("absolute end-0 flex")}>
+      <IconButton slot="decrement" className={cn("size-9")}>
+        <MinusIcon className={cn("size-3.5")} />
+      </IconButton>
+      <IconButton slot="increment" className={cn("size-9")}>
+        <PlusIcon className={cn("size-3.5")} />
+      </IconButton>
+    </div>
   );
 }

@@ -7,7 +7,6 @@ import {Text} from "./Text";
 export function Skeleton({className}: {className?: string}) {
   return (
     <div
-      aria-hidden
       className={cn("rounded-base bg-base-border animate-pulse", className)}
     />
   );
@@ -26,7 +25,6 @@ export function SkeletonText({
 }: SkeletonTextProps) {
   return (
     <Text
-      aria-hidden
       className={cn(
         skeletonText({
           inlineSize,
@@ -34,7 +32,7 @@ export function SkeletonText({
         className,
       )}
       {...props}>
-      &#8203;{/* Zero-width space */}
+      &#8203;
       <Skeleton className={cn("absolute h-4/5 w-full")} />
     </Text>
   );

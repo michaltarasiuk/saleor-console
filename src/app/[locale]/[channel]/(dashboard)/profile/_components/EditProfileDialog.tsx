@@ -54,7 +54,7 @@ function ProfileForm({cancelButton}: {cancelButton: React.ReactNode}) {
         name="email"
         value="john.doe@example.com"
         type="email"
-        placeholder={intl.formatMessage({
+        label={intl.formatMessage({
           id: "sy+pv5",
           defaultMessage: "Email",
         })}

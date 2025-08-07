@@ -13,7 +13,7 @@ export function FullNameFieldset() {
       </legend>
       <TextField
         name="firstName"
-        placeholder={intl.formatMessage({
+        label={intl.formatMessage({
           id: "pONqz8",
           defaultMessage: "First name",
         })}
@@ -21,7 +21,7 @@ export function FullNameFieldset() {
       />
       <TextField
         name="lastName"
-        placeholder={intl.formatMessage({
+        label={intl.formatMessage({
           id: "txUL0F",
           defaultMessage: "Last name",
         })}
@@ -41,7 +41,7 @@ export function AddressFieldset() {
       <FullNameFieldset />
       <TextField
         name="address"
-        placeholder={intl.formatMessage({
+        label={intl.formatMessage({
           id: "e6Ph5+",
           defaultMessage: "Address",
         })}
@@ -49,7 +49,7 @@ export function AddressFieldset() {
       />
       <TextField
         name="apartment"
-        placeholder={intl.formatMessage({
+        label={intl.formatMessage({
           id: "yOsL4f",
           defaultMessage: "Apartment, suite, etc (optional)",
         })}
@@ -58,12 +58,15 @@ export function AddressFieldset() {
       <div className={cn("gap-base grid grid-cols-1 sm:grid-cols-2")}>
         <TextField
           name="postalCode"
-          placeholder="Postal code"
+          label={intl.formatMessage({
+            id: "TE4fIS",
+            defaultMessage: "Postal code",
+          })}
           autoComplete="postal-code"
         />
         <TextField
           name="city"
-          placeholder={intl.formatMessage({
+          label={intl.formatMessage({
             id: "TE4fIS",
             defaultMessage: "City",
           })}
