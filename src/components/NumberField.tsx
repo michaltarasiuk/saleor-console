@@ -27,7 +27,7 @@ export function NumberField({label, description, ...props}: NumberFieldProps) {
       <div className={cn("group relative flex items-center")}>
         <Label
           className={cn(
-            "text-control-text-subdued font-primary text-small pointer-events-none absolute start-3 top-3 ms-px translate-y-full leading-[1] opacity-0 transition-all duration-300",
+            "text-control-text-subdued font-primary text-small pointer-events-none absolute start-3 top-3 ms-px translate-y-full leading-[1] opacity-0 transition-all",
             "group-has-[input:not(:placeholder-shown)]:translate-y-0 group-has-[input:not(:placeholder-shown)]:opacity-100",
           )}>
           {label}
