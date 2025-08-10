@@ -6,7 +6,7 @@ import {Routes} from "@/consts/routes";
 import type {Locale} from "@/i18n/consts";
 import {FormattedDate, FormattedMessage} from "@/i18n/react-intl";
 import {getIntl} from "@/i18n/utils/get-intl";
-import {ArrowLeft} from "@/icons/ArrowLeftIcon";
+import {ArrowLeftIcon} from "@/icons/ArrowLeftIcon";
 import {cn} from "@/utils/cn";
 
 export async function OrderHeader({locale}: {locale: Locale}) {
@@ -25,7 +25,7 @@ export async function OrderHeader({locale}: {locale: Locale}) {
             defaultMessage: "Go back to orders",
           })}
           className={cn("size-6 rounded-full [grid-area:back]")}>
-          <ArrowLeft aria-hidden />
+          <ArrowLeftIcon aria-hidden />
         </IconLink>
         <Heading className={cn("[grid-area:heading]")}>
           <FormattedMessage

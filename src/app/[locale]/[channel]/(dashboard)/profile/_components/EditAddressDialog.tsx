@@ -7,10 +7,10 @@ import {Form} from "@/components/Form";
 import {useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
+import {AddressFieldset} from "./AddressFieldset";
 import {CancelButton} from "./CancelButton";
 import {DeleteAddressDialog} from "./DeleteAddressDialog";
 import {DialogHeader} from "./DialogHeader";
-import {AddressFieldset} from "./Fieldset";
 import {SaveButton} from "./SaveButton";
 
 export function EditAddressDialog({children}: {children: React.ReactNode}) {

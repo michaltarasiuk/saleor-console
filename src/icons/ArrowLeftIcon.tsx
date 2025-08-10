@@ -1,6 +1,6 @@
 import {cn} from "../utils/cn";
 
-export function ArrowLeft(props: React.ComponentProps<"svg">) {
+export function ArrowLeftIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

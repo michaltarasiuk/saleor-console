@@ -9,9 +9,9 @@ import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {PlusIcon} from "@/icons/PlusIcon";
 import {cn} from "@/utils/cn";
 
+import {AddressFieldset} from "./AddressFieldset";
 import {CancelButton} from "./CancelButton";
 import {DialogHeader} from "./DialogHeader";
-import {AddressFieldset} from "./Fieldset";
 import {SaveButton} from "./SaveButton";
 
 export function AddAddressDialog() {

@@ -131,6 +131,12 @@
       "value": "Settings"
     }
   ],
+  "DP5VOH": [
+    {
+      "type": 0,
+      "value": "Shipping Address"
+    }
+  ],
   "Dxd1uB": [
     {
       "type": 0,
@@ -287,6 +293,12 @@
     {
       "type": 0,
       "value": "Show order summary"
+    }
+  ],
+  "c7/79+": [
+    {
+      "type": 0,
+      "value": "Billing Address"
     }
   ],
   "cyR7Kh": [

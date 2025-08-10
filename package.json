@@ -8,8 +8,7 @@
     "lint": "next lint",
     "lint-fix": "eslint --fix .",
     "prettier-check": "prettier --check .",
-    "prettier-write": "prettier --write",
-    "format": "bun run prettier-write .",
+    "prettier-write": "prettier --write .",
     "extract": "formatjs extract --out-file src/i18n/messages/extracted/en-US.json -- '!**/*.d.ts' '**/*.{ts,tsx}' && bun run prettier-write src/i18n/messages/extracted/en-US.json",
     "compile-folder": "formatjs compile-folder --ast src/i18n/messages/extracted src/i18n/messages/compiled && bun run prettier-write src/i18n/messages/compiled",
     "extract-compile": "bun run extract && bun run compile-folder",
@@ -61,6 +60,5 @@
     "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwindcss": "^4",
     "typescript": "^5.8.3"
-  },
-  "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
+  }
 }

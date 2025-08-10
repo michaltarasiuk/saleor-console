@@ -1,4 +1,7 @@
+"use client";
+
 import {Text} from "@/components/Text";
+import {useIntl} from "@/i18n/react-intl";
 import {PenIcon} from "@/icons/PenIcon";
 import {cn} from "@/utils/cn";
 
@@ -34,11 +37,19 @@ function AddressCard({
   isShipping,
   isBilling,
 }: AddressCardProps) {
-  const title = isShipping
-    ? "Shipping Address"
-    : isBilling
-      ? "Billing Address"
-      : fullname;
+  const intl = useIntl();
+  let title = fullname;
+  if (isShipping) {
+    title = intl.formatMessage({
+      id: "DP5VOH",
+      defaultMessage: "Shipping Address",
+    });
+  } else if (isBilling) {
+    title = intl.formatMessage({
+      id: "c7/79+",
+      defaultMessage: "Billing Address",
+    });
+  }
   const addressLines = title !== fullname ? [fullname, ...address] : address;
   return (
     <article
@@ -56,7 +67,7 @@ function AddressCard({
   );
 }
 
-const Addresses = [
+const Addresses: AddressCardProps[] = [
   {
     fullname: "Alain Stuart",
     address: ["151 O'Connor St", "Ottawa ON K2P 2L8", "Canada"],

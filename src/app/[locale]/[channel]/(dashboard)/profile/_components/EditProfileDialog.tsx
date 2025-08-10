@@ -10,7 +10,7 @@ import {cn} from "@/utils/cn";
 
 import {CancelButton} from "./CancelButton";
 import {DialogHeader} from "./DialogHeader";
-import {FullNameFieldset} from "./Fieldset";
+import {FullNameFieldset} from "./FullNameFieldset";
 import {SaveButton} from "./SaveButton";
 
 export function EditProfileDialog() {
