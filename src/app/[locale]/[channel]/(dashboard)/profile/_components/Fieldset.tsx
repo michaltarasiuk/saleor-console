@@ -1,6 +1,6 @@
 "use client";
 
-import {Select, SelectItem} from "@/components/Select";
+import {Select} from "@/components/Select";
 import {TextField} from "@/components/TextField";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
