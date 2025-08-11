@@ -15,7 +15,6 @@ export function OrdersView() {
     case "table":
       return null;
     default:
-      assertNever(orderView);
   }
 }
 

@@ -24,14 +24,17 @@ import {IconButton} from "./IconButton";
 
 type Status = "info" | "success" | "warning" | "critical";
 
-interface BannerProps {
+export function Banner({
+  status,
+  title,
+  description,
+  onClose,
+}: {
   status: Status;
   title: string;
   description?: string;
   onClose?: () => void;
-}
-
-export function Banner({status, title, description, onClose}: BannerProps) {
+}) {
   return (
     <div
       role={status === "critical" ? "alert" : "status"}
