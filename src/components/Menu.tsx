@@ -77,7 +77,7 @@ export function MenuItem<T extends object>({
       className={cn(
         menuItem({
           critical,
-          current: hrefWithLocaleAndChannel === pathname,
+          current: pathname === hrefWithLocaleAndChannel,
         }),
         props.className,
       )}>

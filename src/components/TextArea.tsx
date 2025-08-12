@@ -48,7 +48,7 @@ export function TextArea({label, description, ...props}: TextAreaProps) {
           className={cn(
             "rounded-base border-control-border bg-control-background p-small-100 resize-none overflow-hidden border transition-all [grid-area:1/1/2/2]",
             "placeholder:text-control-text-subdued [&:not(:placeholder-shown)]:pt-6",
-            "focus:ring-control-accent/50 focus:border-control-accent outline-none focus:shadow-none focus:ring-3",
+            "focus:ring-control-accent/50 focus:border-control-accent outline-none focus:ring-3",
             "invalid:border-critical invalid:ring-critical invalid:ring-1",
             "disabled:bg-disabled-input-background disabled:opacity-50",
             text({
