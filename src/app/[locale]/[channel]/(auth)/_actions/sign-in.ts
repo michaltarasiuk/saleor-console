@@ -46,7 +46,7 @@ export async function signIn(_state: unknown, formData: FormData) {
   if (isDefined(token) && isDefined(refreshToken)) {
     await setAccessTokenCookie(token);
     await setRefreshTokenCookie(refreshToken);
-    redirect(joinPathSegments(locale, channel, Routes.orders));
+    redirect(joinPathSegments(locale, channel, Routes.account.orders));
   }
   return {
     errors: toValidationErrors(errors),

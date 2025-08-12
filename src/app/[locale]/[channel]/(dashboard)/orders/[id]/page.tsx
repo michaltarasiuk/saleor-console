@@ -1,13 +1,13 @@
 import {Suspense} from "react";
 
+import {
+  OrderSummaryDisclosure,
+  SkeletonOrderSummaryDisclosure,
+} from "@/components/OrderSummaryDisclosure";
 import type {Locale} from "@/i18n/consts";
 import {cn} from "@/utils/cn";
 
 import {OrderHeader} from "./_components/OrderHeader";
-import {
-  OrderSummaryDisclosure,
-  SkeletonOrderSummaryDisclosure,
-} from "./_components/OrderSummaryDisclosure";
 
 interface OrderPageProps {
   params: Promise<{
@@ -29,7 +29,7 @@ function Order({locale}: {locale: Locale}) {
   return (
     <>
       <div className={cn("mb-small-200 md:hidden")}>
-        <OrderSummaryDisclosure />
+        <OrderSummaryDisclosure className={cn("-mx-large-200")} />
       </div>
       <OrderHeader locale={locale} />
     </>

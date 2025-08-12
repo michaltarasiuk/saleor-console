@@ -1,7 +1,8 @@
 "use client";
 
 import {Button} from "@/components/Button";
-import {Skeleton, SkeletonText} from "@/components/Skeleton";
+import {Skeleton} from "@/components/Skeleton";
+import {SkeletonText} from "@/components/SkeletonText";
 import {Text} from "@/components/Text";
 import {Routes} from "@/consts/routes";
 import {IntlLink} from "@/i18n/components/IntlLink";
@@ -108,7 +109,7 @@ function OrderCardRoot({children}: {children: React.ReactNode}) {
 function OrderCardLink({id}: {id: string}) {
   return (
     <IntlLink
-      href={Routes.order(id)}
+      href={Routes.account.order(id)}
       className={cn(
         "rounded-large absolute inset-0",
         "hover:shadow-small transition-shadow",

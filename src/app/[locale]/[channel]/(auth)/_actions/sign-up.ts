@@ -38,7 +38,7 @@ export async function signUp(_state: unknown, formData: FormData) {
   const languageCode = localeToLanguageCode(locale);
   const redirectUrl = String(
     new URL(
-      joinPathSegments(locale, channel, Routes.confirmAccount),
+      joinPathSegments(locale, channel, Routes.account.confirmAccount),
       serverEnv.NEXT_PUBLIC_SITE_URL,
     ),
   );

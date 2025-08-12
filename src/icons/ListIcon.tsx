@@ -1,4 +1,4 @@
-import {cn} from "../utils/cn";
+import {cn} from "@/utils/cn";
 
 export function ListIcon(props: React.ComponentProps<"svg">) {
   return (

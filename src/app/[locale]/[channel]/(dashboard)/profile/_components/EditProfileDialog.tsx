@@ -2,6 +2,7 @@
 
 import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
+import {FullNameFieldset} from "@/components/FullNameFieldset";
 import {IconButton} from "@/components/IconButton";
 import {TextField} from "@/components/TextField";
 import {useIntl} from "@/i18n/react-intl";
@@ -10,7 +11,6 @@ import {cn} from "@/utils/cn";
 
 import {CancelButton} from "./CancelButton";
 import {DialogHeader} from "./DialogHeader";
-import {FullNameFieldset} from "./FullNameFieldset";
 import {SaveButton} from "./SaveButton";
 
 export function EditProfileDialog() {

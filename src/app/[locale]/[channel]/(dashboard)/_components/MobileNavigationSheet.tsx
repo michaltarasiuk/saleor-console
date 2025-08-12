@@ -31,19 +31,19 @@ export function MobileNavigationSheet() {
               </MenuItemLink>
             </ListItem>
             <ListItem>
-              <MenuItemLink href={Routes.orders} onClick={close}>
+              <MenuItemLink href={Routes.account.orders} onClick={close}>
                 <FormattedMessage id="X7jl6w" defaultMessage="Orders" />
               </MenuItemLink>
             </ListItem>
           </List>
           <List className={cn("pt-base")}>
             <ListItem>
-              <MenuItemLink href={Routes.profile} onClick={close}>
+              <MenuItemLink href={Routes.account.profile} onClick={close}>
                 <FormattedMessage id="itPgxd" defaultMessage="Profile" />
               </MenuItemLink>
             </ListItem>
             <ListItem>
-              <MenuItemLink href={Routes.settings} onClick={close}>
+              <MenuItemLink href={Routes.account.settings} onClick={close}>
                 <FormattedMessage id="D3idYv" defaultMessage="Settings" />
               </MenuItemLink>
             </ListItem>

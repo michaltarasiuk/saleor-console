@@ -1,6 +1,6 @@
 "use client";
 
-import {Select} from "@/components/Select";
+import {Select, SelectItem} from "@/components/Select";
 import {TextField} from "@/components/TextField";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
@@ -19,8 +19,12 @@ export function AddressFieldset() {
         label={intl.formatMessage({
           id: "ASVYue",
           defaultMessage: "Country/region",
-        })}
-      />
+        })}>
+        <SelectItem textValue="United States">United States</SelectItem>
+        <SelectItem textValue="Canada">Canada</SelectItem>
+        <SelectItem textValue="United Kingdom">United Kingdom</SelectItem>
+        <SelectItem textValue="Australia">Australia</SelectItem>
+      </Select>
       <FullNameFieldset />
       <TextField
         name="address"

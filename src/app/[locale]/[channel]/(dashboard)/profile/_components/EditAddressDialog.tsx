@@ -2,12 +2,12 @@
 
 import {Button} from "react-aria-components";
 
+import {AddressFieldset} from "@/components/AddressFieldset";
 import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
 import {useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
-import {AddressFieldset} from "./AddressFieldset";
 import {CancelButton} from "./CancelButton";
 import {DeleteAddressDialog} from "./DeleteAddressDialog";
 import {DialogHeader} from "./DialogHeader";

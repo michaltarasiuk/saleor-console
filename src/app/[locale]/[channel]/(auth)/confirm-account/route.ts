@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
     const {user, errors = []} = data?.confirmAccount ?? {};
     if (isDefined(user) && user.isActive) {
       const redirectUrl = new URL(
-        joinPathSegments(locale, channel, Routes.signin),
+        joinPathSegments(locale, channel, Routes.account.signin),
         request.url,
       );
       redirectUrl.searchParams.set("email", email);

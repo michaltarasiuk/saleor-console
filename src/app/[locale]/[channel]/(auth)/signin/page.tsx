@@ -16,7 +16,7 @@ export default function SigninPage() {
       <Suspense fallback={<SigninForm />}>
         <SigninFormWithParams />
       </Suspense>
-      <IntlLink href={Routes.signup}>
+      <IntlLink href={Routes.account.signup}>
         <FormattedMessage
           id="jq3zbE"
           defaultMessage="Don't have an account? Sign up"

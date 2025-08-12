@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "react-aria-components";
 
+import {CheckmarkIcon} from "@/icons/CheckmarkIcon";
 import {ChevronDownIcon} from "@/icons/ChevronDownIcon";
 import {ChevronUpIcon} from "@/icons/ChevronUpIcon";
 import {text} from "@/styles/text";
@@ -97,9 +98,14 @@ export function Select<T extends object>({
           <FieldError />
           <Popover
             className={cn(
-              "bg-base-background rounded-base border-base-border shadow-extra-large p-small-300 border",
+              "bg-base-background rounded-base border-base-border shadow-extra-large border",
             )}>
-            <ListBox>{children}</ListBox>
+            <ListBox
+              className={cn(
+                "space-y-small-500 py-small-400 max-h-44 overflow-y-scroll",
+              )}>
+              {children}
+            </ListBox>
           </Popover>
         </>
       )}
@@ -112,13 +118,24 @@ export function SelectItem({children, ...props}: ListBoxItemProps) {
     <ListBoxItem
       {...props}
       className={cn(
-        "rounded-base p-small-500 cursor-pointer",
+        "px-small-100 py-small-400 flex w-[var(--trigger-width)] cursor-pointer items-center justify-between",
         "hover:bg-base-background-subdued",
+        "focus-visible:bg-base-background-subdued outline-none",
         "selected:bg-base-background-subdued",
         text(),
         props.className,
       )}>
-      {children}
+      {({isSelected, ...renderProps}) => (
+        <>
+          {typeof children === "function"
+            ? children({
+                isSelected,
+                ...renderProps,
+              })
+            : children}
+          {isSelected && <CheckmarkIcon aria-hidden className={cn("size-3")} />}
+        </>
+      )}
     </ListBoxItem>
   );
 }

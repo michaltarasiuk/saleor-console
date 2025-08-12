@@ -9,5 +9,5 @@ import {removeSessionCookies} from "@/utils/session";
 
 export async function logOut(locale: Locale, channel: string) {
   await removeSessionCookies();
-  redirect(joinPathSegments(locale, channel, Routes.signin));
+  redirect(joinPathSegments(locale, channel, Routes.account.signin));
 }

@@ -1,4 +1,4 @@
-import {cn} from "../utils/cn";
+import {cn} from "@/utils/cn";
 
 export function CloseIcon(props: React.ComponentProps<"svg">) {
   return (

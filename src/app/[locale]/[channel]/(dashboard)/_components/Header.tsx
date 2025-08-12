@@ -23,7 +23,7 @@ export async function Header({locale}: {locale: Locale}) {
             <MenuItemLink href={Routes.home}>
               <FormattedMessage id="Dxd1uB" defaultMessage="Shop" />
             </MenuItemLink>
-            <MenuItemLink href={Routes.orders}>
+            <MenuItemLink href={Routes.account.orders}>
               <FormattedMessage id="X7jl6w" defaultMessage="Orders" />
             </MenuItemLink>
           </div>

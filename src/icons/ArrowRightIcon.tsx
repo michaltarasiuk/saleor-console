@@ -1,6 +1,6 @@
 import {cn} from "@/utils/cn";
 
-export function ChevronUpIcon(props: React.ComponentProps<"svg">) {
+export function ArrowRightIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,10 +8,9 @@ export function ChevronUpIcon(props: React.ComponentProps<"svg">) {
       height="18"
       viewBox="0 0 18 18"
       fill="none"
-      {...props}
       className={cn("stroke-base-icon shrink-0", props.className)}>
       <path
-        d="M2.70005 10.7998L8.68185 4.818C8.85759 4.64227 9.14251 4.64227 9.31825 4.818L15.3 10.7998"
+        d="M1.80005 8.9998H16.2M16.2 8.9998L9.90005 2.6998M16.2 8.9998L9.90005 15.2998"
         strokeWidth="1.4"
         strokeLinecap="round"
         strokeLinejoin="round"

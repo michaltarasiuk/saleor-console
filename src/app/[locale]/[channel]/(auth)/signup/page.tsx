@@ -8,7 +8,7 @@ export default function SignupPage() {
   return (
     <>
       <SignupForm />
-      <IntlLink href={Routes.signin}>
+      <IntlLink href={Routes.account.signin}>
         <FormattedMessage
           id="JapGs4"
           defaultMessage="Already have an account? Sign in"

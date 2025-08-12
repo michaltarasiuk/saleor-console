@@ -19,7 +19,7 @@ export async function OrderHeader({locale}: {locale: Locale}) {
           "[grid-template-areas:'back_heading'_'empty_date']",
         )}>
         <IconLink
-          href={Routes.orders}
+          href={Routes.account.orders}
           aria-label={intl.formatMessage({
             id: "4uRlnn",
             defaultMessage: "Go back to orders",

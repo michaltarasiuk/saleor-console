@@ -51,10 +51,10 @@ export function ProfileSwitcher() {
               await logOut(locale, channel);
             }
           }}>
-          <MenuItem href={Routes.profile}>
+          <MenuItem href={Routes.account.profile}>
             <FormattedMessage id="itPgxd" defaultMessage="Profile" />
           </MenuItem>
-          <MenuItem href={Routes.settings}>
+          <MenuItem href={Routes.account.settings}>
             <FormattedMessage id="D3idYv" defaultMessage="Settings" />
           </MenuItem>
           <MenuItem id={logoutDialogId}>

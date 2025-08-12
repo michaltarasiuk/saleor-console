@@ -7,16 +7,17 @@ import {
   Heading,
 } from "react-aria-components";
 
-import {ProductList} from "@/components/ProductList";
-import {SkeletonText} from "@/components/Skeleton";
-import {Text} from "@/components/Text";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {CartIcon} from "@/icons/CartIcon";
 import {cn} from "@/utils/cn";
 
-export function OrderSummaryDisclosure() {
+import {ProductList} from "./ProductList";
+import {SkeletonText} from "./SkeletonText";
+import {Text} from "./Text";
+
+export function OrderSummaryDisclosure({className}: {className?: string}) {
   return (
-    <Disclosure className={cn("-mx-large-200 bg-base-background-subdued")}>
+    <Disclosure className={cn("bg-base-background-subdued", className)}>
       {({isExpanded}) => (
         <>
           <Heading>
