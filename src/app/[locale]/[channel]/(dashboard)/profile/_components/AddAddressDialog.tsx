@@ -4,14 +4,13 @@ import {Button} from "react-aria-components";
 
 import {AddressFieldset} from "@/components/AddressFieldset";
 import {Checkbox} from "@/components/Checkbox";
-import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
+import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {PlusIcon} from "@/icons/PlusIcon";
 import {cn} from "@/utils/cn";
 
 import {CancelButton} from "./CancelButton";
-import {DialogHeader} from "./DialogHeader";
 import {SaveButton} from "./SaveButton";
 
 export function AddAddressDialog() {

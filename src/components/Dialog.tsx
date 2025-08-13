@@ -8,7 +8,11 @@ import {
 } from "react-aria-components";
 import {Dialog as AriaDialog, type DialogProps} from "react-aria-components";
 
-import {cn} from "../utils/cn";
+import {CloseIcon} from "@/icons/CloseIcon";
+import {cn} from "@/utils/cn";
+
+import {Heading} from "./Heading";
+import {IconButton} from "./IconButton";
 
 export {DialogTrigger} from "react-aria-components";
 
@@ -23,6 +27,23 @@ export function Dialog({children, ...props}: DialogProps) {
       )}>
       {children}
     </AriaDialog>
+  );
+}
+
+export function DialogHeader({
+  title,
+  onClose,
+}: {
+  title: string;
+  onClose: () => void;
+}) {
+  return (
+    <header className={cn("flex items-center justify-between")}>
+      <Heading level={2}>{title}</Heading>
+      <IconButton className={cn("size-6")} onClick={onClose}>
+        <CloseIcon aria-hidden />
+      </IconButton>
+    </header>
   );
 }
 

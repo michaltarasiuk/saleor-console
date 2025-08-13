@@ -1,7 +1,7 @@
+import {Footer} from "@/components/Footer";
 import type {Locale} from "@/i18n/consts";
 import {cn} from "@/utils/cn";
 
-import {Footer} from "./_components/Footer";
 import {Header} from "./_components/Header";
 
 interface DashboardLayoutProps {

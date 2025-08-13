@@ -1,6 +1,6 @@
 "use client";
 
-import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
+import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
 import {FullNameFieldset} from "@/components/FullNameFieldset";
 import {IconButton} from "@/components/IconButton";
@@ -10,7 +10,6 @@ import {PenIcon} from "@/icons/PenIcon";
 import {cn} from "@/utils/cn";
 
 import {CancelButton} from "./CancelButton";
-import {DialogHeader} from "./DialogHeader";
 import {SaveButton} from "./SaveButton";
 
 export function EditProfileDialog() {

@@ -3,14 +3,13 @@
 import {Button} from "react-aria-components";
 
 import {AddressFieldset} from "@/components/AddressFieldset";
-import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
+import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
 import {useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
 import {CancelButton} from "./CancelButton";
 import {DeleteAddressDialog} from "./DeleteAddressDialog";
-import {DialogHeader} from "./DialogHeader";
 import {SaveButton} from "./SaveButton";
 
 export function EditAddressDialog({children}: {children: React.ReactNode}) {

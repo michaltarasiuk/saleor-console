@@ -4,9 +4,8 @@ import {cva} from "class-variance-authority";
 import {usePathname} from "next/navigation";
 import {Button, type ButtonProps, type LinkProps} from "react-aria-components";
 
+import {useBasePath} from "@/hooks/use-base-path";
 import {IntlLink} from "@/i18n/components/IntlLink";
-import {useChannel} from "@/i18n/hooks/use-channel";
-import {useLocale} from "@/i18n/hooks/use-locale";
 import {text} from "@/styles/text";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
@@ -28,20 +27,19 @@ const menuItem = cva(
   },
 );
 
-export function MenuItemLink({children, href, ...props}: LinkProps) {
+export function MenuItemLink({children, ...props}: LinkProps) {
   const pathname = usePathname();
-  const locale = useLocale();
-  const channel = useChannel();
-  const hrefWithLocaleAndChannel = isDefined(href)
-    ? joinPathSegments(locale, channel, href)
-    : href;
+  const basePath = useBasePath();
+  const href = isDefined(props.href)
+    ? joinPathSegments(...basePath, props.href)
+    : props.href;
   return (
     <IntlLink
       href={href}
       {...props}
       className={cn(
         menuItem({
-          current: hrefWithLocaleAndChannel === pathname,
+          current: pathname === href,
         }),
         props.className,
       )}>

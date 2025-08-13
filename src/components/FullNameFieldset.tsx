@@ -1,16 +1,13 @@
 "use client";
 
 import {TextField} from "@/components/TextField";
-import {FormattedMessage, useIntl} from "@/i18n/react-intl";
+import {useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
 export function FullNameFieldset() {
   const intl = useIntl();
   return (
     <fieldset className={cn("gap-base grid grid-cols-1 sm:grid-cols-2")}>
-      <legend className={cn("sr-only")}>
-        <FormattedMessage id="TemVby" defaultMessage="Full Name" />
-      </legend>
       <TextField
         name="firstName"
         label={intl.formatMessage({

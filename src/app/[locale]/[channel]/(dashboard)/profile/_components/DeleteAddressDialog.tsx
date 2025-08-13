@@ -1,12 +1,10 @@
 "use client";
 
 import {Button} from "@/components/Button";
-import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
+import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
 import {Text} from "@/components/Text";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
-
-import {DialogHeader} from "./DialogHeader";
 
 export function DeleteAddressDialog() {
   const intl = useIntl();

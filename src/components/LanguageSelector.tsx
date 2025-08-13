@@ -3,9 +3,6 @@
 import {useState} from "react";
 import {Button} from "react-aria-components";
 
-import {Autocomplete, AutocompleteItem} from "@/components/Autocomplete";
-import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
-import {Popover, PopoverTrigger} from "@/components/Popover";
 import {useIsMobile} from "@/hooks/use-is-mobile";
 import {Locales} from "@/i18n/consts";
 import {useLocale} from "@/i18n/hooks/use-locale";
@@ -18,7 +15,9 @@ import {ChevronUpIcon} from "@/icons/ChevronUpIcon";
 import {text} from "@/styles/text";
 import {cn} from "@/utils/cn";
 
-import {DialogHeader} from "../profile/_components/DialogHeader";
+import {Autocomplete, AutocompleteItem} from "./Autocomplete";
+import {Dialog, DialogHeader, DialogTrigger, Modal} from "./Dialog";
+import {Popover, PopoverTrigger} from "./Popover";
 
 export function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);

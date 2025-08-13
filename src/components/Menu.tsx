@@ -10,8 +10,7 @@ import {
   Popover,
 } from "react-aria-components";
 
-import {useChannel} from "@/i18n/hooks/use-channel";
-import {useLocale} from "@/i18n/hooks/use-locale";
+import {useBasePath} from "@/hooks/use-base-path";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
 
@@ -61,23 +60,21 @@ interface MenuItemProps<T>
 export function MenuItem<T extends object>({
   children,
   critical,
-  href,
   ...props
 }: MenuItemProps<T>) {
   const pathname = usePathname();
-  const locale = useLocale();
-  const channel = useChannel();
-  const hrefWithLocaleAndChannel = isDefined(href)
-    ? joinPathSegments(locale, channel, href)
-    : href;
+  const basePath = useBasePath();
+  const href = isDefined(props.href)
+    ? joinPathSegments(...basePath, props.href)
+    : props.href;
   return (
     <AriaMenuItem
-      href={hrefWithLocaleAndChannel}
       {...props}
+      href={href}
       className={cn(
         menuItem({
           critical,
-          current: pathname === hrefWithLocaleAndChannel,
+          current: pathname === href,
         }),
         props.className,
       )}>

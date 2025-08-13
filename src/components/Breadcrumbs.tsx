@@ -8,9 +8,8 @@ import {
   type BreadcrumbsProps,
 } from "react-aria-components";
 
+import {useBasePath} from "@/hooks/use-base-path";
 import {IntlLink} from "@/i18n/components/IntlLink";
-import {useChannel} from "@/i18n/hooks/use-channel";
-import {useLocale} from "@/i18n/hooks/use-locale";
 import {ChevronRightIcon} from "@/icons/ChevronRightIcon";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
@@ -22,16 +21,18 @@ interface BreadcrumbItem extends React.ComponentProps<typeof BreadcrumbLink> {
 }
 
 export function Breadcrumbs({
-  children = ({label, ...props}) => (
-    <BreadcrumbLink {...props}>{label}</BreadcrumbLink>
-  ),
+  children,
   ...props
 }: BreadcrumbsProps<BreadcrumbItem>) {
   return (
     <AriaBreadcrumbs
       {...props}
       className={cn("gap-small-200 flex flex-wrap", props.className)}>
-      {children}
+      {!isDefined(children)
+        ? ({label, ...props}) => (
+            <BreadcrumbLink {...props}>{label}</BreadcrumbLink>
+          )
+        : children}
     </AriaBreadcrumbs>
   );
 }
@@ -45,24 +46,22 @@ const breadcrumbLink = cva("hover:no-underline", {
 });
 
 export function BreadcrumbLink({
-  href,
   children,
   ...props
 }: React.ComponentProps<typeof IntlLink>) {
   const pathname = usePathname();
-  const locale = useLocale();
-  const channel = useChannel();
-  const hrefWithLocaleAndChannel = isDefined(href)
-    ? joinPathSegments(locale, channel, href)
-    : href;
+  const basePath = useBasePath();
+  const href = isDefined(props.href)
+    ? joinPathSegments(...basePath, props.href)
+    : props.href;
   return (
     <Breadcrumb className={cn("group")}>
       <IntlLink
-        href={href}
         {...props}
+        href={href}
         className={cn(
           breadcrumbLink({
-            current: pathname === hrefWithLocaleAndChannel,
+            current: pathname === href,
           }),
           props.className,
         )}>
