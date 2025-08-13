@@ -1,19 +1,18 @@
 import type {ComponentProps} from "react";
 
 import {cn} from "../utils/cn";
-import {List, ListItem} from "./List";
 import {ProductThumbnail} from "./ProductThumbnail";
 import {Text} from "./Text";
 
 export function ProductList() {
   return (
-    <List>
+    <ul className={cn("gap-base flex flex-col")}>
       {Products.map((product, i) => (
-        <ListItem key={i}>
+        <li key={i}>
           <Product {...product} />
-        </ListItem>
+        </li>
       ))}
-    </List>
+    </ul>
   );
 }
 

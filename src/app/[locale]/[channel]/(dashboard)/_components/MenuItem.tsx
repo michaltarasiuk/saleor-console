@@ -7,15 +7,17 @@ import {Button, type ButtonProps, type LinkProps} from "react-aria-components";
 import {IntlLink} from "@/i18n/components/IntlLink";
 import {useChannel} from "@/i18n/hooks/use-channel";
 import {useLocale} from "@/i18n/hooks/use-locale";
+import {text} from "@/styles/text";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
 
 const menuItem = cva(
   [
-    "px-base py-small-100 rounded-base text-base-text w-full cursor-pointer text-start",
+    "px-base py-small-100 rounded-base w-full cursor-pointer text-start",
     "hover:bg-base-background-subdued hover:underline hover:underline-offset-2",
     "focus-visible:ring-base-accent focus-visible:bg-base-background-subdued outline-none focus-visible:ring-2 focus-visible:ring-offset-0",
+    text(),
   ],
   {
     variants: {
