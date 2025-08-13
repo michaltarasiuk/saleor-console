@@ -19,7 +19,6 @@ type Documents = {
   "\n  fragment ValidationError on AccountError {\n    field\n    message\n  }\n": typeof types.ValidationErrorFragmentDoc;
   "\n  mutation ConfirmAccount($email: String!, $token: String!) {\n    confirmAccount(email: $email, token: $token) {\n      user {\n        isActive\n      }\n    }\n  }\n": typeof types.ConfirmAccountDocument;
   "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n": typeof types.ChannelSlugsDocument;
-  "\n  query ChannelsWithCountry {\n    channels {\n      slug\n      defaultCountry {\n        code\n        country\n      }\n    }\n  }\n": typeof types.ChannelsWithCountryDocument;
 };
 const documents: Documents = {
   "\n  mutation Signin($email: String!, $password: String!) {\n    tokenCreate(email: $email, password: $password) {\n      token\n      refreshToken\n      errors {\n        ...ValidationError\n      }\n    }\n  }\n":
@@ -32,8 +31,6 @@ const documents: Documents = {
     types.ConfirmAccountDocument,
   "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n":
     types.ChannelSlugsDocument,
-  "\n  query ChannelsWithCountry {\n    channels {\n      slug\n      defaultCountry {\n        code\n        country\n      }\n    }\n  }\n":
-    types.ChannelsWithCountryDocument,
 };
 
 /**
@@ -80,12 +77,6 @@ export function gql(
 export function gql(
   source: "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n",
 ): (typeof documents)["\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "\n  query ChannelsWithCountry {\n    channels {\n      slug\n      defaultCountry {\n        code\n        country\n      }\n    }\n  }\n",
-): (typeof documents)["\n  query ChannelsWithCountry {\n    channels {\n      slug\n      defaultCountry {\n        code\n        country\n      }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

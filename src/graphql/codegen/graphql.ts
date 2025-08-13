@@ -29723,21 +29723,6 @@ export type ChannelSlugsQuery = {
   }> | null;
 };
 
-export type ChannelsWithCountryQueryVariables = Exact<{[key: string]: never}>;
-
-export type ChannelsWithCountryQuery = {
-  __typename?: "Query";
-  channels?: Array<{
-    __typename?: "Channel";
-    slug: string;
-    defaultCountry: {
-      __typename?: "CountryDisplay";
-      code: string;
-      country: string;
-    };
-  }> | null;
-};
-
 export const ValidationErrorFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -30014,42 +29999,3 @@ export const ChannelSlugsDocument = {
     },
   ],
 } as unknown as DocumentNode<ChannelSlugsQuery, ChannelSlugsQueryVariables>;
-export const ChannelsWithCountryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: {kind: "Name", value: "ChannelsWithCountry"},
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: {kind: "Name", value: "channels"},
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {kind: "Field", name: {kind: "Name", value: "slug"}},
-                {
-                  kind: "Field",
-                  name: {kind: "Name", value: "defaultCountry"},
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {kind: "Field", name: {kind: "Name", value: "code"}},
-                      {kind: "Field", name: {kind: "Name", value: "country"}},
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  ChannelsWithCountryQuery,
-  ChannelsWithCountryQueryVariables
->;
