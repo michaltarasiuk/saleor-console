@@ -8,7 +8,7 @@ import {LanguageSelector, LanguageSelectorButton} from "./LanguageSelector";
 
 export function Footer() {
   return (
-    <footer className={cn("bg-base-background-subdued")}>
+    <footer className={cn("bg-base-background-subdued px-large-200")}>
       <ul
         className={cn(
           "border-base-border py-large-200 mx-auto max-w-6xl border-t",

@@ -13,7 +13,7 @@ import {ProfileSwitcher} from "./ProfileSwitcher";
 
 export async function Header({locale}: {locale: Locale}) {
   return (
-    <header className={cn("bg-base-background")}>
+    <header className={cn("bg-base-background px-large-200")}>
       <div
         className={cn(
           "mx-auto hidden max-w-6xl py-6",
