@@ -3,10 +3,10 @@
 import {useActionState, useTransition} from "react";
 import {Input} from "react-aria-components";
 
+import {useChannel} from "@/channels/hooks/use-channel";
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
 import {TextField} from "@/components/TextField";
-import {useChannel} from "@/i18n/hooks/use-channel";
 import {useLocale} from "@/i18n/hooks/use-locale";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";

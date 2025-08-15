@@ -41,9 +41,6 @@
   "7tOz+m": {
     "defaultMessage": "Pay now"
   },
-  "7uP+Kl": {
-    "defaultMessage": "Pickup"
-  },
   "8HJxXG": {
     "defaultMessage": "Sign up"
   },
@@ -161,9 +158,6 @@
   "c7/79+": {
     "defaultMessage": "Billing Address"
   },
-  "cDveFM": {
-    "defaultMessage": "Delivery Methods"
-  },
   "cyR7Kh": {
     "defaultMessage": "Back"
   },
@@ -206,9 +200,6 @@
   "jvo0vs": {
     "defaultMessage": "Save"
   },
-  "jyHwc7": {
-    "defaultMessage": "Ship to pickup point"
-  },
   "lcPfsu": {
     "defaultMessage": "Hide order summary"
   },
@@ -232,9 +223,6 @@
   },
   "rFxf+e": {
     "defaultMessage": "Please enter your email and password to access your account"
-  },
-  "riCv7f": {
-    "defaultMessage": "Ship"
   },
   "s3O2Si": {
     "defaultMessage": "Log out everywhere"

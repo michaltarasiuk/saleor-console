@@ -1,6 +1,8 @@
-import {AddressFieldset} from "@/components/AddressFieldset";
+import {
+  AddressFieldset,
+  SkeletonAddressFieldset,
+} from "@/components/AddressFieldset";
 import {Heading, SkeletonHeading} from "@/components/Heading";
-import {SkeletonAddressFieldset} from "@/components/SkeletonAddressFieldset";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 

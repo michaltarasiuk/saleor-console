@@ -8,6 +8,7 @@ import {
 import {CheckmarkIcon} from "../icons/CheckmarkIcon";
 import {text} from "../styles/text";
 import {cn} from "../utils/cn";
+import {SkeletonText} from "./Text";
 
 export function Checkbox({children, ...props}: CheckboxProps) {
   return (
@@ -64,5 +65,18 @@ export function Checkbox({children, ...props}: CheckboxProps) {
         </>
       )}
     </AriaCheckbox>
+  );
+}
+
+export function SkeletonCheckbox() {
+  return (
+    <div className={cn("gap-small-100 flex items-center")}>
+      <div
+        className={cn(
+          "border-base-border rounded-small size-5 shrink-0 border",
+        )}
+      />
+      <SkeletonText />
+    </div>
   );
 }

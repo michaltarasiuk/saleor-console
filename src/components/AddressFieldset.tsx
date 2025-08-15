@@ -5,7 +5,8 @@ import {TextField} from "@/components/TextField";
 import {useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
-import {FullNameFieldset} from "./FullNameFieldset";
+import {FullNameFieldset, SkeletonFullNameFieldset} from "./FullNameFieldset";
+import {SkeletonInput} from "./Input";
 
 export function AddressFieldset() {
   const intl = useIntl();
@@ -50,5 +51,20 @@ export function AddressFieldset() {
         />
       </div>
     </fieldset>
+  );
+}
+
+export function SkeletonAddressFieldset() {
+  return (
+    <div className={cn("space-y-base")}>
+      <SkeletonInput />
+      <SkeletonFullNameFieldset />
+      <SkeletonInput />
+      <SkeletonInput />
+      <div className={cn("gap-base grid grid-cols-1 sm:grid-cols-2")}>
+        <SkeletonInput />
+        <SkeletonInput />
+      </div>
+    </div>
   );
 }

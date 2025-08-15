@@ -83,12 +83,6 @@
       "value": "Pay now"
     }
   ],
-  "7uP+Kl": [
-    {
-      "type": 0,
-      "value": "Pickup"
-    }
-  ],
   "8HJxXG": [
     {
       "type": 0,
@@ -331,12 +325,6 @@
       "value": "Billing Address"
     }
   ],
-  "cDveFM": [
-    {
-      "type": 0,
-      "value": "Delivery Methods"
-    }
-  ],
   "cyR7Kh": [
     {
       "type": 0,
@@ -421,12 +409,6 @@
       "value": "Save"
     }
   ],
-  "jyHwc7": [
-    {
-      "type": 0,
-      "value": "Ship to pickup point"
-    }
-  ],
   "lcPfsu": [
     {
       "type": 0,
@@ -473,12 +455,6 @@
     {
       "type": 0,
       "value": "Please enter your email and password to access your account"
-    }
-  ],
-  "riCv7f": [
-    {
-      "type": 0,
-      "value": "Ship"
     }
   ],
   "s3O2Si": [

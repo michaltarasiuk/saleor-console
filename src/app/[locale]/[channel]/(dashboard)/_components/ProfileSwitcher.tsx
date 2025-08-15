@@ -3,10 +3,10 @@
 import {useId, useState} from "react";
 import {Button} from "react-aria-components";
 
+import {useChannel} from "@/channels/hooks/use-channel";
 import {Avatar} from "@/components/Avatar";
 import {Menu, MenuItem, MenuTrigger} from "@/components/Menu";
 import {Routes} from "@/consts/routes";
-import {useChannel} from "@/i18n/hooks/use-channel";
 import {useLocale} from "@/i18n/hooks/use-locale";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {ChevronDownIcon} from "@/icons/ChevronDownIcon";

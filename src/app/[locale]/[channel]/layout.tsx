@@ -1,17 +1,30 @@
 import "@/styles/globals.css";
 
-import type {ApolloClient} from "@apollo/client";
+import {notFound} from "next/navigation";
 
-import {serverEnv} from "@/env-server";
+import {ChannelProvider} from "@/channels/ChannelProvider";
+import {getActiveChannelSlugs} from "@/channels/utils/get-active-channels";
+import {getChannel} from "@/channels/utils/get-channel";
 import {getClient} from "@/graphql/apollo-client";
-import {gql} from "@/graphql/codegen";
+import {isDefined} from "@/utils/is-defined";
 
 interface ChannelLayoutProps {
   children: React.ReactNode;
+  params: Promise<{
+    channel: string;
+  }>;
 }
 
-export default async function ChannelLayout({children}: ChannelLayoutProps) {
-  return children;
+export default async function ChannelLayout({
+  children,
+  ...props
+}: ChannelLayoutProps) {
+  const params = await props.params;
+  const channel = await getChannel(params.channel);
+  if (!isDefined(channel)) {
+    notFound();
+  }
+  return <ChannelProvider channel={channel}>{children}</ChannelProvider>;
 }
 
 export const dynamicParams = false;
@@ -23,30 +36,3 @@ export async function generateStaticParams() {
     channel,
   }));
 }
-
-async function getActiveChannelSlugs(client: ApolloClient<unknown>) {
-  const {data} = await client.query({
-    query: ChannelSlugsQuery,
-    context: {
-      headers: {
-        Authorization: `Bearer ${serverEnv.SALEOR_AUTH_TOKEN}`,
-      },
-    },
-  });
-  const slugs: string[] = [];
-  for (const channel of data.channels ?? []) {
-    if (channel.isActive) {
-      slugs.push(channel.slug);
-    }
-  }
-  return slugs;
-}
-
-const ChannelSlugsQuery = gql(`
-  query ChannelSlugs {
-    channels {
-      slug
-      isActive
-    }
-  }
-`);

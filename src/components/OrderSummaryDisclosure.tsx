@@ -12,7 +12,7 @@ import {CartIcon} from "@/icons/CartIcon";
 import {cn} from "@/utils/cn";
 
 import {ProductList} from "./ProductList";
-import {SkeletonText} from "./SkeletonText";
+import {SkeletonText} from "./Text";
 import {Text} from "./Text";
 
 export function OrderSummaryDisclosure({className}: {className?: string}) {

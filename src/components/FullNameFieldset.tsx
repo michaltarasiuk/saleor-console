@@ -4,6 +4,8 @@ import {TextField} from "@/components/TextField";
 import {useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
+import {SkeletonInput} from "./Input";
+
 export function FullNameFieldset() {
   const intl = useIntl();
   return (
@@ -23,5 +25,14 @@ export function FullNameFieldset() {
         })}
       />
     </fieldset>
+  );
+}
+
+export function SkeletonFullNameFieldset() {
+  return (
+    <div className={cn("gap-base grid grid-cols-1 sm:grid-cols-2")}>
+      <SkeletonInput />
+      <SkeletonInput />
+    </div>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
 
+import {useChannel} from "@/channels/hooks/use-channel";
 import {DialogTrigger} from "@/components/Dialog";
 import {Sheet} from "@/components/Sheet";
 import {Routes} from "@/consts/routes";
-import {useChannel} from "@/i18n/hooks/use-channel";
 import {useLocale} from "@/i18n/hooks/use-locale";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";

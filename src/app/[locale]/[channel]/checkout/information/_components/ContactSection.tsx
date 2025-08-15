@@ -2,10 +2,9 @@
 
 import {type FragmentType, useFragment} from "@apollo/client";
 
-import {Checkbox} from "@/components/Checkbox";
+import {Checkbox, SkeletonCheckbox} from "@/components/Checkbox";
 import {Heading, SkeletonHeading} from "@/components/Heading";
-import {SkeletonCheckbox} from "@/components/SkeletonCheckbox";
-import {SkeletonInput} from "@/components/SkeletonInput";
+import {SkeletonInput} from "@/components/Input";
 import {TextField} from "@/components/TextField";
 import {gql} from "@/graphql/codegen";
 import type {ContactSection_CheckoutFragment} from "@/graphql/codegen/graphql";

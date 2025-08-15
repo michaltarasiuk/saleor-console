@@ -2,7 +2,7 @@
 
 import {Button} from "@/components/Button";
 import {Skeleton} from "@/components/Skeleton";
-import {SkeletonText} from "@/components/SkeletonText";
+import {SkeletonText} from "@/components/Text";
 import {Text} from "@/components/Text";
 import {Routes} from "@/consts/routes";
 import {IntlLink} from "@/i18n/components/IntlLink";

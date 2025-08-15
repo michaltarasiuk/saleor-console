@@ -1,6 +1,6 @@
 import {Button} from "@/components/Button";
 import {Heading, HeadingGroup} from "@/components/Heading";
-import {TextBlock} from "@/components/Text";
+import {TextBlock} from "@/components/TextBlock";
 import type {Locale} from "@/i18n/consts";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {getIntl} from "@/i18n/utils/get-intl";

@@ -21,6 +21,8 @@ type Documents = {
   "\n  query CheckoutInformation_Checkout($id: ID!) { \n    checkout(id: $id) {\n      ...ContactSection_Checkout\n    }\n  }\n": typeof types.CheckoutInformation_CheckoutDocument;
   "\n  fragment ContactSection_Checkout on Checkout {\n    id\n    email\n  }\n": typeof types.ContactSection_CheckoutFragmentDoc;
   "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n": typeof types.ChannelSlugsDocument;
+  "\n  query Channel($slug: String!) {\n    channel(slug: $slug) {\n      taxConfiguration {\n        displayGrossPrices\n      }\n    }\n  }\n": typeof types.ChannelDocument;
+  "\n  fragment Money_TaxedMoney on TaxedMoney {\n    currency\n    gross {\n      amount\n    }\n    net {\n      amount\n    }\n  }\n": typeof types.Money_TaxedMoneyFragmentDoc;
 };
 const documents: Documents = {
   "\n  mutation Signin($email: String!, $password: String!) {\n    tokenCreate(email: $email, password: $password) {\n      token\n      refreshToken\n      errors {\n        ...ValidationError\n      }\n    }\n  }\n":
@@ -37,6 +39,10 @@ const documents: Documents = {
     types.ContactSection_CheckoutFragmentDoc,
   "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n":
     types.ChannelSlugsDocument,
+  "\n  query Channel($slug: String!) {\n    channel(slug: $slug) {\n      taxConfiguration {\n        displayGrossPrices\n      }\n    }\n  }\n":
+    types.ChannelDocument,
+  "\n  fragment Money_TaxedMoney on TaxedMoney {\n    currency\n    gross {\n      amount\n    }\n    net {\n      amount\n    }\n  }\n":
+    types.Money_TaxedMoneyFragmentDoc,
 };
 
 /**
@@ -95,6 +101,18 @@ export function gql(
 export function gql(
   source: "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n",
 ): (typeof documents)["\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\n  query Channel($slug: String!) {\n    channel(slug: $slug) {\n      taxConfiguration {\n        displayGrossPrices\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query Channel($slug: String!) {\n    channel(slug: $slug) {\n      taxConfiguration {\n        displayGrossPrices\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\n  fragment Money_TaxedMoney on TaxedMoney {\n    currency\n    gross {\n      amount\n    }\n    net {\n      amount\n    }\n  }\n",
+): (typeof documents)["\n  fragment Money_TaxedMoney on TaxedMoney {\n    currency\n    gross {\n      amount\n    }\n    net {\n      amount\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

@@ -29744,6 +29744,28 @@ export type ChannelSlugsQuery = {
   }> | null;
 };
 
+export type ChannelQueryVariables = Exact<{
+  slug: Scalars["String"]["input"];
+}>;
+
+export type ChannelQuery = {
+  __typename?: "Query";
+  channel?: {
+    __typename?: "Channel";
+    taxConfiguration: {
+      __typename?: "TaxConfiguration";
+      displayGrossPrices: boolean;
+    };
+  } | null;
+};
+
+export type Money_TaxedMoneyFragment = {
+  __typename?: "TaxedMoney";
+  currency: string;
+  gross: {__typename?: "Money"; amount: number};
+  net: {__typename?: "Money"; amount: number};
+} & {" $fragmentName"?: "Money_TaxedMoneyFragment"};
+
 export const ValidationErrorFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -29784,6 +29806,45 @@ export const ContactSection_CheckoutFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContactSection_CheckoutFragment, unknown>;
+export const Money_TaxedMoneyFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "Money_TaxedMoney"},
+      typeCondition: {
+        kind: "NamedType",
+        name: {kind: "Name", value: "TaxedMoney"},
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "currency"}},
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "gross"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "amount"}},
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "net"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "amount"}},
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<Money_TaxedMoneyFragment, unknown>;
 export const SigninDocument = {
   kind: "Document",
   definitions: [
@@ -30103,3 +30164,57 @@ export const ChannelSlugsDocument = {
     },
   ],
 } as unknown as DocumentNode<ChannelSlugsQuery, ChannelSlugsQueryVariables>;
+export const ChannelDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: {kind: "Name", value: "Channel"},
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {kind: "Variable", name: {kind: "Name", value: "slug"}},
+          type: {
+            kind: "NonNullType",
+            type: {kind: "NamedType", name: {kind: "Name", value: "String"}},
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "channel"},
+            arguments: [
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "slug"},
+                value: {kind: "Variable", name: {kind: "Name", value: "slug"}},
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: {kind: "Name", value: "taxConfiguration"},
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: {kind: "Name", value: "displayGrossPrices"},
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ChannelQuery, ChannelQueryVariables>;

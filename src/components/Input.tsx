@@ -4,6 +4,8 @@ import {Input as AriaInput, type InputProps} from "react-aria-components";
 
 import {cn} from "@/utils/cn";
 
+import {SkeletonText} from "./Text";
+
 export function Input(props: InputProps) {
   return (
     <AriaInput
@@ -17,5 +19,16 @@ export function Input(props: InputProps) {
         props.className,
       )}
     />
+  );
+}
+
+export function SkeletonInput() {
+  return (
+    <div
+      className={cn(
+        "h-input rounded-base border-base-border p-base flex items-center border",
+      )}>
+      <SkeletonText />
+    </div>
   );
 }
