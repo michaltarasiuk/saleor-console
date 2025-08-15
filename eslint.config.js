@@ -93,10 +93,6 @@ const eslintConfig = [
 export default eslintConfig;
 
 /**
- * ESLint rule to prevent direct imports of "react-intl".
- * Enforces usage of "@/i18n/react-intl" instead of "react-intl" for imports.
- * Allows direct imports when module also imports "server-only".
- *
  * @returns {import('eslint').Rule.RuleModule}
  */
 function noReactIntlRule() {

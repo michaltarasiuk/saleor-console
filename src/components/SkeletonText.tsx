@@ -5,7 +5,7 @@ import {cn} from "../utils/cn";
 import {Skeleton} from "./Skeleton";
 import {Text} from "./Text";
 
-const skeletonText = cva("relative flex w-full items-center", {
+const skeletonText = cva("absolute h-4/5 w-full", {
   variants: {
     inlineSize: {
       small: "max-w-20",
@@ -27,15 +27,17 @@ interface SkeletonTextProps
 export function SkeletonText({inlineSize, ...props}: SkeletonTextProps) {
   return (
     <Text
+      aria-hidden
       {...props}
-      className={cn(
-        skeletonText({
-          inlineSize,
-        }),
-        props.className,
-      )}>
+      className={cn("relative flex w-full items-center", props.className)}>
       &#8203;
-      <Skeleton className={cn("absolute h-4/5 w-full")} />
+      <Skeleton
+        className={cn(
+          skeletonText({
+            inlineSize,
+          }),
+        )}
+      />
     </Text>
   );
 }

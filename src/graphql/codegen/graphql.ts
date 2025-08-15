@@ -29712,6 +29712,27 @@ export type ConfirmAccountMutation = {
   } | null;
 };
 
+export type CheckoutInformation_CheckoutQueryVariables = Exact<{
+  id: Scalars["ID"]["input"];
+}>;
+
+export type CheckoutInformation_CheckoutQuery = {
+  __typename?: "Query";
+  checkout?:
+    | ({__typename?: "Checkout"} & {
+        " $fragmentRefs"?: {
+          ContactSection_CheckoutFragment: ContactSection_CheckoutFragment;
+        };
+      })
+    | null;
+};
+
+export type ContactSection_CheckoutFragment = {
+  __typename?: "Checkout";
+  id: string;
+  email?: string | null;
+} & {" $fragmentName"?: "ContactSection_CheckoutFragment"};
+
 export type ChannelSlugsQueryVariables = Exact<{[key: string]: never}>;
 
 export type ChannelSlugsQuery = {
@@ -29743,6 +29764,26 @@ export const ValidationErrorFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ValidationErrorFragment, unknown>;
+export const ContactSection_CheckoutFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "ContactSection_Checkout"},
+      typeCondition: {
+        kind: "NamedType",
+        name: {kind: "Name", value: "Checkout"},
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "id"}},
+          {kind: "Field", name: {kind: "Name", value: "email"}},
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContactSection_CheckoutFragment, unknown>;
 export const SigninDocument = {
   kind: "Document",
   definitions: [
@@ -29972,6 +30013,69 @@ export const ConfirmAccountDocument = {
 } as unknown as DocumentNode<
   ConfirmAccountMutation,
   ConfirmAccountMutationVariables
+>;
+export const CheckoutInformation_CheckoutDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: {kind: "Name", value: "CheckoutInformation_Checkout"},
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {kind: "Variable", name: {kind: "Name", value: "id"}},
+          type: {
+            kind: "NonNullType",
+            type: {kind: "NamedType", name: {kind: "Name", value: "ID"}},
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "checkout"},
+            arguments: [
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "id"},
+                value: {kind: "Variable", name: {kind: "Name", value: "id"}},
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: {kind: "Name", value: "ContactSection_Checkout"},
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "ContactSection_Checkout"},
+      typeCondition: {
+        kind: "NamedType",
+        name: {kind: "Name", value: "Checkout"},
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "id"}},
+          {kind: "Field", name: {kind: "Name", value: "email"}},
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  CheckoutInformation_CheckoutQuery,
+  CheckoutInformation_CheckoutQueryVariables
 >;
 export const ChannelSlugsDocument = {
   kind: "Document",

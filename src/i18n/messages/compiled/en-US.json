@@ -29,6 +29,12 @@
       "value": "Sort"
     }
   ],
+  "2tqQFl": [
+    {
+      "type": 0,
+      "value": "Cart"
+    }
+  ],
   "32rBNK": [
     {
       "type": 0,
@@ -75,6 +81,12 @@
     {
       "type": 0,
       "value": "Pay now"
+    }
+  ],
+  "7uP+Kl": [
+    {
+      "type": 0,
+      "value": "Pickup"
     }
   ],
   "8HJxXG": [
@@ -125,10 +137,22 @@
       "value": "Shipping Address"
     }
   ],
+  "DgnS8R": [
+    {
+      "type": 0,
+      "value": "Continue to shipping"
+    }
+  ],
   "Dxd1uB": [
     {
       "type": 0,
       "value": "Shop"
+    }
+  ],
+  "E80WrK": [
+    {
+      "type": 0,
+      "value": "Information"
     }
   ],
   "EWw/tK": [
@@ -193,6 +217,18 @@
       "value": "Delete"
     }
   ],
+  "KinTIy": [
+    {
+      "type": 0,
+      "value": "Enter email"
+    }
+  ],
+  "MRNNXA": [
+    {
+      "type": 0,
+      "value": "Return to cart"
+    }
+  ],
   "N1cjj/": [
     {
       "type": 0,
@@ -203,6 +239,18 @@
     {
       "type": 0,
       "value": "Show filter and sort options for orders"
+    }
+  ],
+  "NmK6zy": [
+    {
+      "type": 0,
+      "value": "Payment"
+    }
+  ],
+  "PRlD0A": [
+    {
+      "type": 0,
+      "value": "Shipping"
     }
   ],
   "PlBReU": [
@@ -265,6 +313,12 @@
       "value": "Select Language"
     }
   ],
+  "auXRdm": [
+    {
+      "type": 0,
+      "value": "Email me with news and offers"
+    }
+  ],
   "b7BHTd": [
     {
       "type": 0,
@@ -275,6 +329,12 @@
     {
       "type": 0,
       "value": "Billing Address"
+    }
+  ],
+  "cDveFM": [
+    {
+      "type": 0,
+      "value": "Delivery Methods"
     }
   ],
   "cyR7Kh": [
@@ -361,6 +421,12 @@
       "value": "Save"
     }
   ],
+  "jyHwc7": [
+    {
+      "type": 0,
+      "value": "Ship to pickup point"
+    }
+  ],
   "lcPfsu": [
     {
       "type": 0,
@@ -407,6 +473,12 @@
     {
       "type": 0,
       "value": "Please enter your email and password to access your account"
+    }
+  ],
+  "riCv7f": [
+    {
+      "type": 0,
+      "value": "Ship"
     }
   ],
   "s3O2Si": [
@@ -461,6 +533,12 @@
     {
       "type": 0,
       "value": "Apartment, suite, etc (optional)"
+    }
+  ],
+  "zFegDD": [
+    {
+      "type": 0,
+      "value": "Contact"
     }
   ],
   "zL39WD": [

@@ -6,9 +6,19 @@ import {Heading as AriaHeading, type HeadingProps} from "react-aria-components";
 
 import {cn} from "@/utils/cn";
 
+import {Skeleton} from "./Skeleton";
+
 type Level = 1 | 2 | 3 | 4 | 5 | 6;
 
 const HeadingLevelContext = createContext<Level>(1);
+
+export function HeadingGroup({children}: {children: React.ReactNode}) {
+  const level = use(HeadingLevelContext);
+  const nextLevel = Math.min(level + 1, 6) as Level;
+  return (
+    <HeadingLevelContext value={nextLevel}>{children}</HeadingLevelContext>
+  );
+}
 
 const heading = cva(
   "text-base-text font-primary text-base leading-tight font-semibold",
@@ -38,10 +48,14 @@ export function Heading({children, ...props}: HeadingProps) {
   );
 }
 
-export function HeadingGroup({children}: {children: React.ReactNode}) {
-  const level = use(HeadingLevelContext);
-  const nextLevel = Math.min(level + 1, 6) as Level;
+export function SkeletonHeading(props: HeadingProps) {
   return (
-    <HeadingLevelContext value={nextLevel}>{children}</HeadingLevelContext>
+    <Heading
+      aria-hidden
+      {...props}
+      className={cn("relative flex items-center", props.className)}>
+      &#8203;
+      <Skeleton className={cn("absolute h-4/5 w-full max-w-36")} />
+    </Heading>
   );
 }

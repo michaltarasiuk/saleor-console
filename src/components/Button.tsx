@@ -132,7 +132,7 @@ export function Button({
         <>
           <span
             aria-hidden={isPending}
-            className={cn({
+            className={cn("gap-small-200 flex items-center", {
               invisible: isPending,
             })}>
             {typeof children === "function"

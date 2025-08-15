@@ -18,6 +18,8 @@ type Documents = {
   "\n  mutation Signup($input: AccountRegisterInput!) {\n    accountRegister(input: $input) {\n      requiresConfirmation\n      errors {\n        ...ValidationError\n      }\n    }\n  }\n": typeof types.SignupDocument;
   "\n  fragment ValidationError on AccountError {\n    field\n    message\n  }\n": typeof types.ValidationErrorFragmentDoc;
   "\n  mutation ConfirmAccount($email: String!, $token: String!) {\n    confirmAccount(email: $email, token: $token) {\n      user {\n        isActive\n      }\n    }\n  }\n": typeof types.ConfirmAccountDocument;
+  "\n  query CheckoutInformation_Checkout($id: ID!) { \n    checkout(id: $id) {\n      ...ContactSection_Checkout\n    }\n  }\n": typeof types.CheckoutInformation_CheckoutDocument;
+  "\n  fragment ContactSection_Checkout on Checkout {\n    id\n    email\n  }\n": typeof types.ContactSection_CheckoutFragmentDoc;
   "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n": typeof types.ChannelSlugsDocument;
 };
 const documents: Documents = {
@@ -29,6 +31,10 @@ const documents: Documents = {
     types.ValidationErrorFragmentDoc,
   "\n  mutation ConfirmAccount($email: String!, $token: String!) {\n    confirmAccount(email: $email, token: $token) {\n      user {\n        isActive\n      }\n    }\n  }\n":
     types.ConfirmAccountDocument,
+  "\n  query CheckoutInformation_Checkout($id: ID!) { \n    checkout(id: $id) {\n      ...ContactSection_Checkout\n    }\n  }\n":
+    types.CheckoutInformation_CheckoutDocument,
+  "\n  fragment ContactSection_Checkout on Checkout {\n    id\n    email\n  }\n":
+    types.ContactSection_CheckoutFragmentDoc,
   "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n":
     types.ChannelSlugsDocument,
 };
@@ -71,6 +77,18 @@ export function gql(
 export function gql(
   source: "\n  mutation ConfirmAccount($email: String!, $token: String!) {\n    confirmAccount(email: $email, token: $token) {\n      user {\n        isActive\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  mutation ConfirmAccount($email: String!, $token: String!) {\n    confirmAccount(email: $email, token: $token) {\n      user {\n        isActive\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\n  query CheckoutInformation_Checkout($id: ID!) { \n    checkout(id: $id) {\n      ...ContactSection_Checkout\n    }\n  }\n",
+): (typeof documents)["\n  query CheckoutInformation_Checkout($id: ID!) { \n    checkout(id: $id) {\n      ...ContactSection_Checkout\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "\n  fragment ContactSection_Checkout on Checkout {\n    id\n    email\n  }\n",
+): (typeof documents)["\n  fragment ContactSection_Checkout on Checkout {\n    id\n    email\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

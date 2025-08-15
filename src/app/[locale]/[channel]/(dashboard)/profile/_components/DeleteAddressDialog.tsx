@@ -11,7 +11,7 @@ export function DeleteAddressDialog() {
   return (
     <DialogTrigger>
       <Button kind="plain" appearance="critical">
-        <FormattedMessage defaultMessage="Delete" id="K3r6DQ" />
+        <FormattedMessage id="K3r6DQ" defaultMessage="Delete" />
       </Button>
       <Modal isDismissable>
         <Dialog>

@@ -14,6 +14,9 @@
   "25oM9Q": {
     "defaultMessage": "Sort"
   },
+  "2tqQFl": {
+    "defaultMessage": "Cart"
+  },
   "32rBNK": {
     "defaultMessage": "Terms of Service"
   },
@@ -37,6 +40,9 @@
   },
   "7tOz+m": {
     "defaultMessage": "Pay now"
+  },
+  "7uP+Kl": {
+    "defaultMessage": "Pickup"
   },
   "8HJxXG": {
     "defaultMessage": "Sign up"
@@ -62,8 +68,14 @@
   "DP5VOH": {
     "defaultMessage": "Shipping Address"
   },
+  "DgnS8R": {
+    "defaultMessage": "Continue to shipping"
+  },
   "Dxd1uB": {
     "defaultMessage": "Shop"
+  },
+  "E80WrK": {
+    "defaultMessage": "Information"
   },
   "EWw/tK": {
     "defaultMessage": "Apply"
@@ -92,11 +104,23 @@
   "K3r6DQ": {
     "defaultMessage": "Delete"
   },
+  "KinTIy": {
+    "defaultMessage": "Enter email"
+  },
+  "MRNNXA": {
+    "defaultMessage": "Return to cart"
+  },
   "N1cjj/": {
     "defaultMessage": "Email used for login can't be changed"
   },
   "NWiwy9": {
     "defaultMessage": "Show filter and sort options for orders"
+  },
+  "NmK6zy": {
+    "defaultMessage": "Payment"
+  },
+  "PRlD0A": {
+    "defaultMessage": "Shipping"
   },
   "PlBReU": {
     "defaultMessage": "Log out"
@@ -128,11 +152,17 @@
   "ZMXbRJ": {
     "defaultMessage": "Select Language"
   },
+  "auXRdm": {
+    "defaultMessage": "Email me with news and offers"
+  },
   "b7BHTd": {
     "defaultMessage": "Show order summary"
   },
   "c7/79+": {
     "defaultMessage": "Billing Address"
+  },
+  "cDveFM": {
+    "defaultMessage": "Delivery Methods"
   },
   "cyR7Kh": {
     "defaultMessage": "Back"
@@ -176,6 +206,9 @@
   "jvo0vs": {
     "defaultMessage": "Save"
   },
+  "jyHwc7": {
+    "defaultMessage": "Ship to pickup point"
+  },
   "lcPfsu": {
     "defaultMessage": "Hide order summary"
   },
@@ -199,6 +232,9 @@
   },
   "rFxf+e": {
     "defaultMessage": "Please enter your email and password to access your account"
+  },
+  "riCv7f": {
+    "defaultMessage": "Ship"
   },
   "s3O2Si": {
     "defaultMessage": "Log out everywhere"
@@ -226,6 +262,9 @@
   },
   "yOsL4f": {
     "defaultMessage": "Apartment, suite, etc (optional)"
+  },
+  "zFegDD": {
+    "defaultMessage": "Contact"
   },
   "zL39WD": {
     "defaultMessage": "Grid View"
