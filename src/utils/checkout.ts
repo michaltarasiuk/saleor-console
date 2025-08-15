@@ -1,9 +1,13 @@
-const CheckoutIdStorageKey = "checkout-id";
+import "server-only";
 
-export function getCheckoutId() {
-  return localStorage.getItem(CheckoutIdStorageKey);
+import {cookies} from "next/headers";
+
+const CheckoutIdCookieName = "checkout-id";
+
+export async function getCheckoutId() {
+  return (await cookies()).get(CheckoutIdCookieName);
 }
 
-export function setCheckoutId(checkoutId: string) {
-  localStorage.setItem(CheckoutIdStorageKey, checkoutId);
+export async function setCheckoutId(checkoutId: string) {
+  (await cookies()).set(CheckoutIdCookieName, checkoutId);
 }

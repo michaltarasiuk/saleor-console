@@ -29712,6 +29712,12 @@ export type ConfirmAccountMutation = {
   } | null;
 };
 
+export type ContactSection_CheckoutFragment = {
+  __typename?: "Checkout";
+  id: string;
+  email?: string | null;
+} & {" $fragmentName"?: "ContactSection_CheckoutFragment"};
+
 export type CheckoutInformation_CheckoutQueryVariables = Exact<{
   id: Scalars["ID"]["input"];
 }>;
@@ -29726,12 +29732,6 @@ export type CheckoutInformation_CheckoutQuery = {
       })
     | null;
 };
-
-export type ContactSection_CheckoutFragment = {
-  __typename?: "Checkout";
-  id: string;
-  email?: string | null;
-} & {" $fragmentName"?: "ContactSection_CheckoutFragment"};
 
 export type ChannelSlugsQueryVariables = Exact<{[key: string]: never}>;
 

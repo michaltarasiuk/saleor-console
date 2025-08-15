@@ -1,14 +1,13 @@
 "use client";
 
-import {useSuspenseQuery} from "@apollo/client";
+import {type QueryRef, useReadQuery} from "@apollo/client";
 
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
 import {Skeleton} from "@/components/Skeleton";
-import {gql} from "@/graphql/codegen";
+import type {CheckoutInformation_CheckoutQuery} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {ChevronLeftIcon} from "@/icons/ChevronLeftIcon";
-import {getCheckoutId} from "@/utils/checkout";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 
@@ -16,24 +15,12 @@ import {redirectToRoot} from "../../_utils/redirect-to-root";
 import {ContactSection, SkeletonContactSection} from "./ContactSection";
 import {ShippingAddress, SkeletonShippingAddress} from "./ShippingAddress";
 
-const CheckoutInformation_Checkout = gql(`
-  query CheckoutInformation_Checkout($id: ID!) { 
-    checkout(id: $id) {
-      ...ContactSection_Checkout
-    }
-  }
-`);
-
-export function CheckoutInformation() {
-  const id = getCheckoutId();
-  if (!isDefined(id)) {
-    redirectToRoot();
-  }
-  const {data} = useSuspenseQuery(CheckoutInformation_Checkout, {
-    variables: {
-      id,
-    },
-  });
+export function CheckoutInformation({
+  queryRef,
+}: {
+  queryRef: QueryRef<CheckoutInformation_CheckoutQuery>;
+}) {
+  const {data} = useReadQuery(queryRef);
   if (!isDefined(data.checkout)) {
     redirectToRoot();
   }

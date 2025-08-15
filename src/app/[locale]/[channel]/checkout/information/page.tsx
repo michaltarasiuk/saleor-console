@@ -1,27 +1,40 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import {Suspense} from "react";
 
-import {SkeletonCheckoutInformation} from "./_components/CheckoutInformation";
+import {PreloadQuery} from "@/graphql/apollo-client";
+import {gql} from "@/graphql/codegen";
+import {getCheckoutId} from "@/utils/checkout";
+import {isDefined} from "@/utils/is-defined";
 
-const CheckoutInformation = dynamic(
-  () =>
-    import("./_components/CheckoutInformation").then(
-      (module) => module.CheckoutInformation,
-    ),
-  {
-    ssr: false,
-    loading() {
-      return <SkeletonCheckoutInformation />;
-    },
-  },
-);
+import {redirectToRoot} from "../_utils/redirect-to-root";
+import {
+  CheckoutInformation,
+  SkeletonCheckoutInformation,
+} from "./_components/CheckoutInformation";
 
-export default function CheckoutInformationPage() {
+const CheckoutInformation_CheckoutQuery = gql(`
+  query CheckoutInformation_Checkout($id: ID!) { 
+    checkout(id: $id) {
+      ...ContactSection_Checkout
+    }
+  }
+`);
+
+export default async function CheckoutInformationPage() {
+  const checkoutId = await getCheckoutId();
+  if (!isDefined(checkoutId)) {
+    redirectToRoot();
+  }
   return (
-    <Suspense fallback={<SkeletonCheckoutInformation />}>
-      <CheckoutInformation />
-    </Suspense>
+    <PreloadQuery
+      query={CheckoutInformation_CheckoutQuery}
+      variables={{
+        id: checkoutId.value,
+      }}>
+      {(queryRef) => (
+        <Suspense fallback={<SkeletonCheckoutInformation />}>
+          <CheckoutInformation queryRef={queryRef} />
+        </Suspense>
+      )}
+    </PreloadQuery>
   );
 }
