@@ -1,8 +1,7 @@
 "use client";
 
-import {useActionState, useEffect, useRef, useTransition} from "react";
+import {useActionState, useRef, useTransition} from "react";
 import {Input} from "react-aria-components";
-import ReactDOM from "react-dom";
 
 import {useChannel} from "@/channels/hooks/use-channel";
 import {Button} from "@/components/Button";
@@ -11,8 +10,6 @@ import {TextField} from "@/components/TextField";
 import {useLocale} from "@/i18n/hooks/use-locale";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
-import {isDefined} from "@/utils/is-defined";
-import {isEmptyRecord} from "@/utils/is-empty-record";
 
 import {signUp} from "../_actions/sign-up";
 import {FormHeader} from "./FormHeader";
@@ -27,15 +24,6 @@ export function SignupForm() {
   const channel = useChannel();
   const formRef = useRef<HTMLFormElement>(null);
   const intl = useIntl();
-  useEffect(() => {
-    if (isEmptyRecord(errors)) {
-      startTransition(() => {
-        if (isDefined(formRef.current)) {
-          ReactDOM.requestFormReset(formRef.current);
-        }
-      });
-    }
-  }, [errors]);
   return (
     <Form
       ref={formRef}

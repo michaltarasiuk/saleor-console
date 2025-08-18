@@ -1,7 +1,6 @@
 "use client";
 
-import {useActionState, useEffect, useRef, useTransition} from "react";
-import ReactDOM from "react-dom";
+import {useActionState, useRef, useTransition} from "react";
 
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
@@ -9,7 +8,6 @@ import {TextField} from "@/components/TextField";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
-import {isEmptyRecord} from "@/utils/is-empty-record";
 
 import {signIn} from "../_actions/sign-in";
 import {FormHeader} from "./FormHeader";
@@ -21,15 +19,6 @@ export function SigninForm({defaultEmail}: {defaultEmail?: string}) {
   const [isPending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
   const intl = useIntl();
-  useEffect(() => {
-    if (isEmptyRecord(errors)) {
-      startTransition(() => {
-        if (isDefined(formRef.current)) {
-          ReactDOM.requestFormReset(formRef.current);
-        }
-      });
-    }
-  }, [errors]);
   return (
     <Form
       ref={formRef}
