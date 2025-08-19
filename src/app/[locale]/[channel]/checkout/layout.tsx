@@ -29,14 +29,16 @@ export default async function CheckoutLayout({
       <div className={cn("bg-base-background")}>
         <div
           className={cn(
-            "md:max-w-shell-main-inline-size md:px-large-500 md:pt-large-500 ms-auto",
+            "md:max-w-shell-main-inline-size md:px-large-500 md:pt-large-500 ms-auto flex h-full flex-col",
           )}>
           <header className={cn("p-large-200 md:mb-large-200 flex md:p-0")}>
             <LinkedLogo locale={locale} />
           </header>
           <OrderSummaryDisclosure className={cn("md:hidden")} />
           <main
-            className={cn("p-large-200 space-y-large-300 mb-large-200 md:p-0")}>
+            className={cn(
+              "p-large-200 space-y-large-300 mb-large-200 grow md:p-0",
+            )}>
             <CheckoutBreadcrumbs />
             <HeadingGroup>{children}</HeadingGroup>
           </main>

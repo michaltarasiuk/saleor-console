@@ -46,7 +46,13 @@ export function ProductThumbnail({
           }),
         )}>
         {isDefined(src) && !error ? (
-          <Image src={src} alt={alt} fill onError={() => setError(true)} />
+          <Image
+            src={src}
+            alt={alt}
+            sizes={size === "small" ? "2.5rem" : "4rem"}
+            fill
+            onError={() => setError(true)}
+          />
         ) : (
           <PlaceholderImageIcon aria-hidden />
         )}
