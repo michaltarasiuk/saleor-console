@@ -1,7 +1,7 @@
 import {Suspense} from "react";
 
 import {PreloadQuery} from "@/graphql/apollo-client";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import {getCheckoutId} from "@/utils/checkout";
 import {isDefined} from "@/utils/is-defined";
 
@@ -11,8 +11,8 @@ import {
 } from "../_components/CheckoutInformationForm";
 import {redirectToRoot} from "../_utils/redirect-to-root";
 
-const CheckoutInformation_CheckoutQuery = gql(`
-  query CheckoutInformation_Checkout($id: ID!) { 
+const CheckoutInformation_CheckoutQuery = graphql(`
+  query CheckoutInformation_Checkout($id: ID!) {
     checkout(id: $id) {
       ...CheckoutContactSection_Checkout
       ...CheckoutShippingAddress_Checkout

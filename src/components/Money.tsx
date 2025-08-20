@@ -5,12 +5,12 @@ import {use} from "react";
 import {useNumberFormatter} from "react-aria";
 
 import {ChannelContext} from "@/channels/channel-context";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import type {Money_TaxedMoneyFragment} from "@/graphql/codegen/graphql";
 
 import {Text} from "./Text";
 
-const Money_TaxedMoneyFragment = gql(`
+const Money_TaxedMoneyFragment = graphql(`
   fragment Money_TaxedMoney on TaxedMoney {
     currency
     gross {

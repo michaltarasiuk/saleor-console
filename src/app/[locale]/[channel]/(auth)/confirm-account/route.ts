@@ -2,8 +2,18 @@ import {type NextRequest, NextResponse} from "next/server";
 
 import {Routes} from "@/consts/routes";
 import {getClient} from "@/graphql/apollo-client";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import {isDefined} from "@/utils/is-defined";
+
+const ConfirmAccountMutation = graphql(`
+  mutation ConfirmAccount($email: String!, $token: String!) {
+    confirmAccount(email: $email, token: $token) {
+      user {
+        isActive
+      }
+    }
+  }
+`);
 
 export async function GET({nextUrl: {origin, searchParams}}: NextRequest) {
   const email = searchParams.get("email");
@@ -30,13 +40,3 @@ async function confirmAccount(email: string, token: string) {
   });
   return data?.confirmAccount?.user?.isActive ?? false;
 }
-
-const ConfirmAccountMutation = gql(`
-  mutation ConfirmAccount($email: String!, $token: String!) {
-    confirmAccount(email: $email, token: $token) {
-      user {
-        isActive
-      }
-    }
-  }
-`);

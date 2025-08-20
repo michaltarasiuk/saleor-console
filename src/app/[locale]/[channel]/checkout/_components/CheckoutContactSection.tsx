@@ -6,12 +6,12 @@ import {Checkbox, SkeletonCheckbox} from "@/components/Checkbox";
 import {Heading, SkeletonHeading} from "@/components/Heading";
 import {SkeletonInput} from "@/components/Input";
 import {TextField} from "@/components/TextField";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import type {CheckoutContactSection_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
-const CheckoutContactSection_CheckoutFragment = gql(`
+const CheckoutContactSection_CheckoutFragment = graphql(`
   fragment CheckoutContactSection_Checkout on Checkout {
     id
     email
@@ -37,6 +37,7 @@ export function CheckoutContactSection({
       </Heading>
       <TextField
         name="email"
+        type="email"
         defaultValue={data?.email ?? undefined}
         label={intl.formatMessage({
           id: "KinTIy",

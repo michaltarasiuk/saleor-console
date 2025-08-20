@@ -1,9 +1,9 @@
 import type {ApolloClient} from "@apollo/client";
 
 import {env} from "@/env";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 
-const ChannelSlugsQuery = gql(`
+const ChannelSlugsQuery = graphql(`
   query ChannelSlugs {
     channels {
       slug

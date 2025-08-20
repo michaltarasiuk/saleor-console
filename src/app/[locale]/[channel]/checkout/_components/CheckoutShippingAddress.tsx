@@ -6,13 +6,13 @@ import {
   SkeletonAddressFieldset,
 } from "@/components/AddressFieldset";
 import {Heading, SkeletonHeading} from "@/components/Heading";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import type {CheckoutShippingAddress_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 
-const CheckoutShippingAddress_CheckoutFragment = gql(`
+const CheckoutShippingAddress_CheckoutFragment = graphql(`
   fragment CheckoutShippingAddress_Checkout on Checkout {
     shippingAddress {
       ...AddressFieldset_Address

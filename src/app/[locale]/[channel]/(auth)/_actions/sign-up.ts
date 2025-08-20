@@ -5,7 +5,7 @@ import * as z from "zod";
 import {Routes} from "@/consts/routes";
 import {env} from "@/env";
 import {getClient} from "@/graphql/apollo-client";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import {Locales} from "@/i18n/consts";
 import {localeToLanguageCode} from "@/i18n/utils/locale-to-language-code";
 import {joinPathSegments} from "@/utils/pathname";
@@ -13,7 +13,7 @@ import {joinPathSegments} from "@/utils/pathname";
 import {toValidationErrors} from "../_utils/validation-errors";
 import {signIn} from "./sign-in";
 
-const SignupMutation = gql(`
+const SignupMutation = graphql(`
   mutation Signup($input: AccountRegisterInput!) {
     accountRegister(input: $input) {
       requiresConfirmation

@@ -29757,8 +29757,8 @@ export type CheckoutShippingAddressUpdateMutation = {
     __typename?: "CheckoutShippingAddressUpdate";
     errors: Array<{
       __typename?: "CheckoutError";
-      message?: string | null;
       field?: string | null;
+      message?: string | null;
     }>;
   } | null;
 };
@@ -30571,7 +30571,6 @@ export const CheckoutShippingAddressUpdateDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      {kind: "Field", name: {kind: "Name", value: "message"}},
                       {
                         kind: "FragmentSpread",
                         name: {kind: "Name", value: "CheckoutValidationError"},

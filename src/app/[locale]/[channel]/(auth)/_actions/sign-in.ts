@@ -5,13 +5,13 @@ import * as z from "zod";
 
 import {Routes} from "@/consts/routes";
 import {getClient} from "@/graphql/apollo-client";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import {isDefined} from "@/utils/is-defined";
 import {setAccessTokenCookie, setRefreshTokenCookie} from "@/utils/session";
 
 import {toValidationErrors} from "../_utils/validation-errors";
 
-const SigninMutation = gql(`
+const SigninMutation = graphql(`
   mutation Signin($email: String!, $password: String!) {
     tokenCreate(email: $email, password: $password) {
       token

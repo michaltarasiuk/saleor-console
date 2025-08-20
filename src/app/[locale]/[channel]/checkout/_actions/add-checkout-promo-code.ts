@@ -3,15 +3,15 @@
 import * as z from "zod";
 
 import {getClient} from "@/graphql/apollo-client";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import {getCheckoutId} from "@/utils/checkout";
 import {isDefined} from "@/utils/is-defined";
 
 import {redirectToRoot} from "../_utils/redirect-to-root";
 import {toValidationErrors} from "../_utils/validation-errors";
 
-const CheckoutAddPromoCodeMutation = gql(`
-  mutation CheckoutAddPromoCode($id: ID!, $promoCode: String!) { 
+const CheckoutAddPromoCodeMutation = graphql(`
+  mutation CheckoutAddPromoCode($id: ID!, $promoCode: String!) {
     checkoutAddPromoCode(id: $id, promoCode: $promoCode) {
       errors {
         ...CheckoutValidationError @unmask

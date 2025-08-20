@@ -3,15 +3,13 @@ import {type NextRequest, NextResponse} from "next/server";
 import {DefaultChannel} from "@/channels/consts";
 import {Routes} from "@/consts/routes";
 import {getClient} from "@/graphql/apollo-client";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import {setCheckoutId} from "@/utils/checkout";
 import {isDefined} from "@/utils/is-defined";
 
-const DemoCheckoutCreateMutation = gql(`
+const DemoCheckoutCreateMutation = graphql(`
   mutation DemoCheckoutCreate($input: CheckoutCreateInput!) {
-    checkoutCreate(
-      input: $input
-    ) {
+    checkoutCreate(input: $input) {
       checkout {
         id
       }

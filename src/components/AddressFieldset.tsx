@@ -7,14 +7,14 @@ import invariant from "tiny-invariant";
 import {ChannelContext} from "@/channels/channel-context";
 import {Select, SelectItem} from "@/components/Select";
 import {TextField} from "@/components/TextField";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import type {AddressFieldset_AddressFragment} from "@/graphql/codegen/graphql";
 import {useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
 import {SkeletonInput} from "./Input";
 
-const AddressFieldset_AddressFragment = gql(`
+const AddressFieldset_AddressFragment = graphql(`
   fragment AddressFieldset_Address on Address {
     id
     country {

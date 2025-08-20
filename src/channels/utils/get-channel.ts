@@ -1,9 +1,9 @@
 import {env} from "@/env";
 import {query} from "@/graphql/apollo-client";
-import {gql} from "@/graphql/codegen";
+import {graphql} from "@/graphql/codegen";
 import {isDefined} from "@/utils/is-defined";
 
-const ChannelQuery = gql(`
+const ChannelQuery = graphql(`
   query Channel($slug: String!) {
     channel(slug: $slug) {
       countries {
