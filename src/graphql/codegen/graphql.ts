@@ -29763,6 +29763,25 @@ export type CheckoutShippingAddressUpdateMutation = {
   } | null;
 };
 
+export type CheckoutShippingMethodUpdateMutationVariables = Exact<{
+  id: Scalars["ID"]["input"];
+  shippingMethodId: Scalars["ID"]["input"];
+}>;
+
+export type CheckoutShippingMethodUpdateMutation = {
+  __typename?: "Mutation";
+  checkoutDeliveryMethodUpdate?: {
+    __typename?: "CheckoutDeliveryMethodUpdate";
+    errors: Array<
+      {__typename?: "CheckoutError"} & {
+        " $fragmentRefs"?: {
+          CheckoutValidationErrorFragment: CheckoutValidationErrorFragment;
+        };
+      }
+    >;
+  } | null;
+};
+
 export type CheckoutContactSection_CheckoutFragment = {
   __typename?: "Checkout";
   id: string;
@@ -29779,6 +29798,20 @@ export type CheckoutShippingAddress_CheckoutFragment = {
       })
     | null;
 } & {" $fragmentName"?: "CheckoutShippingAddress_CheckoutFragment"};
+
+export type CheckoutShippingMethods_CheckoutFragment = {
+  __typename?: "Checkout";
+  id: string;
+  deliveryMethod?:
+    | {__typename?: "ShippingMethod"; id: string}
+    | {__typename?: "Warehouse"}
+    | null;
+  shippingMethods: Array<{
+    __typename?: "ShippingMethod";
+    id: string;
+    name: string;
+  }>;
+} & {" $fragmentName"?: "CheckoutShippingMethods_CheckoutFragment"};
 
 export type CheckoutValidationErrorFragment = {
   __typename?: "CheckoutError";
@@ -29829,7 +29862,13 @@ export type CheckoutShipping_CheckoutQueryVariables = Exact<{
 
 export type CheckoutShipping_CheckoutQuery = {
   __typename?: "Query";
-  checkout?: {__typename?: "Checkout"; id: string} | null;
+  checkout?:
+    | ({__typename?: "Checkout"} & {
+        " $fragmentRefs"?: {
+          CheckoutShippingMethods_CheckoutFragment: CheckoutShippingMethods_CheckoutFragment;
+        };
+      })
+    | null;
 };
 
 export type ChannelSlugsQueryVariables = Exact<{[key: string]: never}>;
@@ -30021,6 +30060,58 @@ export const CheckoutShippingAddress_CheckoutFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CheckoutShippingAddress_CheckoutFragment, unknown>;
+export const CheckoutShippingMethods_CheckoutFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "CheckoutShippingMethods_Checkout"},
+      typeCondition: {
+        kind: "NamedType",
+        name: {kind: "Name", value: "Checkout"},
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "id"}},
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "deliveryMethod"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: {kind: "Name", value: "ShippingMethod"},
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {kind: "Field", name: {kind: "Name", value: "id"}},
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "shippingMethods"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "id"}},
+                {kind: "Field", name: {kind: "Name", value: "name"}},
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CheckoutShippingMethods_CheckoutFragment, unknown>;
 export const CheckoutValidationErrorFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -30610,6 +30701,97 @@ export const CheckoutShippingAddressUpdateDocument = {
   CheckoutShippingAddressUpdateMutation,
   CheckoutShippingAddressUpdateMutationVariables
 >;
+export const CheckoutShippingMethodUpdateDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: {kind: "Name", value: "CheckoutShippingMethodUpdate"},
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {kind: "Variable", name: {kind: "Name", value: "id"}},
+          type: {
+            kind: "NonNullType",
+            type: {kind: "NamedType", name: {kind: "Name", value: "ID"}},
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: {kind: "Name", value: "shippingMethodId"},
+          },
+          type: {
+            kind: "NonNullType",
+            type: {kind: "NamedType", name: {kind: "Name", value: "ID"}},
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "checkoutDeliveryMethodUpdate"},
+            arguments: [
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "id"},
+                value: {kind: "Variable", name: {kind: "Name", value: "id"}},
+              },
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "deliveryMethodId"},
+                value: {
+                  kind: "Variable",
+                  name: {kind: "Name", value: "shippingMethodId"},
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: {kind: "Name", value: "errors"},
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: {kind: "Name", value: "CheckoutValidationError"},
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "CheckoutValidationError"},
+      typeCondition: {
+        kind: "NamedType",
+        name: {kind: "Name", value: "CheckoutError"},
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "field"}},
+          {kind: "Field", name: {kind: "Name", value: "message"}},
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  CheckoutShippingMethodUpdateMutation,
+  CheckoutShippingMethodUpdateMutationVariables
+>;
 export const DemoCheckoutCreateDocument = {
   kind: "Document",
   definitions: [
@@ -30872,7 +31054,62 @@ export const CheckoutShipping_CheckoutDocument = {
             ],
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{kind: "Field", name: {kind: "Name", value: "id"}}],
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: {
+                    kind: "Name",
+                    value: "CheckoutShippingMethods_Checkout",
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "CheckoutShippingMethods_Checkout"},
+      typeCondition: {
+        kind: "NamedType",
+        name: {kind: "Name", value: "Checkout"},
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "id"}},
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "deliveryMethod"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: {kind: "Name", value: "ShippingMethod"},
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {kind: "Field", name: {kind: "Name", value: "id"}},
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "shippingMethods"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "id"}},
+                {kind: "Field", name: {kind: "Name", value: "name"}},
+              ],
             },
           },
         ],

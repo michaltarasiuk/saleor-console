@@ -5,7 +5,6 @@ import {useActionState, useTransition} from "react";
 
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
-import {Skeleton} from "@/components/Skeleton";
 import {Routes} from "@/consts/routes";
 import type {CheckoutShipping_CheckoutQuery} from "@/graphql/codegen/graphql";
 import {IntlLink} from "@/i18n/components/IntlLink";
@@ -16,6 +15,10 @@ import {isDefined} from "@/utils/is-defined";
 
 import {updateCheckoutShipping} from "../_actions/update-checkout-shipping";
 import {redirectToRoot} from "../_utils/redirect-to-root";
+import {
+  CheckoutShippingMethods,
+  SkeletonCheckoutShippingMethods,
+} from "./CheckoutShippingMethods";
 
 interface CheckoutShippingFormProps {
   queryRef: QueryRef<CheckoutShipping_CheckoutQuery>;
@@ -39,6 +42,7 @@ export function CheckoutShippingForm({queryRef}: CheckoutShippingFormProps) {
         startTransition(() => formAction(formData));
       }}
       className={cn("space-y-large-300")}>
+      <CheckoutShippingMethods checkout={data.checkout} />
       <div className={cn("gap-base flex flex-col")}>
         <Button
           type="submit"
@@ -62,9 +66,18 @@ export function CheckoutShippingForm({queryRef}: CheckoutShippingFormProps) {
 export function SkeletonCheckoutShippingForm() {
   return (
     <div className={cn("space-y-large-300")}>
+      <SkeletonCheckoutShippingMethods />
       <div className={cn("gap-base flex flex-col")}>
-        <Skeleton className={cn("h-16")} />
-        <Skeleton className={cn("h-5")} />
+        <Button type="submit" size="large" isDisabled>
+          <FormattedMessage id="DgnS8R" defaultMessage="Continue to shipping" />
+        </Button>
+        <IntlLink href={Routes.checkout.information}>
+          <ChevronLeftIcon aria-hidden />
+          <FormattedMessage
+            id="k2CDuD"
+            defaultMessage="Return to information"
+          />
+        </IntlLink>
       </div>
     </div>
   );

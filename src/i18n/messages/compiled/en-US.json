@@ -77,6 +77,12 @@
       "value": "Password"
     }
   ],
+  "6orx1c": [
+    {
+      "type": 0,
+      "value": "Billing address"
+    }
+  ],
   "74xz0X": [
     {
       "type": 0,
@@ -403,6 +409,12 @@
       "value": "Oldest to newest"
     }
   ],
+  "ipwTkh": [
+    {
+      "type": 0,
+      "value": "Same as shipping address"
+    }
+  ],
   "irFBKn": [
     {
       "type": 0,
@@ -467,6 +479,12 @@
     {
       "type": 0,
       "value": "Edit profile"
+    }
+  ],
+  "o58q+n": [
+    {
+      "type": 0,
+      "value": "Use a different billing address"
     }
   ],
   "p99EyA": [

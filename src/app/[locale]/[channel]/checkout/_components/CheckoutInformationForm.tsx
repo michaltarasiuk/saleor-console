@@ -6,7 +6,6 @@ import {useActionState, useTransition} from "react";
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
 import {Link} from "@/components/Link";
-import {Skeleton} from "@/components/Skeleton";
 import {Routes} from "@/consts/routes";
 import type {CheckoutInformation_CheckoutQuery} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
@@ -74,8 +73,13 @@ export function SkeletonCheckoutInformationForm() {
       <SkeletonContactSection />
       <SkeletonShippingAddress />
       <div className={cn("gap-base flex flex-col")}>
-        <Skeleton className={cn("h-16")} />
-        <Skeleton className={cn("h-5")} />
+        <Button type="submit" size="large" isDisabled>
+          <FormattedMessage id="DgnS8R" defaultMessage="Continue to shipping" />
+        </Button>
+        <Link href={Routes.cart}>
+          <ChevronLeftIcon aria-hidden />
+          <FormattedMessage id="MRNNXA" defaultMessage="Return to cart" />
+        </Link>
       </div>
     </div>
   );

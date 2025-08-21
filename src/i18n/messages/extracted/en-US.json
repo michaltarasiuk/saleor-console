@@ -38,6 +38,9 @@
   "5sg7KC": {
     "defaultMessage": "Password"
   },
+  "6orx1c": {
+    "defaultMessage": "Billing address"
+  },
   "74xz0X": {
     "defaultMessage": "Delete address"
   },
@@ -197,6 +200,9 @@
   "i7vqD3": {
     "defaultMessage": "Oldest to newest"
   },
+  "ipwTkh": {
+    "defaultMessage": "Same as shipping address"
+  },
   "irFBKn": {
     "defaultMessage": "Last 7 days"
   },
@@ -229,6 +235,9 @@
   },
   "nYrKWp": {
     "defaultMessage": "Edit profile"
+  },
+  "o58q+n": {
+    "defaultMessage": "Use a different billing address"
   },
   "p99EyA": {
     "defaultMessage": "Create your account by entering your email and a password"

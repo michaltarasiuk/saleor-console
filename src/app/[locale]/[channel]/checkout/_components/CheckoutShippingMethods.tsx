@@ -1,0 +1,84 @@
+import {type FragmentType, useFragment} from "@apollo/client";
+import {redirect} from "next/navigation";
+import {useId} from "react";
+import invariant from "tiny-invariant";
+
+import {Heading, SkeletonHeading} from "@/components/Heading";
+import {Radio} from "@/components/Radio";
+import {RadioGroup} from "@/components/RadioGroup";
+import {Skeleton} from "@/components/Skeleton";
+import {Routes} from "@/consts/routes";
+import {graphql} from "@/graphql/codegen";
+import type {CheckoutShippingMethods_CheckoutFragment} from "@/graphql/codegen/graphql";
+import {FormattedMessage} from "@/i18n/react-intl";
+import {cn} from "@/utils/cn";
+import {isDefined} from "@/utils/is-defined";
+
+const CheckoutShippingMethods_CheckoutFragment = graphql(`
+  fragment CheckoutShippingMethods_Checkout on Checkout {
+    id
+    deliveryMethod {
+      ... on ShippingMethod {
+        id
+      }
+    }
+    shippingMethods {
+      id
+      name
+    }
+  }
+`);
+
+interface CheckoutShippingMethodsProps {
+  checkout: FragmentType<CheckoutShippingMethods_CheckoutFragment>;
+}
+
+export function CheckoutShippingMethods({
+  checkout,
+}: CheckoutShippingMethodsProps) {
+  const {data, complete} = useFragment({
+    fragment: CheckoutShippingMethods_CheckoutFragment,
+    from: checkout,
+  });
+  const headingId = useId();
+  if (!complete) {
+    redirect(Routes.checkout.information);
+  }
+  return (
+    <section className={cn("space-y-base")}>
+      <Heading id={headingId}>
+        <FormattedMessage id="4RD+CZ" defaultMessage="Shipping method" />
+      </Heading>
+      <RadioGroup
+        name="shippingMethodId"
+        defaultValue={getDefaultValue(data.deliveryMethod)}
+        variant="group"
+        aria-labelledby={headingId}>
+        {data.shippingMethods.map(({id, name}) => (
+          <Radio key={id} value={id}>
+            {name}
+          </Radio>
+        ))}
+      </RadioGroup>
+    </section>
+  );
+}
+
+export function SkeletonCheckoutShippingMethods() {
+  return (
+    <section className={cn("space-y-base")}>
+      <SkeletonHeading />
+      <Skeleton className={cn("rounded-base h-[201px]")} />
+    </section>
+  );
+}
+
+function getDefaultValue(
+  deliveryMethod: CheckoutShippingMethods_CheckoutFragment["deliveryMethod"],
+) {
+  if (!isDefined(deliveryMethod)) {
+    return;
+  }
+  invariant(deliveryMethod.__typename === "ShippingMethod");
+  return deliveryMethod.id;
+}
