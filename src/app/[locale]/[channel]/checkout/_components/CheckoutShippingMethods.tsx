@@ -53,7 +53,8 @@ export function CheckoutShippingMethods({
         name="shippingMethodId"
         defaultValue={getDefaultValue(data.deliveryMethod)}
         variant="group"
-        aria-labelledby={headingId}>
+        aria-labelledby={headingId}
+        isRequired>
         {data.shippingMethods.map(({id, name}) => (
           <Radio key={id} value={id}>
             {name}
