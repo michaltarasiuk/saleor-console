@@ -29861,7 +29861,7 @@ export type CheckoutPayment_CheckoutQueryVariables = Exact<{
 
 export type CheckoutPayment_CheckoutQuery = {
   __typename?: "Query";
-  checkout?: {__typename?: "Checkout"; id: string} | null;
+  checkout?: {__typename: "Checkout"} | null;
 };
 
 export type CheckoutShipping_CheckoutQueryVariables = Exact<{
@@ -29923,12 +29923,21 @@ export type AddressFieldset_AddressFragment = {
   country: {__typename?: "CountryDisplay"; code: string};
 } & {" $fragmentName"?: "AddressFieldset_AddressFragment"};
 
-export type Money_TaxedMoneyFragment = {
-  __typename?: "TaxedMoney";
+export type Money_MoneyFragment = {
+  __typename?: "Money";
   currency: string;
-  gross: {__typename?: "Money"; amount: number};
-  net: {__typename?: "Money"; amount: number};
-} & {" $fragmentName"?: "Money_TaxedMoneyFragment"};
+  amount: number;
+} & {" $fragmentName"?: "Money_MoneyFragment"};
+
+export type TaxedMoney_TaxedMoneyFragment = {
+  __typename?: "TaxedMoney";
+  net: {__typename?: "Money"} & {
+    " $fragmentRefs"?: {Money_MoneyFragment: Money_MoneyFragment};
+  };
+  gross: {__typename?: "Money"} & {
+    " $fragmentRefs"?: {Money_MoneyFragment: Money_MoneyFragment};
+  };
+} & {" $fragmentName"?: "TaxedMoney_TaxedMoneyFragment"};
 
 export const AccountValidationErrorFragmentDoc = {
   kind: "Document",
@@ -30140,12 +30149,29 @@ export const CheckoutValidationErrorFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CheckoutValidationErrorFragment, unknown>;
-export const Money_TaxedMoneyFragmentDoc = {
+export const Money_MoneyFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: {kind: "Name", value: "Money_TaxedMoney"},
+      name: {kind: "Name", value: "Money_Money"},
+      typeCondition: {kind: "NamedType", name: {kind: "Name", value: "Money"}},
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "currency"}},
+          {kind: "Field", name: {kind: "Name", value: "amount"}},
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<Money_MoneyFragment, unknown>;
+export const TaxedMoney_TaxedMoneyFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "TaxedMoney_TaxedMoney"},
       typeCondition: {
         kind: "NamedType",
         name: {kind: "Name", value: "TaxedMoney"},
@@ -30153,32 +30179,49 @@ export const Money_TaxedMoneyFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          {kind: "Field", name: {kind: "Name", value: "currency"}},
-          {
-            kind: "Field",
-            name: {kind: "Name", value: "gross"},
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {kind: "Field", name: {kind: "Name", value: "amount"}},
-              ],
-            },
-          },
           {
             kind: "Field",
             name: {kind: "Name", value: "net"},
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                {kind: "Field", name: {kind: "Name", value: "amount"}},
+                {
+                  kind: "FragmentSpread",
+                  name: {kind: "Name", value: "Money_Money"},
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "gross"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: {kind: "Name", value: "Money_Money"},
+                },
               ],
             },
           },
         ],
       },
     },
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "Money_Money"},
+      typeCondition: {kind: "NamedType", name: {kind: "Name", value: "Money"}},
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "currency"}},
+          {kind: "Field", name: {kind: "Name", value: "amount"}},
+        ],
+      },
+    },
   ],
-} as unknown as DocumentNode<Money_TaxedMoneyFragment, unknown>;
+} as unknown as DocumentNode<TaxedMoney_TaxedMoneyFragment, unknown>;
 export const SigninDocument = {
   kind: "Document",
   definitions: [
@@ -31059,7 +31102,9 @@ export const CheckoutPayment_CheckoutDocument = {
             ],
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{kind: "Field", name: {kind: "Name", value: "id"}}],
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "__typename"}},
+              ],
             },
           },
         ],

@@ -14,7 +14,7 @@ import {redirectToRoot} from "../_utils/redirect-to-root";
 const CheckoutPayment_CheckoutQuery = graphql(`
   query CheckoutPayment_Checkout($id: ID!) {
     checkout(id: $id) {
-      id
+      __typename
     }
   }
 `);

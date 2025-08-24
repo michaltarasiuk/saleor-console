@@ -22,11 +22,11 @@ interface CheckoutPaymentFormProps {
 }
 
 export function CheckoutPaymentForm({queryRef}: CheckoutPaymentFormProps) {
+  const {data} = useReadQuery(queryRef);
   const [{errors}, formAction] = useActionState(updateCheckoutPayment, {
     errors: {},
   });
   const [isPending, startTransition] = useTransition();
-  const {data} = useReadQuery(queryRef);
   if (!isDefined(data.checkout)) {
     redirectToRoot();
   }
@@ -48,10 +48,7 @@ export function CheckoutPaymentForm({queryRef}: CheckoutPaymentFormProps) {
           isDisabled={isPending}>
           <FormattedMessage id="lD3+8a" defaultMessage="Pay" />
         </Button>
-        <IntlLink href={Routes.checkout.shipping}>
-          <ChevronLeftIcon aria-hidden />
-          <FormattedMessage id="Akc1Gk" defaultMessage="Return to shipping" />
-        </IntlLink>
+        <ReturnToShippingLink />
       </div>
     </Form>
   );
@@ -65,11 +62,17 @@ export function SkeletonCheckoutPaymentForm() {
         <Button type="submit" size="large" isDisabled>
           <FormattedMessage id="lD3+8a" defaultMessage="Pay" />
         </Button>
-        <IntlLink href={Routes.checkout.shipping}>
-          <ChevronLeftIcon aria-hidden />
-          <FormattedMessage id="Akc1Gk" defaultMessage="Return to shipping" />
-        </IntlLink>
+        <ReturnToShippingLink />
       </div>
     </div>
+  );
+}
+
+function ReturnToShippingLink() {
+  return (
+    <IntlLink href={Routes.checkout.shipping}>
+      <ChevronLeftIcon aria-hidden />
+      <FormattedMessage id="Akc1Gk" defaultMessage="Return to shipping" />
+    </IntlLink>
   );
 }

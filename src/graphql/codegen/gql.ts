@@ -28,12 +28,13 @@ type Documents = {
   "\n  fragment CheckoutValidationError on CheckoutError {\n    field\n    message\n  }\n": typeof types.CheckoutValidationErrorFragmentDoc;
   "\n  mutation DemoCheckoutCreate($input: CheckoutCreateInput!) {\n    checkoutCreate(input: $input) {\n      checkout {\n        id\n      }\n    }\n  }\n": typeof types.DemoCheckoutCreateDocument;
   "\n  query CheckoutInformation_Checkout($id: ID!) {\n    checkout(id: $id) {\n      ...CheckoutContactSection_Checkout\n      ...CheckoutShippingAddress_Checkout\n    }\n  }\n": typeof types.CheckoutInformation_CheckoutDocument;
-  "\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      id\n    }\n  }\n": typeof types.CheckoutPayment_CheckoutDocument;
+  "\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      __typename\n    }\n  }\n": typeof types.CheckoutPayment_CheckoutDocument;
   "\n  query CheckoutShipping_Checkout($id: ID!) {\n    checkout(id: $id) {\n      ...CheckoutShippingMethods_Checkout\n    }\n  }\n": typeof types.CheckoutShipping_CheckoutDocument;
   "\n  query ChannelSlugs {\n    channels {\n      slug\n      isActive\n    }\n  }\n": typeof types.ChannelSlugsDocument;
   "\n  query Channel($slug: String!) {\n    channel(slug: $slug) {\n      countries {\n        code\n        country\n      }\n      taxConfiguration {\n        displayGrossPrices\n      }\n    }\n  }\n": typeof types.ChannelDocument;
   "\n  fragment AddressFieldset_Address on Address {\n    id\n    country {\n      code\n    }\n    firstName\n    lastName\n    companyName\n    streetAddress1\n    streetAddress2\n    postalCode\n    city\n  }\n": typeof types.AddressFieldset_AddressFragmentDoc;
-  "\n  fragment Money_TaxedMoney on TaxedMoney {\n    currency\n    gross {\n      amount\n    }\n    net {\n      amount\n    }\n  }\n": typeof types.Money_TaxedMoneyFragmentDoc;
+  "\n  fragment Money_Money on Money {\n    currency\n    amount\n  }\n": typeof types.Money_MoneyFragmentDoc;
+  "\n  fragment TaxedMoney_TaxedMoney on TaxedMoney {\n    net {\n      ...Money_Money\n    }\n    gross {\n      ...Money_Money\n    }\n  }\n": typeof types.TaxedMoney_TaxedMoneyFragmentDoc;
 };
 const documents: Documents = {
   "\n  mutation Signin($email: String!, $password: String!) {\n    tokenCreate(email: $email, password: $password) {\n      token\n      refreshToken\n      errors {\n        ...AccountValidationError @unmask\n      }\n    }\n  }\n":
@@ -64,7 +65,7 @@ const documents: Documents = {
     types.DemoCheckoutCreateDocument,
   "\n  query CheckoutInformation_Checkout($id: ID!) {\n    checkout(id: $id) {\n      ...CheckoutContactSection_Checkout\n      ...CheckoutShippingAddress_Checkout\n    }\n  }\n":
     types.CheckoutInformation_CheckoutDocument,
-  "\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      id\n    }\n  }\n":
+  "\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      __typename\n    }\n  }\n":
     types.CheckoutPayment_CheckoutDocument,
   "\n  query CheckoutShipping_Checkout($id: ID!) {\n    checkout(id: $id) {\n      ...CheckoutShippingMethods_Checkout\n    }\n  }\n":
     types.CheckoutShipping_CheckoutDocument,
@@ -74,8 +75,10 @@ const documents: Documents = {
     types.ChannelDocument,
   "\n  fragment AddressFieldset_Address on Address {\n    id\n    country {\n      code\n    }\n    firstName\n    lastName\n    companyName\n    streetAddress1\n    streetAddress2\n    postalCode\n    city\n  }\n":
     types.AddressFieldset_AddressFragmentDoc,
-  "\n  fragment Money_TaxedMoney on TaxedMoney {\n    currency\n    gross {\n      amount\n    }\n    net {\n      amount\n    }\n  }\n":
-    types.Money_TaxedMoneyFragmentDoc,
+  "\n  fragment Money_Money on Money {\n    currency\n    amount\n  }\n":
+    types.Money_MoneyFragmentDoc,
+  "\n  fragment TaxedMoney_TaxedMoney on TaxedMoney {\n    net {\n      ...Money_Money\n    }\n    gross {\n      ...Money_Money\n    }\n  }\n":
+    types.TaxedMoney_TaxedMoneyFragmentDoc,
 };
 
 /**
@@ -180,8 +183,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      id\n    }\n  }\n",
-): (typeof documents)["\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      id\n    }\n  }\n"];
+  source: "\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      __typename\n    }\n  }\n",
+): (typeof documents)["\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      __typename\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -210,8 +213,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment Money_TaxedMoney on TaxedMoney {\n    currency\n    gross {\n      amount\n    }\n    net {\n      amount\n    }\n  }\n",
-): (typeof documents)["\n  fragment Money_TaxedMoney on TaxedMoney {\n    currency\n    gross {\n      amount\n    }\n    net {\n      amount\n    }\n  }\n"];
+  source: "\n  fragment Money_Money on Money {\n    currency\n    amount\n  }\n",
+): (typeof documents)["\n  fragment Money_Money on Money {\n    currency\n    amount\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment TaxedMoney_TaxedMoney on TaxedMoney {\n    net {\n      ...Money_Money\n    }\n    gross {\n      ...Money_Money\n    }\n  }\n",
+): (typeof documents)["\n  fragment TaxedMoney_TaxedMoney on TaxedMoney {\n    net {\n      ...Money_Money\n    }\n    gross {\n      ...Money_Money\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

@@ -1,16 +1,31 @@
 "use client";
 
-import {Radio as AriaRadio, type RadioProps} from "react-aria-components";
+import {
+  Radio as AriaRadio,
+  type RadioProps as AriaRadioProps,
+} from "react-aria-components";
+
+import {isDefined} from "@/utils/is-defined";
 
 import {text} from "../styles/text";
 import {cn} from "../utils/cn";
 
-export function Radio({children, ...props}: RadioProps) {
+interface RadioProps extends AriaRadioProps {
+  primaryContent?: React.ReactNode;
+  secondaryContent?: React.ReactNode;
+}
+
+export function Radio({
+  children,
+  primaryContent,
+  secondaryContent,
+  ...props
+}: RadioProps) {
   return (
     <AriaRadio
       {...props}
       className={cn(
-        "gap-small-100 relative flex cursor-pointer items-center",
+        "gap-small-100 relative flex cursor-pointer",
         "disabled:cursor-default disabled:opacity-50",
         "group-data-[variant=group]:p-base group-data-[variant=group]:border-control-border group-data-[variant=group]:bg-base-background group-data-[variant=group]:border",
         "group-data-[variant=group]:after:absolute group-data-[variant=group]:after:inset-[-1px] group-data-[variant=group]:after:border group-data-[variant=group]:after:border-transparent group-data-[variant=group]:after:transition-all",
@@ -32,25 +47,36 @@ export function Radio({children, ...props}: RadioProps) {
         <>
           <div
             className={cn(
-              "rounded-fully border-control-border bg-control-background size-5 border transition-all",
+              "rounded-fully border-control-border bg-control-background size-5 shrink-0 border transition-all",
               {
                 "ring-base-accent/50 ring-2": isFocusVisible,
                 "border-base-accent": isFocused || isPressed || isSelected,
                 "border-critical ring-critical/50 border-2": isInvalid,
                 "border-7": isSelected,
+                "my-px": isDefined(primaryContent),
               },
             )}
           />
-          {typeof children === "function"
-            ? children({
-                isFocusVisible,
-                isFocused,
-                isInvalid,
-                isPressed,
-                isSelected,
-                ...renderProps,
-              })
-            : children}
+          <div className={cn("gap-small-300 flex w-full justify-between")}>
+            <div className={cn("gap-small-400 flex flex-col")}>
+              {typeof children === "function"
+                ? children({
+                    isFocusVisible,
+                    isFocused,
+                    isInvalid,
+                    isPressed,
+                    isSelected,
+                    ...renderProps,
+                  })
+                : children}
+              {primaryContent}
+            </div>
+            {isDefined(secondaryContent) && (
+              <div className={cn("hidden", "group-data-[variant=group]:block")}>
+                {secondaryContent}
+              </div>
+            )}
+          </div>
         </>
       )}
     </AriaRadio>

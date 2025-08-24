@@ -5,9 +5,9 @@ import {useActionState, useTransition} from "react";
 
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
-import {Link} from "@/components/Link";
 import {Routes} from "@/consts/routes";
 import type {CheckoutInformation_CheckoutQuery} from "@/graphql/codegen/graphql";
+import {IntlLink} from "@/i18n/components/IntlLink";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {ChevronLeftIcon} from "@/icons/ChevronLeftIcon";
 import {cn} from "@/utils/cn";
@@ -31,11 +31,11 @@ interface CheckoutInformationFormProps {
 export function CheckoutInformationForm({
   queryRef,
 }: CheckoutInformationFormProps) {
+  const {data} = useReadQuery(queryRef);
   const [{errors}, formAction] = useActionState(updateCheckoutInformation, {
     errors: {},
   });
   const [isPending, startTransition] = useTransition();
-  const {data} = useReadQuery(queryRef);
   if (!isDefined(data.checkout)) {
     redirectToRoot();
   }
@@ -58,10 +58,7 @@ export function CheckoutInformationForm({
           isDisabled={isPending}>
           <FormattedMessage id="DgnS8R" defaultMessage="Continue to shipping" />
         </Button>
-        <Link href={Routes.cart}>
-          <ChevronLeftIcon aria-hidden />
-          <FormattedMessage id="MRNNXA" defaultMessage="Return to cart" />
-        </Link>
+        <ReturnToCartLink />
       </div>
     </Form>
   );
@@ -76,11 +73,17 @@ export function SkeletonCheckoutInformationForm() {
         <Button type="submit" size="large" isDisabled>
           <FormattedMessage id="DgnS8R" defaultMessage="Continue to shipping" />
         </Button>
-        <Link href={Routes.cart}>
-          <ChevronLeftIcon aria-hidden />
-          <FormattedMessage id="MRNNXA" defaultMessage="Return to cart" />
-        </Link>
+        <ReturnToCartLink />
       </div>
     </div>
+  );
+}
+
+function ReturnToCartLink() {
+  return (
+    <IntlLink href={Routes.cart}>
+      <ChevronLeftIcon aria-hidden />
+      <FormattedMessage id="MRNNXA" defaultMessage="Return to cart" />
+    </IntlLink>
   );
 }

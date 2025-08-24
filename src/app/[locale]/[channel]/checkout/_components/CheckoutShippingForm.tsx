@@ -1,6 +1,6 @@
 "use client";
 
-import {type QueryRef, useReadQuery} from "@apollo/client";
+import {type QueryRef, useReadQuery} from "@apollo/client/react";
 import {useActionState, useTransition} from "react";
 
 import {Button} from "@/components/Button";
@@ -25,11 +25,11 @@ interface CheckoutShippingFormProps {
 }
 
 export function CheckoutShippingForm({queryRef}: CheckoutShippingFormProps) {
+  const {data} = useReadQuery(queryRef);
   const [{errors}, formAction] = useActionState(updateCheckoutShipping, {
     errors: {},
   });
   const [isPending, startTransition] = useTransition();
-  const {data} = useReadQuery(queryRef);
   if (!isDefined(data.checkout)) {
     redirectToRoot();
   }
@@ -51,13 +51,7 @@ export function CheckoutShippingForm({queryRef}: CheckoutShippingFormProps) {
           isDisabled={isPending}>
           <FormattedMessage id="DgnS8R" defaultMessage="Continue to shipping" />
         </Button>
-        <IntlLink href={Routes.checkout.information}>
-          <ChevronLeftIcon aria-hidden />
-          <FormattedMessage
-            id="k2CDuD"
-            defaultMessage="Return to information"
-          />
-        </IntlLink>
+        <ReturnToInformationLink />
       </div>
     </Form>
   );
@@ -71,14 +65,17 @@ export function SkeletonCheckoutShippingForm() {
         <Button type="submit" size="large" isDisabled>
           <FormattedMessage id="DgnS8R" defaultMessage="Continue to shipping" />
         </Button>
-        <IntlLink href={Routes.checkout.information}>
-          <ChevronLeftIcon aria-hidden />
-          <FormattedMessage
-            id="k2CDuD"
-            defaultMessage="Return to information"
-          />
-        </IntlLink>
+        <ReturnToInformationLink />
       </div>
     </div>
+  );
+}
+
+function ReturnToInformationLink() {
+  return (
+    <IntlLink href={Routes.checkout.information}>
+      <ChevronLeftIcon aria-hidden />
+      <FormattedMessage id="k2CDuD" defaultMessage="Return to information" />
+    </IntlLink>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
-import {type FragmentType, useFragment} from "@apollo/client";
+import type {FragmentType} from "@apollo/client";
+import {useFragment} from "@apollo/client/react";
 import {use} from "react";
-import invariant from "tiny-invariant";
 
 import {ChannelContext} from "@/channels/channel-context";
 import {Select, SelectItem} from "@/components/Select";
@@ -39,7 +39,9 @@ export function CompletedAddressFieldset({
     fragment: AddressFieldset_AddressFragment,
     from: address,
   });
-  invariant(complete);
+  if (!complete) {
+    return <SkeletonAddressFieldset />;
+  }
   return <AddressFieldset address={data} />;
 }
 

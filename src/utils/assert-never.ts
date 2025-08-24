@@ -1,3 +1,3 @@
-export function assertNever(value: never): never {
-  throw new Error(`Unexpected value: ${value}`);
+export function assertNever(...values: never[]): never {
+  throw new Error(`Received unexpected value(s): ${values.join(", ")}`);
 }

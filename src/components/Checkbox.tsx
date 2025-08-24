@@ -2,20 +2,32 @@
 
 import {
   Checkbox as AriaCheckbox,
-  type CheckboxProps,
+  type CheckboxProps as AriaCheckboxProps,
 } from "react-aria-components";
+
+import {isDefined} from "@/utils/is-defined";
 
 import {CheckmarkIcon} from "../icons/CheckmarkIcon";
 import {text} from "../styles/text";
 import {cn} from "../utils/cn";
 import {SkeletonText} from "./Text";
 
-export function Checkbox({children, ...props}: CheckboxProps) {
+interface CheckboxProps extends AriaCheckboxProps {
+  primaryContent?: React.ReactNode;
+  secondaryContent?: React.ReactNode;
+}
+
+export function Checkbox({
+  children,
+  primaryContent,
+  secondaryContent,
+  ...props
+}: CheckboxProps) {
   return (
     <AriaCheckbox
       {...props}
       className={cn(
-        "gap-small-100 relative flex cursor-pointer items-center transition-all",
+        "gap-small-100 relative flex cursor-pointer transition-all",
         "disabled:cursor-default disabled:opacity-50",
         "group-data-[variant=group]:p-base group-data-[variant=group]:border-control-border group-data-[variant=group]:bg-base-background group-data-[variant=group]:border",
         "group-data-[variant=group]:after:absolute group-data-[variant=group]:after:inset-[-1px] group-data-[variant=group]:after:border group-data-[variant=group]:after:border-transparent group-data-[variant=group]:after:transition-all",
@@ -37,7 +49,7 @@ export function Checkbox({children, ...props}: CheckboxProps) {
         <>
           <div
             className={cn(
-              "border-control-border bg-control-background rounded-small flex size-5 items-center justify-center border transition-all",
+              "border-control-border bg-control-background rounded-small flex size-5 shrink-0 items-center justify-center border transition-all",
               {
                 "ring-base-accent/50 ring-2": isFocusVisible,
                 "border-base-accent": isFocused || isPressed,
@@ -45,6 +57,7 @@ export function Checkbox({children, ...props}: CheckboxProps) {
                 "bg-critical border-critical": isInvalid && isSelected,
                 "bg-control-accent border-control-accent":
                   isSelected && !isInvalid,
+                "my-px": isDefined(primaryContent),
               },
             )}>
             <CheckmarkIcon
@@ -52,16 +65,26 @@ export function Checkbox({children, ...props}: CheckboxProps) {
               className={cn("stroke-control-accent-contrast size-3")}
             />
           </div>
-          {typeof children === "function"
-            ? children({
-                isFocusVisible,
-                isFocused,
-                isInvalid,
-                isPressed,
-                isSelected,
-                ...renderProps,
-              })
-            : children}
+          <div className={cn("gap-small-300 flex w-full justify-between")}>
+            <div className={cn("gap-small-400 flex flex-col")}>
+              {typeof children === "function"
+                ? children({
+                    isFocusVisible,
+                    isFocused,
+                    isInvalid,
+                    isPressed,
+                    isSelected,
+                    ...renderProps,
+                  })
+                : children}
+              {primaryContent}
+            </div>
+            {isDefined(secondaryContent) && (
+              <div className={cn("hidden", "group-data-[variant=group]:block")}>
+                {secondaryContent}
+              </div>
+            )}
+          </div>
         </>
       )}
     </AriaCheckbox>
