@@ -1,9 +1,16 @@
-import type {CodegenConfig} from "@graphql-codegen/cli";
+import {dirname} from "node:path";
+import {fileURLToPath} from "node:url";
 
-import {env} from "./env";
+import type {CodegenConfig} from "@graphql-codegen/cli";
+import {loadEnvConfig} from "@next/env";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+loadEnvConfig(__dirname);
 
 const config: CodegenConfig = {
-  schema: env.NEXT_PUBLIC_SALEOR_GRAPHQL_URL,
+  schema: process.env.NEXT_PUBLIC_SALEOR_GRAPHQL_URL,
   documents: ["src/**/*.{ts,tsx}"],
   generates: {
     "./src/graphql/codegen/": {

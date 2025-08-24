@@ -12,7 +12,7 @@ const ChannelSlugsQuery = graphql(`
   }
 `);
 
-export async function getActiveChannelSlugs(client: ApolloClient<unknown>) {
+export async function getActiveChannelSlugs(client: ApolloClient) {
   const {data} = await client.query({
     query: ChannelSlugsQuery,
     context: {
@@ -21,7 +21,11 @@ export async function getActiveChannelSlugs(client: ApolloClient<unknown>) {
       },
     },
   });
-  return (data.channels ?? [])
-    .filter((channel) => channel.isActive)
-    .map((channel) => channel.slug);
+  const activeSlugs: string[] = [];
+  for (const channel of data.channels ?? []) {
+    if (channel.isActive) {
+      activeSlugs.push(channel.slug);
+    }
+  }
+  return activeSlugs;
 }

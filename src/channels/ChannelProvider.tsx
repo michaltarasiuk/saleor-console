@@ -2,14 +2,11 @@
 
 import {ChannelContext} from "./channel-context";
 
-type Channel = typeof ChannelContext extends React.Context<infer T> ? T : never;
-
-export function ChannelProvider({
-  children,
-  value,
-}: {
+interface ChannelProviderProps {
   children: React.ReactNode;
-  value: Channel;
-}) {
+  value: typeof ChannelContext extends React.Context<infer T> ? T : never;
+}
+
+export function ChannelProvider({children, value}: ChannelProviderProps) {
   return <ChannelContext value={value}>{children}</ChannelContext>;
 }

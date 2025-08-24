@@ -1,0 +1,17 @@
+# This directive is used to resolve a field's value locally on the client.
+directive @client on FIELD | FIELD_DEFINITION
+
+# Used for normalizing and caching paginated lists.
+directive @connection on FIELD
+
+# Allows for incremental delivery of data for a field or fragment.
+directive @defer on FRAGMENT_SPREAD | FIELD
+
+# Exports the result of a local field to be used as a variable in a query.
+directive @export(as: String!) on FIELD
+
+# Prevents changes to the data within a field or fragment from triggering a re-render.
+directive @nonreactive on FIELD | FRAGMENT_SPREAD
+
+# Used to unmask fragment data, making it available for use.
+directive @unmask on FRAGMENT_SPREAD
