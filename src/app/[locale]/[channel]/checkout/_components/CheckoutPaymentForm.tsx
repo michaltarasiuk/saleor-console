@@ -15,7 +15,10 @@ import {isDefined} from "@/utils/is-defined";
 
 import {updateCheckoutPayment} from "../_actions/update-checkout-payment";
 import {redirectToRoot} from "../_utils/redirect-to-root";
-import {CheckoutBillingAddressSection} from "./CheckoutBillingAddressSection";
+import {
+  CheckoutBillingAddressSection,
+  SkeletonCheckoutBillingAddressSection,
+} from "./CheckoutBillingAddressSection";
 
 interface CheckoutPaymentFormProps {
   queryRef: QueryRef<CheckoutPayment_CheckoutQuery>;
@@ -39,7 +42,7 @@ export function CheckoutPaymentForm({queryRef}: CheckoutPaymentFormProps) {
         startTransition(() => formAction(formData));
       }}
       className={cn("space-y-large-300")}>
-      <CheckoutBillingAddressSection />
+      <CheckoutBillingAddressSection checkout={data.checkout} />
       <div className={cn("gap-base flex flex-col")}>
         <Button
           type="submit"
@@ -57,7 +60,7 @@ export function CheckoutPaymentForm({queryRef}: CheckoutPaymentFormProps) {
 export function SkeletonCheckoutPaymentForm() {
   return (
     <div className={cn("space-y-large-300")}>
-      <CheckoutBillingAddressSection />
+      <SkeletonCheckoutBillingAddressSection />
       <div className={cn("gap-base flex flex-col")}>
         <Button type="submit" size="large" isDisabled>
           <FormattedMessage id="lD3+8a" defaultMessage="Pay" />

@@ -1,27 +1,21 @@
+"use client";
+
 import {type FragmentType, useFragment} from "@apollo/client";
 import {redirect} from "next/navigation";
 import {useId} from "react";
-import invariant from "tiny-invariant";
 
 import {Heading, SkeletonHeading} from "@/components/Heading";
 import {Radio} from "@/components/Radio";
 import {RadioGroup} from "@/components/RadioGroup";
-import {Skeleton} from "@/components/Skeleton";
 import {Routes} from "@/consts/routes";
 import {graphql} from "@/graphql/codegen";
 import type {CheckoutShippingMethods_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
-import {isDefined} from "@/utils/is-defined";
 
 const CheckoutShippingMethods_CheckoutFragment = graphql(`
   fragment CheckoutShippingMethods_Checkout on Checkout {
     id
-    deliveryMethod {
-      ... on ShippingMethod {
-        id
-      }
-    }
     shippingMethods {
       id
       name
@@ -51,7 +45,6 @@ export function CheckoutShippingMethods({
       </Heading>
       <RadioGroup
         name="shippingMethodId"
-        defaultValue={getDefaultValue(data.deliveryMethod)}
         variant="group"
         aria-labelledby={headingId}
         isRequired>
@@ -69,17 +62,6 @@ export function SkeletonCheckoutShippingMethods() {
   return (
     <section className={cn("space-y-base")}>
       <SkeletonHeading />
-      <Skeleton className={cn("rounded-base h-[201px]")} />
     </section>
   );
-}
-
-function getDefaultValue(
-  deliveryMethod: CheckoutShippingMethods_CheckoutFragment["deliveryMethod"],
-) {
-  if (!isDefined(deliveryMethod)) {
-    return;
-  }
-  invariant(deliveryMethod.__typename === "ShippingMethod");
-  return deliveryMethod.id;
 }

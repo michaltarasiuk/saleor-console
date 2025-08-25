@@ -96,7 +96,7 @@ export function AddressFieldset({address}: AddressFieldsetProps) {
   return (
     <fieldset
       className={cn("space-y-base", {
-        "pointer-events-none opacity-50": isPending,
+        "animate-pulse opacity-50": isPending,
       })}>
       <Select
         name={AddressFields.country}
