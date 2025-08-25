@@ -5,6 +5,9 @@
   "/bIuBb": {
     "defaultMessage": "Order number (high to low)"
   },
+  "/j5hls": {
+    "defaultMessage": "Apartment, suite, etc"
+  },
   "0Azlrb": {
     "defaultMessage": "Manage"
   },
@@ -61,6 +64,9 @@
   },
   "Akc1Gk": {
     "defaultMessage": "Return to shipping"
+  },
+  "AuwpCm": {
+    "defaultMessage": "Country area"
   },
   "BIxs9X": {
     "defaultMessage": "This is my default address"
@@ -274,9 +280,6 @@
   },
   "xmcVZ0": {
     "defaultMessage": "Search"
-  },
-  "yOsL4f": {
-    "defaultMessage": "Apartment, suite, etc (optional)"
   },
   "zFegDD": {
     "defaultMessage": "Contact"

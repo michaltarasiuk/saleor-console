@@ -1,6 +1,6 @@
 "use client";
 
-import {type QueryRef, useReadQuery} from "@apollo/client/react";
+import {type QueryRef, useReadQuery} from "@apollo/client";
 import {useActionState, useTransition} from "react";
 
 import {Button} from "@/components/Button";

@@ -1,7 +1,7 @@
 "use client";
 
 import type {FragmentType} from "@apollo/client";
-import {useFragment} from "@apollo/client/react";
+import {useFragment} from "@apollo/client";
 import {use} from "react";
 
 import {ChannelContext} from "@/channels/channel-context";

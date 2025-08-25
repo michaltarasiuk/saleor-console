@@ -29919,9 +29919,28 @@ export type AddressFieldset_AddressFragment = {
   streetAddress1: string;
   streetAddress2: string;
   postalCode: string;
+  countryArea: string;
   city: string;
   country: {__typename?: "CountryDisplay"; code: string};
 } & {" $fragmentName"?: "AddressFieldset_AddressFragment"};
+
+export type AddressValidationRulesQueryVariables = Exact<{
+  countryCode: CountryCode;
+}>;
+
+export type AddressValidationRulesQuery = {
+  __typename?: "Query";
+  addressValidationRules?: {
+    __typename?: "AddressValidationData";
+    allowedFields: Array<string>;
+    requiredFields: Array<string>;
+    countryAreaChoices: Array<{
+      __typename?: "ChoiceValue";
+      raw?: string | null;
+      verbose?: string | null;
+    }>;
+  } | null;
+};
 
 export type Money_MoneyFragment = {
   __typename?: "Money";
@@ -30009,6 +30028,7 @@ export const AddressFieldset_AddressFragmentDoc = {
           {kind: "Field", name: {kind: "Name", value: "streetAddress1"}},
           {kind: "Field", name: {kind: "Name", value: "streetAddress2"}},
           {kind: "Field", name: {kind: "Name", value: "postalCode"}},
+          {kind: "Field", name: {kind: "Name", value: "countryArea"}},
           {kind: "Field", name: {kind: "Name", value: "city"}},
         ],
       },
@@ -30071,6 +30091,7 @@ export const CheckoutShippingAddress_CheckoutFragmentDoc = {
           {kind: "Field", name: {kind: "Name", value: "streetAddress1"}},
           {kind: "Field", name: {kind: "Name", value: "streetAddress2"}},
           {kind: "Field", name: {kind: "Name", value: "postalCode"}},
+          {kind: "Field", name: {kind: "Name", value: "countryArea"}},
           {kind: "Field", name: {kind: "Name", value: "city"}},
         ],
       },
@@ -31020,6 +31041,7 @@ export const CheckoutInformation_CheckoutDocument = {
           {kind: "Field", name: {kind: "Name", value: "streetAddress1"}},
           {kind: "Field", name: {kind: "Name", value: "streetAddress2"}},
           {kind: "Field", name: {kind: "Name", value: "postalCode"}},
+          {kind: "Field", name: {kind: "Name", value: "countryArea"}},
           {kind: "Field", name: {kind: "Name", value: "city"}},
         ],
       },
@@ -31304,3 +31326,69 @@ export const ChannelDocument = {
     },
   ],
 } as unknown as DocumentNode<ChannelQuery, ChannelQueryVariables>;
+export const AddressValidationRulesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: {kind: "Name", value: "AddressValidationRules"},
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: {kind: "Name", value: "countryCode"},
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: {kind: "Name", value: "CountryCode"},
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "addressValidationRules"},
+            arguments: [
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "countryCode"},
+                value: {
+                  kind: "Variable",
+                  name: {kind: "Name", value: "countryCode"},
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {kind: "Field", name: {kind: "Name", value: "allowedFields"}},
+                {kind: "Field", name: {kind: "Name", value: "requiredFields"}},
+                {
+                  kind: "Field",
+                  name: {kind: "Name", value: "countryAreaChoices"},
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {kind: "Field", name: {kind: "Name", value: "raw"}},
+                      {kind: "Field", name: {kind: "Name", value: "verbose"}},
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  AddressValidationRulesQuery,
+  AddressValidationRulesQueryVariables
+>;

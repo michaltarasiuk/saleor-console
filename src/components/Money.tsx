@@ -1,7 +1,7 @@
 "use client";
 
 import type {FragmentType} from "@apollo/client";
-import {useFragment} from "@apollo/client/react";
+import {useFragment} from "@apollo/client";
 import {useNumberFormatter} from "react-aria";
 
 import {graphql} from "@/graphql/codegen";
