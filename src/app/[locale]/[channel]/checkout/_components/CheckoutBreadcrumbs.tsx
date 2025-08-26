@@ -1,22 +1,70 @@
-import {BreadcrumbLink, Breadcrumbs} from "@/components/Breadcrumbs";
+"use client";
+
+import {usePathname} from "next/navigation";
+import type {BreadcrumbsProps} from "react-aria-components";
+
+import {Breadcrumbs} from "@/components/Breadcrumbs";
 import {Routes} from "@/consts/routes";
-import {FormattedMessage} from "@/i18n/react-intl";
+import {useBasePath} from "@/hooks/use-base-path";
+import {useIntl} from "@/i18n/react-intl";
+import {joinPathSegments} from "@/utils/pathname";
+
+type BreadcrumbItem =
+  React.ComponentProps<typeof Breadcrumbs> extends BreadcrumbsProps<infer T>
+    ? T
+    : never;
 
 export function CheckoutBreadcrumbs() {
-  return (
-    <Breadcrumbs>
-      <BreadcrumbLink href={Routes.cart}>
-        <FormattedMessage id="2tqQFl" defaultMessage="Cart" />
-      </BreadcrumbLink>
-      <BreadcrumbLink href={Routes.checkout.information}>
-        <FormattedMessage id="E80WrK" defaultMessage="Information" />
-      </BreadcrumbLink>
-      <BreadcrumbLink href={Routes.checkout.shipping}>
-        <FormattedMessage id="PRlD0A" defaultMessage="Shipping" />
-      </BreadcrumbLink>
-      <BreadcrumbLink href={Routes.checkout.payment}>
-        <FormattedMessage id="NmK6zy" defaultMessage="Payment" />
-      </BreadcrumbLink>
-    </Breadcrumbs>
+  const pathname = usePathname();
+  const basePath = useBasePath();
+  const intl = useIntl();
+  const items = getBreadcrumbItems();
+  const currentItemIndex = items.findIndex(
+    (item) => joinPathSegments(...basePath, item.href) === pathname,
   );
+  return (
+    <Breadcrumbs
+      key={pathname}
+      items={items.map((item, i) => ({
+        ...item,
+        isDisabled: i > currentItemIndex,
+      }))}
+    />
+  );
+  function getBreadcrumbItems() {
+    return [
+      {
+        id: Routes.cart,
+        href: Routes.cart,
+        label: intl.formatMessage({
+          id: "2tqQFl",
+          defaultMessage: "Cart",
+        }),
+      },
+      {
+        id: Routes.checkout.information,
+        href: Routes.checkout.information,
+        label: intl.formatMessage({
+          id: "E80WrK",
+          defaultMessage: "Information",
+        }),
+      },
+      {
+        id: Routes.checkout.shipping,
+        href: Routes.checkout.shipping,
+        label: intl.formatMessage({
+          id: "PRlD0A",
+          defaultMessage: "Shipping",
+        }),
+      },
+      {
+        id: Routes.checkout.payment,
+        href: Routes.checkout.payment,
+        label: intl.formatMessage({
+          id: "NmK6zy",
+          defaultMessage: "Payment",
+        }),
+      },
+    ] satisfies BreadcrumbItem[];
+  }
 }

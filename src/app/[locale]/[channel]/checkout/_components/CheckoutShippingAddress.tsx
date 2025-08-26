@@ -39,7 +39,7 @@ export function CheckoutShippingAddress({
       <Heading>
         <FormattedMessage id="DP5VOH" defaultMessage="Shipping Address" />
       </Heading>
-      {isDefined(data.shippingAddress) && complete ? (
+      {complete && isDefined(data.shippingAddress) ? (
         <CompletedAddressFieldset address={data.shippingAddress} />
       ) : (
         <AddressFieldset />
