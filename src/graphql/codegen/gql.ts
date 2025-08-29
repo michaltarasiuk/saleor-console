@@ -32,7 +32,7 @@ type Documents = {
   "\n  query CheckoutPayment_Checkout($id: ID!) {\n    checkout(id: $id) {\n      ...CheckoutPaymentForm_Checkout\n    }\n  }\n": typeof types.CheckoutPayment_CheckoutDocument;
   "\n  query CheckoutShipping_Checkout($id: ID!) {\n    checkout(id: $id) {\n      ...CheckoutShippingForm_Checkout\n    }\n  }\n": typeof types.CheckoutShipping_CheckoutDocument;
   "\n  fragment AddressFields_Address on Address {\n    id\n    country {\n      code\n    }\n    companyName\n    streetAddress1\n    streetAddress2\n    postalCode\n    countryArea\n    city\n  }\n": typeof types.AddressFields_AddressFragmentDoc;
-  "\n  query AddressFields_AddressValidationRules($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      allowedFields\n      requiredFields\n      upperFields\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  }\n": typeof types.AddressFields_AddressValidationRulesDocument;
+  "\n  query AddressFields_AddressValidationRules($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      allowedFields\n      requiredFields\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  }\n": typeof types.AddressFields_AddressValidationRulesDocument;
   "\n  fragment Money_Money on Money {\n    currency\n    amount\n  }\n": typeof types.Money_MoneyFragmentDoc;
   "\n  fragment TaxedMoney_TaxedMoney on TaxedMoney {\n    net {\n      ...Money_Money\n    }\n    gross {\n      ...Money_Money\n    }\n  }\n": typeof types.TaxedMoney_TaxedMoneyFragmentDoc;
   "\n  fragment AccountValidationError on AccountError {\n    field\n    message\n  }\n": typeof types.AccountValidationErrorFragmentDoc;
@@ -77,7 +77,7 @@ const documents: Documents = {
     types.CheckoutShipping_CheckoutDocument,
   "\n  fragment AddressFields_Address on Address {\n    id\n    country {\n      code\n    }\n    companyName\n    streetAddress1\n    streetAddress2\n    postalCode\n    countryArea\n    city\n  }\n":
     types.AddressFields_AddressFragmentDoc,
-  "\n  query AddressFields_AddressValidationRules($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      allowedFields\n      requiredFields\n      upperFields\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  }\n":
+  "\n  query AddressFields_AddressValidationRules($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      allowedFields\n      requiredFields\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  }\n":
     types.AddressFields_AddressValidationRulesDocument,
   "\n  fragment Money_Money on Money {\n    currency\n    amount\n  }\n":
     types.Money_MoneyFragmentDoc,
@@ -219,8 +219,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query AddressFields_AddressValidationRules($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      allowedFields\n      requiredFields\n      upperFields\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  }\n",
-): (typeof documents)["\n  query AddressFields_AddressValidationRules($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      allowedFields\n      requiredFields\n      upperFields\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  }\n"];
+  source: "\n  query AddressFields_AddressValidationRules($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      allowedFields\n      requiredFields\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query AddressFields_AddressValidationRules($countryCode: CountryCode!) {\n    addressValidationRules(countryCode: $countryCode) {\n      allowedFields\n      requiredFields\n      countryAreaChoices {\n        raw\n        verbose\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

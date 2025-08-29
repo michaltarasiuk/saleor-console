@@ -10,9 +10,11 @@ export async function getLocaleByCookies() {
   if (!isDefined(localeCookie)) {
     return;
   }
+  let matchedLocale: string | undefined;
   for (const locale of Locales) {
     if (ciEquals(localeCookie.value, locale)) {
-      return localeCookie.value;
+      matchedLocale = localeCookie.value;
     }
   }
+  return matchedLocale;
 }

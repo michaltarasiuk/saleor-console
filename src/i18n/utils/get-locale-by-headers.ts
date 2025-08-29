@@ -8,8 +8,10 @@ export async function getLocaleByHeaders() {
   const languages = new Negotiator({
     headers: Object.fromEntries([...(await headers())]),
   }).languages();
-  const orderedLocales = Locales.toSorted((a, b) => b.length - a.length);
+  let matchedLocale: string | undefined;
   try {
-    return match(languages, orderedLocales, DefaultLocale);
+    const orderedLocales = Locales.toSorted((a, b) => b.length - a.length);
+    matchedLocale = match(languages, orderedLocales, DefaultLocale);
   } catch {}
+  return matchedLocale;
 }

@@ -29925,7 +29925,6 @@ export type AddressFields_AddressValidationRulesQuery = {
     __typename?: "AddressValidationData";
     allowedFields: Array<string>;
     requiredFields: Array<string>;
-    upperFields: Array<string>;
     countryAreaChoices: Array<{
       __typename?: "ChoiceValue";
       raw?: string | null;
@@ -31651,7 +31650,6 @@ export const AddressFields_AddressValidationRulesDocument = {
               selections: [
                 {kind: "Field", name: {kind: "Name", value: "allowedFields"}},
                 {kind: "Field", name: {kind: "Name", value: "requiredFields"}},
-                {kind: "Field", name: {kind: "Name", value: "upperFields"}},
                 {
                   kind: "Field",
                   name: {kind: "Name", value: "countryAreaChoices"},

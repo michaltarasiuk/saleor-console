@@ -61,7 +61,6 @@ const AddressFields_AddressValidationRulesQuery = graphql(`
     addressValidationRules(countryCode: $countryCode) {
       allowedFields
       requiredFields
-      upperFields
       countryAreaChoices {
         raw
         verbose
@@ -91,14 +90,13 @@ export function AddressFields({address}: AddressFieldsProps) {
   if (!isDefined(data.addressValidationRules)) {
     return null;
   }
-  const {allowedFields, requiredFields, upperFields, countryAreaChoices} =
+  const {allowedFields, requiredFields, countryAreaChoices} =
     data.addressValidationRules;
   const isFieldAllowed = (name: string) => allowedFields.includes(name);
   const isFieldRequired = (name: string) => requiredFields.includes(name);
   const getTextFieldProps = (name: string) => ({
     name,
     isRequired: isFieldRequired(name),
-    isUpper: upperFields.includes(name),
   });
   return (
     <fieldset
