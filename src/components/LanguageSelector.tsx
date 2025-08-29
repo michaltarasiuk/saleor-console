@@ -57,7 +57,7 @@ export function LanguageSelector() {
 }
 
 export function LanguageSelectorButton({isOpen}: {isOpen?: boolean}) {
-  const currentLocale = useLocale();
+  const locale = useLocale();
   return (
     <Button
       className={cn(
@@ -68,7 +68,7 @@ export function LanguageSelectorButton({isOpen}: {isOpen?: boolean}) {
           appearance: "accent",
         }),
       )}>
-      {getLanguageDisplayName(currentLocale)}
+      {getLanguageDisplayName(locale)}
       {isOpen ? (
         <ChevronUpIcon aria-hidden className={cn("size-3")} />
       ) : (

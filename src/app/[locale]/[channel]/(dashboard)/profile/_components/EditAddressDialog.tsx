@@ -2,7 +2,7 @@
 
 import {Button} from "react-aria-components";
 
-import {AddressFieldset} from "@/components/AddressFieldset";
+import {AddressFields} from "@/components/AddressFields";
 import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
 import {useIntl} from "@/i18n/react-intl";
@@ -55,7 +55,7 @@ export function EditAddressDialog({children}: {children: React.ReactNode}) {
 function EditAddressForm({cancelButton}: {cancelButton: React.ReactNode}) {
   return (
     <Form className={cn("space-y-base")}>
-      <AddressFieldset />
+      <AddressFields />
       <div className={cn("gap-base flex justify-between")}>
         <DeleteAddressDialog />
         <div className={cn("space-x-base flex")}>

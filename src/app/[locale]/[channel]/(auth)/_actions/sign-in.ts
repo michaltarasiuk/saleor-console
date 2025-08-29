@@ -6,11 +6,20 @@ import * as z from "zod";
 import {Routes} from "@/consts/routes";
 import {getClient} from "@/graphql/apollo-client";
 import {graphql} from "@/graphql/codegen";
+import {
+  setAccessTokenCookie,
+  setRefreshTokenCookie,
+} from "@/modules/account/utils/cookies";
+import {toValidationErrors} from "@/modules/account/utils/validation-errors";
 import {BasePathSchema} from "@/utils/base-path";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
-import {setAccessTokenCookie, setRefreshTokenCookie} from "@/utils/session";
-import {toValidationErrors} from "@/utils/validation-errors";
+
+const FormDataSchema = z.object({
+  email: z.email(),
+  password: z.string(),
+  ...BasePathSchema.shape,
+});
 
 const SigninMutation = graphql(`
   mutation Signin($email: String!, $password: String!) {
@@ -25,7 +34,9 @@ const SigninMutation = graphql(`
 `);
 
 export async function signIn(_state: unknown, formData: FormData) {
-  const {email, password, locale, channel} = parseFormData(formData);
+  const {email, password, locale, channel} = FormDataSchema.parse(
+    Object.fromEntries(formData),
+  );
   const {data} = await getClient().mutate({
     mutation: SigninMutation,
     variables: {
@@ -42,14 +53,4 @@ export async function signIn(_state: unknown, formData: FormData) {
   return {
     errors: toValidationErrors(errors),
   };
-}
-
-const FormDataSchema = z.object({
-  email: z.email(),
-  password: z.string(),
-  ...BasePathSchema.shape,
-});
-
-function parseFormData(formData: FormData) {
-  return FormDataSchema.parse(Object.fromEntries(formData));
 }

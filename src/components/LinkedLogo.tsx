@@ -13,8 +13,8 @@ export async function LinkedLogo({locale}: {locale: Locale}) {
       <Image
         src="/logo.png"
         alt={intl.formatMessage({
-          id: "gvXtEw",
-          defaultMessage: "Company logo",
+          id: "k81S1y",
+          defaultMessage: "Logo",
         })}
         width={112}
         height={36}

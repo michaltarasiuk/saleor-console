@@ -3,7 +3,7 @@ import {Suspense} from "react";
 
 import {PreloadQuery} from "@/graphql/apollo-client";
 import {graphql} from "@/graphql/codegen";
-import {getCheckoutId} from "@/utils/checkout";
+import {getCheckoutId} from "@/modules/checkout/utils/cookies";
 import {isDefined} from "@/utils/is-defined";
 
 import {

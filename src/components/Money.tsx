@@ -31,7 +31,7 @@ export function Money({money, ...props}: MoneyProps) {
     minimumFractionDigits: 0,
   });
   if (!complete) {
-    return <SkeletonText />;
+    return <SkeletonText inlineSize="small" />;
   }
   return <Text {...props}>{formatter.format(data.amount)}</Text>;
 }

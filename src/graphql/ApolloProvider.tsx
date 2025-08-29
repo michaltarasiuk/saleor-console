@@ -8,15 +8,7 @@ import {
 } from "@apollo/client-integration-nextjs";
 
 import {env} from "@/env";
-
-function makeClient() {
-  return new ApolloClient({
-    cache: new InMemoryCache(),
-    link: new HttpLink({
-      uri: env.NEXT_PUBLIC_SALEOR_GRAPHQL_URL,
-    }),
-  });
-}
+import introspection from "@/graphql/codegen/introspection.json" with {type: "json"};
 
 export function ApolloProvider({children}: {children: React.ReactNode}) {
   return (
@@ -24,4 +16,15 @@ export function ApolloProvider({children}: {children: React.ReactNode}) {
       {children}
     </ApolloNextAppProvider>
   );
+}
+
+function makeClient() {
+  return new ApolloClient({
+    cache: new InMemoryCache({
+      possibleTypes: introspection.possibleTypes,
+    }),
+    link: new HttpLink({
+      uri: env.NEXT_PUBLIC_SALEOR_GRAPHQL_URL,
+    }),
+  });
 }

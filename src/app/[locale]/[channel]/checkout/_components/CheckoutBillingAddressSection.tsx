@@ -4,10 +4,10 @@ import {type FragmentType, useFragment} from "@apollo/client";
 import {Suspense, useId, useState} from "react";
 
 import {
-  AddressFieldset,
-  CompletedAddressFieldset,
-  SkeletonAddressFieldset,
-} from "@/components/AddressFieldset";
+  AddressFields,
+  CompletedAddressFields,
+  SkeletonAddressFields,
+} from "@/components/AddressFields";
 import {Heading, SkeletonHeading} from "@/components/Heading";
 import {Radio} from "@/components/Radio";
 import {RadioGroup} from "@/components/RadioGroup";
@@ -21,10 +21,10 @@ const CheckoutBillingAddressSection_CheckoutFragment = graphql(`
   fragment CheckoutBillingAddressSection_Checkout on Checkout {
     id
     shippingAddress {
-      ...AddressFieldset_Address
+      ...AddressFields_Address
     }
     billingAddress {
-      ...AddressFieldset_Address
+      ...AddressFields_Address
     }
   }
 `);
@@ -70,11 +70,11 @@ export function CheckoutBillingAddressSection({
         </Radio>
       </RadioGroup>
       {value === "no" && (
-        <Suspense fallback={<SkeletonAddressFieldset />}>
+        <Suspense fallback={<SkeletonAddressFields />}>
           {isDefined(address) ? (
-            <CompletedAddressFieldset address={address} />
+            <CompletedAddressFields address={address} />
           ) : (
-            <AddressFieldset />
+            <AddressFields />
           )}
         </Suspense>
       )}

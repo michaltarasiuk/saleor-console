@@ -2,9 +2,8 @@ import * as z from "zod";
 
 import {CountryCode} from "@/graphql/codegen/graphql";
 
-export const AddressFields = {
+export const AddressFieldNames = {
   country: "country",
-  fullName: "name",
   firstName: "firstName",
   lastName: "lastName",
   companyName: "companyName",
@@ -16,18 +15,13 @@ export const AddressFields = {
 };
 
 export const AddressSchema = z.object({
-  [AddressFields.country]: z.enum(CountryCode),
-  [AddressFields.firstName]: z.string().optional(),
-  [AddressFields.lastName]: z.string().optional(),
-  [AddressFields.companyName]: z.string().optional(),
-  [AddressFields.streetAddress1]: z.string().optional(),
-  [AddressFields.streetAddress2]: z.string().optional(),
-  [AddressFields.postalCode]: z.string().optional(),
-  [AddressFields.countryArea]: z.string().optional(),
-  [AddressFields.city]: z.string().optional(),
-});
-
-export const CountryAreaChoiceSchema = z.object({
-  raw: z.string(),
-  verbose: z.string(),
+  [AddressFieldNames.country]: z.enum(CountryCode),
+  [AddressFieldNames.firstName]: z.string().optional(),
+  [AddressFieldNames.lastName]: z.string().optional(),
+  [AddressFieldNames.companyName]: z.string().optional(),
+  [AddressFieldNames.streetAddress1]: z.string().optional(),
+  [AddressFieldNames.streetAddress2]: z.string().optional(),
+  [AddressFieldNames.postalCode]: z.string().optional(),
+  [AddressFieldNames.countryArea]: z.string().optional(),
+  [AddressFieldNames.city]: z.string().optional(),
 });

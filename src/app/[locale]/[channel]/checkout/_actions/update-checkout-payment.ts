@@ -2,9 +2,9 @@
 
 import {notFound} from "next/navigation";
 
-import {getCheckoutId} from "@/utils/checkout";
+import {getCheckoutId} from "@/modules/checkout/utils/cookies";
+import {toValidationErrors} from "@/modules/checkout/utils/validation-errors";
 import {isDefined} from "@/utils/is-defined";
-import {toValidationErrors} from "@/utils/validation-errors";
 
 export async function updateCheckoutPayment(
   _state: unknown,

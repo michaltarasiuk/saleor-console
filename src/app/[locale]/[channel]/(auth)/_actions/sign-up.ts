@@ -7,11 +7,17 @@ import {env} from "@/env";
 import {getClient} from "@/graphql/apollo-client";
 import {graphql} from "@/graphql/codegen";
 import {localeToLanguageCode} from "@/i18n/utils/locale-to-language-code";
+import {toValidationErrors} from "@/modules/account/utils/validation-errors";
 import {BasePathSchema} from "@/utils/base-path";
 import {joinPathSegments} from "@/utils/pathname";
-import {toValidationErrors} from "@/utils/validation-errors";
 
 import {signIn} from "./sign-in";
+
+const FormDataSchema = z.object({
+  email: z.email(),
+  password: z.string(),
+  ...BasePathSchema.shape,
+});
 
 const SignupMutation = graphql(`
   mutation Signup($input: AccountRegisterInput!) {
@@ -23,12 +29,6 @@ const SignupMutation = graphql(`
     }
   }
 `);
-
-const FormDataSchema = z.object({
-  email: z.email(),
-  password: z.string(),
-  ...BasePathSchema.shape,
-});
 
 export async function signUp(_state: unknown, formData: FormData) {
   const {email, password, locale, channel} = FormDataSchema.parse(

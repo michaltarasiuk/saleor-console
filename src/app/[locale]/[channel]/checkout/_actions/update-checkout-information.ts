@@ -11,12 +11,18 @@ import type {
   CheckoutAddressUpdateMutationVariables,
   CheckoutEmailUpdateMutationVariables,
 } from "@/graphql/codegen/graphql";
+import {getCheckoutId} from "@/modules/checkout/utils/cookies";
+import {toValidationErrors} from "@/modules/checkout/utils/validation-errors";
 import {AddressSchema} from "@/utils/address";
 import {BasePathSchema} from "@/utils/base-path";
-import {getCheckoutId} from "@/utils/checkout";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
-import {toValidationErrors} from "@/utils/validation-errors";
+
+const FormSchema = z.object({
+  email: z.email(),
+  ...AddressSchema.shape,
+  ...BasePathSchema.shape,
+});
 
 const CheckoutEmailUpdateMutation = graphql(`
   mutation CheckoutEmailUpdate($id: ID!, $email: String!) {
@@ -51,7 +57,9 @@ export async function updateCheckoutInformation(
   if (!isDefined(checkoutId)) {
     notFound();
   }
-  const {email, locale, channel, ...address} = parseFormData(formData);
+  const {email, locale, channel, ...address} = FormSchema.parse(
+    Object.fromEntries(formData),
+  );
   const client = getClient();
   const [emailUpdate, addressUpdate] = await Promise.all([
     updateCheckoutEmail(client, {
@@ -73,15 +81,6 @@ export async function updateCheckoutInformation(
   return {
     errors: toValidationErrors(errors),
   };
-}
-
-const FormSchema = z.object({
-  email: z.email(),
-  ...AddressSchema.shape,
-  ...BasePathSchema.shape,
-});
-function parseFormData(formData: FormData) {
-  return FormSchema.parse(Object.fromEntries(formData));
 }
 
 async function updateCheckoutEmail(

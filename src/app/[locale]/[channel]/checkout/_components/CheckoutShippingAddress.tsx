@@ -3,10 +3,10 @@
 import {type FragmentType, useFragment} from "@apollo/client";
 
 import {
-  AddressFieldset,
-  CompletedAddressFieldset,
-  SkeletonAddressFieldset,
-} from "@/components/AddressFieldset";
+  AddressFields,
+  CompletedAddressFields,
+  SkeletonAddressFields,
+} from "@/components/AddressFields";
 import {Heading, SkeletonHeading} from "@/components/Heading";
 import {graphql} from "@/graphql/codegen";
 import type {CheckoutShippingAddress_CheckoutFragment} from "@/graphql/codegen/graphql";
@@ -17,7 +17,7 @@ import {isDefined} from "@/utils/is-defined";
 const CheckoutShippingAddress_CheckoutFragment = graphql(`
   fragment CheckoutShippingAddress_Checkout on Checkout {
     shippingAddress {
-      ...AddressFieldset_Address
+      ...AddressFields_Address
     }
   }
 `);
@@ -40,9 +40,9 @@ export function CheckoutShippingAddress({
         <FormattedMessage id="DP5VOH" defaultMessage="Shipping Address" />
       </Heading>
       {complete && isDefined(data.shippingAddress) ? (
-        <CompletedAddressFieldset address={data.shippingAddress} />
+        <CompletedAddressFields address={data.shippingAddress} />
       ) : (
-        <AddressFieldset />
+        <AddressFields />
       )}
     </section>
   );
@@ -52,7 +52,7 @@ export function SkeletonShippingAddress() {
   return (
     <div className={cn("space-y-base")}>
       <SkeletonHeading />
-      <SkeletonAddressFieldset />
+      <SkeletonAddressFields />
     </div>
   );
 }

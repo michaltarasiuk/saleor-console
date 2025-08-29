@@ -2,10 +2,10 @@ import "@/styles/globals.css";
 
 import {notFound} from "next/navigation";
 
-import {ChannelProvider} from "@/channels/ChannelProvider";
-import {getChannelContextValue} from "@/channels/utils/get-channel-context-value";
-import {getChannelSlugs} from "@/channels/utils/get-channel-slugs";
 import {getClient} from "@/graphql/apollo-client";
+import {ChannelProvider} from "@/modules/channels/ChannelProvider";
+import {getChannelContextValue} from "@/modules/channels/utils/get-channel-context-value";
+import {getChannelSlugs} from "@/modules/channels/utils/get-channel-slugs";
 import {isDefined} from "@/utils/is-defined";
 
 interface ChannelLayoutProps {

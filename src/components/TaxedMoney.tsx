@@ -4,9 +4,9 @@ import type {FragmentType} from "@apollo/client";
 import {useFragment} from "@apollo/client";
 import {use} from "react";
 
-import {ChannelContext} from "@/channels/channel-context";
 import {graphql} from "@/graphql/codegen";
 import type {TaxedMoney_TaxedMoneyFragment} from "@/graphql/codegen/graphql";
+import {ChannelContext} from "@/modules/channels/channel-context";
 
 import {Money} from "./Money";
 import type {Text} from "./Text";
@@ -33,7 +33,7 @@ export function TaxedMoney({taxedMoney, ...props}: TaxedMoneyProps) {
     from: taxedMoney,
   });
   if (!complete) {
-    return <SkeletonText />;
+    return <SkeletonText inlineSize="small" />;
   }
   const {taxConfiguration} = use(ChannelContext);
   return (

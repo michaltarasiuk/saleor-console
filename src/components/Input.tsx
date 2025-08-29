@@ -22,11 +22,12 @@ export function Input(props: InputProps) {
   );
 }
 
-export function SkeletonInput() {
+export function SkeletonInput({className}: {className?: string}) {
   return (
     <div
       className={cn(
         "h-input rounded-base border-base-border p-base flex items-center border",
+        className,
       )}>
       <SkeletonText />
     </div>

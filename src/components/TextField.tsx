@@ -1,5 +1,6 @@
 "use client";
 
+import {useState} from "react";
 import {
   Label,
   TextField as AriaTextField,
@@ -15,11 +16,24 @@ import {Text} from "./Text";
 interface TextFieldProps extends AriaTextFieldProps {
   label: string;
   description?: string;
+  isUpper?: boolean;
 }
 
-export function TextField({label, description, ...props}: TextFieldProps) {
+export function TextField({
+  label,
+  description,
+  isUpper,
+  ...props
+}: TextFieldProps) {
+  const [value, setValue] = useState("");
   return (
-    <AriaTextField {...props} className={cn("group relative", props.className)}>
+    <AriaTextField
+      {...props}
+      value={props.value ?? value}
+      className={cn("group relative", props.className)}
+      onChange={(newValue) =>
+        setValue(isUpper ? newValue.toUpperCase() : newValue)
+      }>
       <Label
         className={cn(
           "text-control-text-subdued font-primary text-small top-small-100 start-small-100 pointer-events-none absolute ms-px translate-y-full leading-[1] opacity-0 transition-all",

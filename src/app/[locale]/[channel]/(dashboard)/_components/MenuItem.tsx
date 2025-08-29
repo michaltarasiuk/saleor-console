@@ -35,7 +35,6 @@ export function MenuItemLink({children, ...props}: LinkProps) {
     : undefined;
   return (
     <IntlLink
-      href={href}
       {...props}
       className={cn(
         menuItem({

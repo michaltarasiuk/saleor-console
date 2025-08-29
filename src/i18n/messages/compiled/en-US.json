@@ -23,6 +23,12 @@
       "value": "Manage"
     }
   ],
+  "1RBA9b": [
+    {
+      "type": 0,
+      "value": "Country Area"
+    }
+  ],
   "2/2yg+": [
     {
       "type": 0,
@@ -119,22 +125,10 @@
       "value": "Logging you out..."
     }
   ],
-  "ASVYue": [
-    {
-      "type": 0,
-      "value": "Country/region"
-    }
-  ],
   "Akc1Gk": [
     {
       "type": 0,
       "value": "Return to shipping"
-    }
-  ],
-  "AuwpCm": [
-    {
-      "type": 0,
-      "value": "Country area"
     }
   ],
   "BIxs9X": [
@@ -409,12 +403,6 @@
       "value": "Shipping Policy"
     }
   ],
-  "gvXtEw": [
-    {
-      "type": 0,
-      "value": "Company logo"
-    }
-  ],
   "i7vqD3": [
     {
       "type": 0,
@@ -461,6 +449,12 @@
     {
       "type": 0,
       "value": "Return to information"
+    }
+  ],
+  "k81S1y": [
+    {
+      "type": 0,
+      "value": "Logo"
     }
   ],
   "lD3+8a": [
@@ -551,6 +545,12 @@
     {
       "type": 0,
       "value": "Add address"
+    }
+  ],
+  "vONi+O": [
+    {
+      "type": 0,
+      "value": "Country"
     }
   ],
   "vqKTqE": [

@@ -2,7 +2,7 @@
 
 import {Button} from "react-aria-components";
 
-import {AddressFieldset} from "@/components/AddressFieldset";
+import {AddressFields} from "@/components/AddressFields";
 import {Checkbox} from "@/components/Checkbox";
 import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
@@ -60,7 +60,7 @@ function AddAddressForm({cancelButton}: {cancelButton: React.ReactNode}) {
           defaultMessage="This is my default address"
         />
       </Checkbox>
-      <AddressFieldset />
+      <AddressFields />
       <div className={cn("gap-base flex justify-end")}>
         {cancelButton}
         <SaveButton />

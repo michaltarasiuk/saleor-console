@@ -6,11 +6,16 @@ import * as z from "zod";
 import {Routes} from "@/consts/routes";
 import {getClient} from "@/graphql/apollo-client";
 import {graphql} from "@/graphql/codegen";
+import {getCheckoutId} from "@/modules/checkout/utils/cookies";
+import {toValidationErrors} from "@/modules/checkout/utils/validation-errors";
 import {BasePathSchema} from "@/utils/base-path";
-import {getCheckoutId} from "@/utils/checkout";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
-import {toValidationErrors} from "@/utils/validation-errors";
+
+const FormSchema = z.object({
+  shippingMethodId: z.string(),
+  ...BasePathSchema.shape,
+});
 
 const CheckoutShippingMethodUpdateMutation = graphql(`
   mutation CheckoutShippingMethodUpdate($id: ID!, $shippingMethodId: ID!) {
@@ -30,7 +35,9 @@ export async function updateCheckoutShipping(
   if (!isDefined(checkoutId)) {
     notFound();
   }
-  const {shippingMethodId, locale, channel} = parseFormData(formData);
+  const {shippingMethodId, locale, channel} = FormSchema.parse(
+    Object.fromEntries(formData),
+  );
   const {data} = await getClient().mutate({
     mutation: CheckoutShippingMethodUpdateMutation,
     variables: {
@@ -45,12 +52,4 @@ export async function updateCheckoutShipping(
   return {
     errors: toValidationErrors(errors),
   };
-}
-
-const FormSchema = z.object({
-  shippingMethodId: z.string(),
-  ...BasePathSchema.shape,
-});
-function parseFormData(formData: FormData) {
-  return FormSchema.parse(Object.fromEntries(formData));
 }
