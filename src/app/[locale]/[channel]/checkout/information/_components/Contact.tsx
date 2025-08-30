@@ -6,26 +6,24 @@ import {Heading, SkeletonHeading} from "@/components/Heading";
 import {SkeletonInput} from "@/components/Input";
 import {TextField} from "@/components/TextField";
 import {graphql} from "@/graphql/codegen";
-import type {CheckoutContactSection_CheckoutFragment} from "@/graphql/codegen/graphql";
+import type {Contact_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
-const CheckoutContactSection_CheckoutFragment = graphql(`
-  fragment CheckoutContactSection_Checkout on Checkout {
+const Contact_CheckoutFragment = graphql(`
+  fragment Contact_Checkout on Checkout {
     id
     email
   }
 `);
 
-interface CheckoutContactSectionProps {
-  checkout: FragmentType<CheckoutContactSection_CheckoutFragment>;
+interface ContactProps {
+  checkout: FragmentType<Contact_CheckoutFragment>;
 }
 
-export function CheckoutContactSection({
-  checkout,
-}: CheckoutContactSectionProps) {
+export function Contact({checkout}: ContactProps) {
   const {data} = useFragment({
-    fragment: CheckoutContactSection_CheckoutFragment,
+    fragment: Contact_CheckoutFragment,
     from: checkout,
   });
   const intl = useIntl();
@@ -48,7 +46,7 @@ export function CheckoutContactSection({
   );
 }
 
-export function SkeletonContactSection() {
+export function SkeletonContact() {
   return (
     <div className={cn("space-y-base")}>
       <SkeletonHeading />

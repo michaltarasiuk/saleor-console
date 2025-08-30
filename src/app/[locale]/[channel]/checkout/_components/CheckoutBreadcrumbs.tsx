@@ -50,11 +50,11 @@ export function CheckoutBreadcrumbs() {
         }),
       },
       {
-        id: Routes.checkout.shipping,
-        href: Routes.checkout.shipping,
+        id: Routes.checkout.delivery,
+        href: Routes.checkout.delivery,
         label: intl.formatMessage({
-          id: "PRlD0A",
-          defaultMessage: "Shipping",
+          id: "drqP2L",
+          defaultMessage: "Delivery",
         }),
       },
       {

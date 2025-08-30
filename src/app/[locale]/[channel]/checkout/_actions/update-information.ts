@@ -8,8 +8,8 @@ import {Routes} from "@/consts/routes";
 import {getClient} from "@/graphql/apollo-client";
 import {graphql} from "@/graphql/codegen";
 import type {
-  CheckoutAddressUpdateMutationVariables,
-  CheckoutEmailUpdateMutationVariables,
+  AddressUpdateMutationVariables,
+  EmailUpdateMutationVariables,
 } from "@/graphql/codegen/graphql";
 import {getCheckoutId} from "@/modules/checkout/utils/cookies";
 import {toValidationErrors} from "@/modules/checkout/utils/validation-errors";
@@ -18,14 +18,8 @@ import {BasePathSchema} from "@/utils/base-path";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
 
-const FormSchema = z.object({
-  email: z.email(),
-  ...AddressSchema.shape,
-  ...BasePathSchema.shape,
-});
-
-const CheckoutEmailUpdateMutation = graphql(`
-  mutation CheckoutEmailUpdate($id: ID!, $email: String!) {
+const EmailUpdateMutation = graphql(`
+  mutation EmailUpdate($id: ID!, $email: String!) {
     checkoutEmailUpdate(id: $id, email: $email) {
       errors {
         ...CheckoutValidationError @unmask
@@ -34,8 +28,8 @@ const CheckoutEmailUpdateMutation = graphql(`
   }
 `);
 
-const CheckoutAddressUpdateMutation = graphql(`
-  mutation CheckoutAddressUpdate($id: ID!, $address: AddressInput!) {
+const AddressUpdateMutation = graphql(`
+  mutation AddressUpdate($id: ID!, $address: AddressInput!) {
     checkoutShippingAddressUpdate(id: $id, shippingAddress: $address) {
       errors {
         ...CheckoutValidationError @unmask
@@ -49,24 +43,19 @@ const CheckoutAddressUpdateMutation = graphql(`
   }
 `);
 
-export async function updateCheckoutInformation(
-  _state: unknown,
-  formData: FormData,
-) {
+export async function updateInformation(_state: unknown, formData: FormData) {
   const checkoutId = await getCheckoutId();
   if (!isDefined(checkoutId)) {
     notFound();
   }
-  const {email, locale, channel, ...address} = FormSchema.parse(
-    Object.fromEntries(formData),
-  );
+  const {email, locale, channel, ...address} = parseFormData(formData);
   const client = getClient();
   const [emailUpdate, addressUpdate] = await Promise.all([
-    updateCheckoutEmail(client, {
+    updateEmail(client, {
       id: checkoutId.value,
       email,
     }),
-    updateCheckoutAddress(client, {
+    updateAddress(client, {
       id: checkoutId.value,
       address,
     }),
@@ -76,30 +65,39 @@ export async function updateCheckoutInformation(
     ...(emailUpdate?.errors ?? []),
   ];
   if (!errors.length) {
-    redirect(joinPathSegments(locale, channel, Routes.checkout.shipping));
+    redirect(joinPathSegments(locale, channel, Routes.checkout.delivery));
   }
   return {
     errors: toValidationErrors(errors),
   };
 }
 
-async function updateCheckoutEmail(
+const FormSchema = z.object({
+  email: z.email(),
+  ...AddressSchema.shape,
+  ...BasePathSchema.shape,
+});
+function parseFormData(formData: FormData) {
+  return FormSchema.parse(Object.fromEntries(formData));
+}
+
+async function updateEmail(
   client: ApolloClient<unknown>,
-  variables: CheckoutEmailUpdateMutationVariables,
+  variables: EmailUpdateMutationVariables,
 ) {
   const {data} = await client.mutate({
-    mutation: CheckoutEmailUpdateMutation,
+    mutation: EmailUpdateMutation,
     variables,
   });
   return data?.checkoutEmailUpdate;
 }
 
-async function updateCheckoutAddress(
+async function updateAddress(
   client: ApolloClient<unknown>,
-  variables: CheckoutAddressUpdateMutationVariables,
+  variables: AddressUpdateMutationVariables,
 ) {
   const {data} = await client.mutate({
-    mutation: CheckoutAddressUpdateMutation,
+    mutation: AddressUpdateMutation,
     variables,
   });
   const checkoutAddress =

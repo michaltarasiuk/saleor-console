@@ -137,9 +137,6 @@
   "O95R3Z": {
     "defaultMessage": "Phone"
   },
-  "PRlD0A": {
-    "defaultMessage": "Shipping"
-  },
   "PlBReU": {
     "defaultMessage": "Log out"
   },
@@ -184,6 +181,9 @@
   },
   "dX7+Rv": {
     "defaultMessage": "Confirmed"
+  },
+  "drqP2L": {
+    "defaultMessage": "Delivery"
   },
   "e6Ph5+": {
     "defaultMessage": "Address"
@@ -251,6 +251,9 @@
   "pONqz8": {
     "defaultMessage": "First name"
   },
+  "pfbcZN": {
+    "defaultMessage": "Examples: {examples}"
+  },
   "r5sWuC": {
     "defaultMessage": "Last 12 months"
   },
@@ -286,6 +289,9 @@
   },
   "xmcVZ0": {
     "defaultMessage": "Search"
+  },
+  "xwOhyd": {
+    "defaultMessage": "Continue to delivery"
   },
   "zFegDD": {
     "defaultMessage": "Contact"

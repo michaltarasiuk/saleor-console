@@ -12,13 +12,13 @@ import {Heading, SkeletonHeading} from "@/components/Heading";
 import {Radio} from "@/components/Radio";
 import {RadioGroup} from "@/components/RadioGroup";
 import {graphql} from "@/graphql/codegen";
-import type {CheckoutBillingAddressSection_CheckoutFragment} from "@/graphql/codegen/graphql";
+import type {BillingAddress_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 
-const CheckoutBillingAddressSection_CheckoutFragment = graphql(`
-  fragment CheckoutBillingAddressSection_Checkout on Checkout {
+const BillingAddress_CheckoutFragment = graphql(`
+  fragment BillingAddress_Checkout on Checkout {
     id
     shippingAddress {
       ...AddressFields_Address
@@ -29,16 +29,14 @@ const CheckoutBillingAddressSection_CheckoutFragment = graphql(`
   }
 `);
 
-interface CheckoutBillingAddressSectionProps {
-  checkout: FragmentType<CheckoutBillingAddressSection_CheckoutFragment>;
+interface BillingAddressProps {
+  checkout: FragmentType<BillingAddress_CheckoutFragment>;
 }
 
-export function CheckoutBillingAddressSection({
-  checkout,
-}: CheckoutBillingAddressSectionProps) {
+export function BillingAddress({checkout}: BillingAddressProps) {
   const {data, complete} = useFragment({
-    fragment: CheckoutBillingAddressSection_CheckoutFragment,
-    fragmentName: "CheckoutBillingAddressSection_Checkout",
+    fragment: BillingAddress_CheckoutFragment,
+    fragmentName: "BillingAddress_Checkout",
     from: checkout,
   });
   const [value, setValue] = useState<"yes" | "no">("yes");
@@ -82,7 +80,7 @@ export function CheckoutBillingAddressSection({
   );
 }
 
-export function SkeletonCheckoutBillingAddressSection() {
+export function SkeletonBillingAddress() {
   return (
     <section className={cn("space-y-base")}>
       <SkeletonHeading />

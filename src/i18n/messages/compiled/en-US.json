@@ -283,12 +283,6 @@
       "value": "Phone"
     }
   ],
-  "PRlD0A": [
-    {
-      "type": 0,
-      "value": "Shipping"
-    }
-  ],
   "PlBReU": [
     {
       "type": 0,
@@ -377,6 +371,12 @@
     {
       "type": 0,
       "value": "Confirmed"
+    }
+  ],
+  "drqP2L": [
+    {
+      "type": 0,
+      "value": "Delivery"
     }
   ],
   "e6Ph5+": [
@@ -511,6 +511,16 @@
       "value": "First name"
     }
   ],
+  "pfbcZN": [
+    {
+      "type": 0,
+      "value": "Examples: "
+    },
+    {
+      "type": 1,
+      "value": "examples"
+    }
+  ],
   "r5sWuC": [
     {
       "type": 0,
@@ -581,6 +591,12 @@
     {
       "type": 0,
       "value": "Search"
+    }
+  ],
+  "xwOhyd": [
+    {
+      "type": 0,
+      "value": "Continue to delivery"
     }
   ],
   "zFegDD": [

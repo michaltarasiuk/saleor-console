@@ -1,6 +1,7 @@
 "use client";
 
 import {useActionState, useTransition} from "react";
+import invariant from "tiny-invariant";
 
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
@@ -8,10 +9,10 @@ import {TextField} from "@/components/TextField";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
-import {addCheckoutPromoCode} from "../_actions/add-checkout-promo-code";
+import {addPromoCode} from "../_actions/add-promo-code";
 
-export function CheckoutAddPromoCodeForm() {
-  const [{errors}, formAction] = useActionState(addCheckoutPromoCode, {
+export function AddPromoCodeForm() {
+  const [{errors}, formAction] = useActionState(addPromoCode, {
     errors: {},
   });
   const [isPending, startTransition] = useTransition();
@@ -21,8 +22,11 @@ export function CheckoutAddPromoCodeForm() {
       validationErrors={errors}
       onSubmit={(event) => {
         event.preventDefault();
-        const formData = new FormData(event.target as HTMLFormElement);
-        startTransition(() => formAction(formData));
+        startTransition(() => {
+          invariant(event.target instanceof HTMLFormElement);
+          const formData = new FormData(event.target);
+          formAction(formData);
+        });
       }}
       className={cn("gap-base flex")}>
       <TextField

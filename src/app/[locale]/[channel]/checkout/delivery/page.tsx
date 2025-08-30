@@ -7,32 +7,32 @@ import {getCheckoutId} from "@/modules/checkout/utils/cookies";
 import {isDefined} from "@/utils/is-defined";
 
 import {
-  CheckoutShipping,
-  SkeletonCheckoutShipping,
-} from "../_components/CheckoutShipping";
+  CheckoutDeliveryForm,
+  SkeletonCheckoutDeliveryForm,
+} from "./_components/CheckoutDeliveryForm";
 
-const CheckoutShipping_CheckoutQuery = graphql(`
-  query CheckoutShipping_Checkout($id: ID!) {
+const CheckoutDelivery_CheckoutQuery = graphql(`
+  query CheckoutDelivery_Checkout($id: ID!) {
     checkout(id: $id) {
-      ...CheckoutShippingForm_Checkout
+      ...ShippingMethods_Checkout
     }
   }
 `);
 
-export default async function CheckoutShippingPage() {
+export default async function CheckoutDeliveryPage() {
   const checkoutId = await getCheckoutId();
   if (!isDefined(checkoutId)) {
     notFound();
   }
   return (
     <PreloadQuery
-      query={CheckoutShipping_CheckoutQuery}
+      query={CheckoutDelivery_CheckoutQuery}
       variables={{
         id: checkoutId.value,
       }}>
       {(queryRef) => (
-        <Suspense fallback={<SkeletonCheckoutShipping />}>
-          <CheckoutShipping queryRef={queryRef} />
+        <Suspense fallback={<SkeletonCheckoutDeliveryForm />}>
+          <CheckoutDeliveryForm queryRef={queryRef} />
         </Suspense>
       )}
     </PreloadQuery>

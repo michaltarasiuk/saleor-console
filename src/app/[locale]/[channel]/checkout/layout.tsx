@@ -6,7 +6,7 @@ import {ProductList} from "@/components/ProductList";
 import type {Locale} from "@/i18n/consts";
 import {cn} from "@/utils/cn";
 
-import {CheckoutAddPromoCodeForm} from "./_components/CheckoutAddPromoCodeForm";
+import {AddPromoCodeForm} from "./_components/AddPromoCodeForm";
 import {CheckoutBreadcrumbs} from "./_components/CheckoutBreadcrumbs";
 
 interface CheckoutLayoutProps {
@@ -51,7 +51,7 @@ export default async function CheckoutLayout({
             "max-w-shell-order-summary-inline-size p-large-500 space-y-large-200",
           )}>
           <ProductList />
-          <CheckoutAddPromoCodeForm />
+          <AddPromoCodeForm />
         </aside>
       </div>
     </div>

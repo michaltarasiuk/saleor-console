@@ -15,12 +15,6 @@ import {BasePathSchema} from "@/utils/base-path";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
 
-const FormDataSchema = z.object({
-  email: z.email(),
-  password: z.string(),
-  ...BasePathSchema.shape,
-});
-
 const SigninMutation = graphql(`
   mutation Signin($email: String!, $password: String!) {
     tokenCreate(email: $email, password: $password) {
@@ -34,9 +28,7 @@ const SigninMutation = graphql(`
 `);
 
 export async function signIn(_state: unknown, formData: FormData) {
-  const {email, password, locale, channel} = FormDataSchema.parse(
-    Object.fromEntries(formData),
-  );
+  const {email, password, locale, channel} = parseFormData(formData);
   const {data} = await getClient().mutate({
     mutation: SigninMutation,
     variables: {
@@ -53,4 +45,13 @@ export async function signIn(_state: unknown, formData: FormData) {
   return {
     errors: toValidationErrors(errors),
   };
+}
+
+const FormDataSchema = z.object({
+  email: z.email(),
+  password: z.string(),
+  ...BasePathSchema.shape,
+});
+function parseFormData(formData: FormData) {
+  return FormDataSchema.parse(Object.fromEntries(formData));
 }

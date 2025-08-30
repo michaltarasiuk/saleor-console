@@ -1,0 +1,90 @@
+"use client";
+
+import {type QueryRef, useReadQuery} from "@apollo/client";
+import {notFound} from "next/navigation";
+import {useActionState, useTransition} from "react";
+import invariant from "tiny-invariant";
+
+import {Button} from "@/components/Button";
+import {ChannelField} from "@/components/ChannelField";
+import {Form} from "@/components/Form";
+import {LocaleField} from "@/components/LocaleField";
+import {Routes} from "@/consts/routes";
+import type {CheckoutInformation_CheckoutQuery} from "@/graphql/codegen/graphql";
+import {IntlLink} from "@/i18n/components/IntlLink";
+import {FormattedMessage} from "@/i18n/react-intl";
+import {ChevronLeftIcon} from "@/icons/ChevronLeftIcon";
+import {cn} from "@/utils/cn";
+import {isDefined} from "@/utils/is-defined";
+
+import {updateInformation} from "../../_actions/update-information";
+import {Contact, SkeletonContact} from "./Contact";
+import {ShippingAddress, SkeletonShippingAddress} from "./ShippingAddress";
+
+export function CheckoutInformationForm({
+  queryRef,
+}: {
+  queryRef: QueryRef<CheckoutInformation_CheckoutQuery>;
+}) {
+  const {data} = useReadQuery(queryRef);
+  if (!isDefined(data.checkout)) {
+    notFound();
+  }
+  const [{errors}, formAction] = useActionState(updateInformation, {
+    errors: {},
+  });
+  const [isPending, startTransition] = useTransition();
+  return (
+    <Form
+      validationErrors={errors}
+      onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        startTransition(() => {
+          invariant(event.target instanceof HTMLFormElement);
+          const formData = new FormData(event.target);
+          formAction(formData);
+        });
+      }}
+      className={cn("space-y-large-300")}>
+      <Contact checkout={data.checkout} />
+      <ShippingAddress checkout={data.checkout} />
+      <LocaleField />
+      <ChannelField />
+      <CheckoutInformationActions>
+        <Button
+          type="submit"
+          size="large"
+          isPending={isPending}
+          isDisabled={isPending}>
+          <FormattedMessage id="DgnS8R" defaultMessage="Continue to shipping" />
+        </Button>
+      </CheckoutInformationActions>
+    </Form>
+  );
+}
+
+export function SkeletonCheckoutInformationForm() {
+  return (
+    <div className={cn("space-y-large-300")}>
+      <SkeletonContact />
+      <SkeletonShippingAddress />
+      <CheckoutInformationActions>
+        <Button type="submit" size="large" isDisabled>
+          <FormattedMessage id="DgnS8R" defaultMessage="Continue to shipping" />
+        </Button>
+      </CheckoutInformationActions>
+    </div>
+  );
+}
+
+function CheckoutInformationActions({children}: {children: React.ReactNode}) {
+  return (
+    <div className={cn("gap-base flex flex-col")}>
+      {children}
+      <IntlLink href={Routes.cart}>
+        <ChevronLeftIcon aria-hidden />
+        <FormattedMessage id="MRNNXA" defaultMessage="Return to cart" />
+      </IntlLink>
+    </div>
+  );
+}

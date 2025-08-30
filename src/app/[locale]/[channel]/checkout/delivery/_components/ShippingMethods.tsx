@@ -7,12 +7,12 @@ import {Heading, SkeletonHeading} from "@/components/Heading";
 import {Radio} from "@/components/Radio";
 import {RadioGroup} from "@/components/RadioGroup";
 import {graphql} from "@/graphql/codegen";
-import type {CheckoutShippingMethods_CheckoutFragment} from "@/graphql/codegen/graphql";
+import type {ShippingMethods_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
-const CheckoutShippingMethods_CheckoutFragment = graphql(`
-  fragment CheckoutShippingMethods_Checkout on Checkout {
+const ShippingMethods_CheckoutFragment = graphql(`
+  fragment ShippingMethods_Checkout on Checkout {
     id
     shippingMethods {
       id
@@ -21,20 +21,18 @@ const CheckoutShippingMethods_CheckoutFragment = graphql(`
   }
 `);
 
-interface CheckoutShippingMethodsProps {
-  checkout: FragmentType<CheckoutShippingMethods_CheckoutFragment>;
+interface ShippingMethodsProps {
+  checkout: FragmentType<ShippingMethods_CheckoutFragment>;
 }
 
-export function CheckoutShippingMethods({
-  checkout,
-}: CheckoutShippingMethodsProps) {
+export function ShippingMethods({checkout}: ShippingMethodsProps) {
   const {data, complete} = useFragment({
-    fragment: CheckoutShippingMethods_CheckoutFragment,
+    fragment: ShippingMethods_CheckoutFragment,
     from: checkout,
   });
   const headingId = useId();
   if (!complete) {
-    return <SkeletonCheckoutShippingMethods />;
+    return <SkeletonShippingMethods />;
   }
   return (
     <section className={cn("space-y-base")}>
@@ -42,7 +40,7 @@ export function CheckoutShippingMethods({
         <FormattedMessage id="4RD+CZ" defaultMessage="Shipping method" />
       </Heading>
       <RadioGroup
-        name="shippingMethodId"
+        name="deliveryMethodId"
         variant="group"
         aria-labelledby={headingId}
         isRequired>
@@ -56,7 +54,7 @@ export function CheckoutShippingMethods({
   );
 }
 
-export function SkeletonCheckoutShippingMethods() {
+export function SkeletonShippingMethods() {
   return (
     <section className={cn("space-y-base")}>
       <SkeletonHeading />

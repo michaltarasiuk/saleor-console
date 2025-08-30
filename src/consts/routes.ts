@@ -16,7 +16,7 @@ export const Routes = {
   },
   checkout: {
     information: "/checkout/information",
-    shipping: "/checkout/shipping",
+    delivery: "/checkout/delivery",
     payment: "/checkout/payment",
   },
 };

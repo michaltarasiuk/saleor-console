@@ -9,13 +9,13 @@ import {
 } from "@/components/AddressFields";
 import {Heading, SkeletonHeading} from "@/components/Heading";
 import {graphql} from "@/graphql/codegen";
-import type {CheckoutShippingAddress_CheckoutFragment} from "@/graphql/codegen/graphql";
+import type {ShippingAddress_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 
-const CheckoutShippingAddress_CheckoutFragment = graphql(`
-  fragment CheckoutShippingAddress_Checkout on Checkout {
+const ShippingAddress_CheckoutFragment = graphql(`
+  fragment ShippingAddress_Checkout on Checkout {
     shippingAddress {
       ...AddressFields_Address
     }
@@ -23,15 +23,13 @@ const CheckoutShippingAddress_CheckoutFragment = graphql(`
 `);
 
 interface CheckoutShippingAddressProps {
-  checkout: FragmentType<CheckoutShippingAddress_CheckoutFragment>;
+  checkout: FragmentType<ShippingAddress_CheckoutFragment>;
 }
 
-export function CheckoutShippingAddress({
-  checkout,
-}: CheckoutShippingAddressProps) {
+export function ShippingAddress({checkout}: CheckoutShippingAddressProps) {
   const {data, complete} = useFragment({
-    fragment: CheckoutShippingAddress_CheckoutFragment,
-    fragmentName: "CheckoutShippingAddress_Checkout",
+    fragment: ShippingAddress_CheckoutFragment,
+    fragmentName: "ShippingAddress_Checkout",
     from: checkout,
   });
   return (

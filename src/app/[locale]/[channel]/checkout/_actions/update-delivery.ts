@@ -12,44 +12,42 @@ import {BasePathSchema} from "@/utils/base-path";
 import {isDefined} from "@/utils/is-defined";
 import {joinPathSegments} from "@/utils/pathname";
 
-const FormSchema = z.object({
-  shippingMethodId: z.string(),
-  ...BasePathSchema.shape,
-});
-
-const CheckoutShippingMethodUpdateMutation = graphql(`
-  mutation CheckoutShippingMethodUpdate($id: ID!, $shippingMethodId: ID!) {
-    checkoutDeliveryMethodUpdate(id: $id, deliveryMethodId: $shippingMethodId) {
+const DeliveryMethodUpdateMutation = graphql(`
+  mutation DeliveryMethodUpdate($id: ID!, $deliveryMethodId: ID!) {
+    checkoutDeliveryMethodUpdate(id: $id, deliveryMethodId: $deliveryMethodId) {
       errors {
-        ...CheckoutValidationError
+        ...CheckoutValidationError @unmask
       }
     }
   }
 `);
 
-export async function updateCheckoutShipping(
-  _state: unknown,
-  formData: FormData,
-) {
+export async function updateDelivery(_state: unknown, formData: FormData) {
   const checkoutId = await getCheckoutId();
   if (!isDefined(checkoutId)) {
     notFound();
   }
-  const {shippingMethodId, locale, channel} = FormSchema.parse(
-    Object.fromEntries(formData),
-  );
+  const {deliveryMethodId, locale, channel} = parseFormData(formData);
   const {data} = await getClient().mutate({
-    mutation: CheckoutShippingMethodUpdateMutation,
+    mutation: DeliveryMethodUpdateMutation,
     variables: {
       id: checkoutId.value,
-      shippingMethodId,
+      deliveryMethodId,
     },
   });
-  const errors = data?.checkoutDeliveryMethodUpdate?.errors ?? [];
+  const {errors = []} = data?.checkoutDeliveryMethodUpdate ?? {};
   if (!errors.length) {
     redirect(joinPathSegments(locale, channel, Routes.checkout.payment));
   }
   return {
     errors: toValidationErrors(errors),
   };
+}
+
+const FormSchema = z.object({
+  deliveryMethodId: z.string(),
+  ...BasePathSchema.shape,
+});
+function parseFormData(formData: FormData) {
+  return FormSchema.parse(Object.fromEntries(formData));
 }

@@ -13,12 +13,6 @@ import {joinPathSegments} from "@/utils/pathname";
 
 import {signIn} from "./sign-in";
 
-const FormDataSchema = z.object({
-  email: z.email(),
-  password: z.string(),
-  ...BasePathSchema.shape,
-});
-
 const SignupMutation = graphql(`
   mutation Signup($input: AccountRegisterInput!) {
     accountRegister(input: $input) {
@@ -31,9 +25,7 @@ const SignupMutation = graphql(`
 `);
 
 export async function signUp(_state: unknown, formData: FormData) {
-  const {email, password, locale, channel} = FormDataSchema.parse(
-    Object.fromEntries(formData),
-  );
+  const {email, password, locale, channel} = parseFormData(formData);
   const languageCode = localeToLanguageCode(locale);
   const redirectUrl = String(
     new URL(
@@ -61,4 +53,13 @@ export async function signUp(_state: unknown, formData: FormData) {
     requiresConfirmation,
     errors: toValidationErrors(errors),
   };
+}
+
+const FormDataSchema = z.object({
+  email: z.email(),
+  password: z.string(),
+  ...BasePathSchema.shape,
+});
+function parseFormData(formData: FormData) {
+  return FormDataSchema.parse(Object.fromEntries(formData));
 }
