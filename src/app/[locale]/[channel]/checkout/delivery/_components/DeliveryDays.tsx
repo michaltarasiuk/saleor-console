@@ -14,11 +14,11 @@ const DeliveryDays_ShippingMethodFragment = graphql(`
   }
 `);
 
-interface DeliveryDaysProps {
+interface DeliveryDaysProps extends React.ComponentProps<typeof Text> {
   shippingMethod: FragmentType<DeliveryDays_ShippingMethodFragment>;
 }
 
-export function DeliveryDays({shippingMethod}: DeliveryDaysProps) {
+export function DeliveryDays({shippingMethod, ...props}: DeliveryDaysProps) {
   const {data, complete} = useFragment({
     fragment: DeliveryDays_ShippingMethodFragment,
     from: shippingMethod,
@@ -62,7 +62,7 @@ export function DeliveryDays({shippingMethod}: DeliveryDaysProps) {
   }
   return (
     isDefined(message) && (
-      <Text slot="description" appearance="subdued">
+      <Text {...props} appearance={props.appearance ?? "subdued"}>
         {message}
       </Text>
     )

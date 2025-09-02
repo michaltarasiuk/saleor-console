@@ -71,7 +71,12 @@ export function ShippingMethods({checkout}: ShippingMethodsProps) {
           <Radio
             key={shippingMethod.id}
             value={shippingMethod.id}
-            primaryContent={<DeliveryDays shippingMethod={shippingMethod} />}
+            primaryContent={
+              <DeliveryDays
+                slot="description"
+                shippingMethod={shippingMethod}
+              />
+            }
             secondaryContent={
               <Money slot="description" money={shippingMethod.price} />
             }>
