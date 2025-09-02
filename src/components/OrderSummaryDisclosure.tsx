@@ -46,7 +46,11 @@ export function OrderSummaryDisclosure({className}: {className?: string}) {
               <Text emphasis="semibold">$185.36</Text>
             </Button>
           </Heading>
-          <DisclosurePanel>
+          <DisclosurePanel
+            className={cn(
+              "overflow-hidden transition-discrete duration-300",
+              isExpanded ? "animate-accordion-down" : "animate-accordion-up",
+            )}>
             <div
               className={cn(
                 "p-large-200 space-y-large-200",

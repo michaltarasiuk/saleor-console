@@ -2,6 +2,10 @@
 @import "tw-animate-css";
 @plugin "tailwindcss-react-aria-components";
 
+:root {
+  interpolate-size: allow-keywords;
+}
+
 @theme {
   --color-base-background: #ffffff;
   --color-base-background-subdued: #f5f5f5;
