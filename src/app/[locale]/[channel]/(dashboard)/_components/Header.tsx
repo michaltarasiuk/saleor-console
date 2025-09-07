@@ -2,7 +2,6 @@ import {IconButton} from "@/components/IconButton";
 import {LinkedLogo} from "@/components/LinkedLogo";
 import {SheetTrigger} from "@/components/Sheet";
 import {Routes} from "@/consts/routes";
-import type {Locale} from "@/i18n/consts";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {HamburgerIcon} from "@/icons/HamburgerIcon";
 import {cn} from "@/utils/cn";
@@ -11,7 +10,7 @@ import {MenuItemLink} from "./MenuItem";
 import {MobileNavigationSheet} from "./MobileNavigationSheet";
 import {ProfileSwitcher} from "./ProfileSwitcher";
 
-export async function Header({locale}: {locale: Locale}) {
+export async function Header() {
   return (
     <header className={cn("bg-base-background px-large-200")}>
       <div
@@ -20,7 +19,7 @@ export async function Header({locale}: {locale: Locale}) {
           "md:flex",
         )}>
         <nav className={cn("gap-large-500 flex items-center")}>
-          <LinkedLogo locale={locale} />
+          <LinkedLogo />
           <div className={cn("gap-small-300 flex items-center")}>
             <MenuItemLink href={Routes.home}>
               <FormattedMessage id="Dxd1uB" defaultMessage="Shop" />
@@ -44,7 +43,7 @@ export async function Header({locale}: {locale: Locale}) {
           </IconButton>
           <MobileNavigationSheet />
         </SheetTrigger>
-        <LinkedLogo locale={locale} />
+        <LinkedLogo />
       </div>
     </header>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import {cva, type VariantProps} from "class-variance-authority";
-import {usePathname} from "next/navigation";
 import {
   Menu as AriaMenu,
   MenuItem as AriaMenuItem,
@@ -9,10 +8,6 @@ import {
   type MenuProps,
   Popover,
 } from "react-aria-components";
-
-import {useBasePath} from "@/hooks/use-base-path";
-import {isDefined} from "@/utils/is-defined";
-import {joinPathSegments} from "@/utils/pathname";
 
 import {cn} from "../utils/cn";
 
@@ -40,14 +35,12 @@ const menuItem = cva(
     "hover:bg-base-background-subdued",
     "focus-visible:bg-base-background-subdued outline-none",
     "disabled:cursor-default disabled:opacity-50",
+    "data-route-match:underline data-route-match:underline-offset-2",
   ],
   {
     variants: {
       critical: {
         true: "text-critical hover:bg-critical-background-subdued",
-      },
-      current: {
-        true: "underline underline-offset-2",
       },
     },
   },
@@ -62,19 +55,12 @@ export function MenuItem<T extends object>({
   critical,
   ...props
 }: MenuItemProps<T>) {
-  const pathname = usePathname();
-  const basePath = useBasePath();
-  const href = isDefined(props.href)
-    ? joinPathSegments(...basePath, props.href)
-    : undefined;
   return (
     <AriaMenuItem
       {...props}
-      href={href}
       className={cn(
         menuItem({
           critical,
-          current: pathname === href,
         }),
         props.className,
       )}>

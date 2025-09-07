@@ -1,16 +1,11 @@
 import {LinkedLogo} from "@/components/LinkedLogo";
-import type {Locale} from "@/i18n/consts";
 import {cn} from "@/utils/cn";
 
 interface AuthLayoutProps {
   children: React.ReactNode;
-  params: Promise<{
-    locale: Locale;
-  }>;
 }
 
-export default async function AuthLayout({children, params}: AuthLayoutProps) {
-  const {locale} = await params;
+export default async function AuthLayout({children}: AuthLayoutProps) {
   return (
     <div
       className={cn(
@@ -22,7 +17,7 @@ export default async function AuthLayout({children, params}: AuthLayoutProps) {
           "sm:p-large-500 sm:rounded-large sm:h-auto sm:w-auto sm:basis-md",
         )}>
         <div className="mx-auto">
-          <LinkedLogo locale={locale} />
+          <LinkedLogo />
         </div>
         {children}
       </main>

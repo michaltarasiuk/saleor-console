@@ -41,9 +41,10 @@ export function BillingAddress({checkout}: BillingAddressProps) {
   });
   const [value, setValue] = useState<"yes" | "no">("yes");
   const headingId = useId();
-  const address = complete
-    ? (data.billingAddress ?? data.shippingAddress)
-    : null;
+  if (!complete) {
+    return <SkeletonAddressFields />;
+  }
+  const address = data.billingAddress ?? data.shippingAddress;
   return (
     <section className={cn("space-y-base")}>
       <Heading id={headingId}>

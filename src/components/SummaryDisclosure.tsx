@@ -4,20 +4,33 @@ import {
   Button,
   Disclosure,
   DisclosurePanel,
+  type DisclosureProps,
   Heading,
 } from "react-aria-components";
 
+import type {TaxedMoney_TaxedMoneyFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {CartIcon} from "@/icons/CartIcon";
 import {cn} from "@/utils/cn";
 
-import {ProductList} from "./ProductList";
+import {TaxedMoney} from "./TaxedMoney";
 import {SkeletonText} from "./Text";
 import {Text} from "./Text";
 
-export function OrderSummaryDisclosure({className}: {className?: string}) {
+interface SummaryDisclosureProps extends DisclosureProps {
+  children: React.ReactNode;
+  taxedMoney: TaxedMoney_TaxedMoneyFragment;
+}
+
+export function SummaryDisclosure({
+  children,
+  taxedMoney,
+  ...props
+}: SummaryDisclosureProps) {
   return (
-    <Disclosure className={cn("bg-base-background-subdued", className)}>
+    <Disclosure
+      {...props}
+      className={cn("bg-base-background-subdued", props.className)}>
       {({isExpanded}) => (
         <>
           <Heading>
@@ -43,7 +56,7 @@ export function OrderSummaryDisclosure({className}: {className?: string}) {
                   )}
                 </Text>
               </div>
-              <Text emphasis="semibold">$185.36</Text>
+              <TaxedMoney taxedMoney={taxedMoney} />
             </Button>
           </Heading>
           <DisclosurePanel
@@ -56,7 +69,7 @@ export function OrderSummaryDisclosure({className}: {className?: string}) {
                 "p-large-200 space-y-large-200",
                 "border-base-border border-b",
               )}>
-              <ProductList />
+              {children}
             </div>
           </DisclosurePanel>
         </>
@@ -65,12 +78,19 @@ export function OrderSummaryDisclosure({className}: {className?: string}) {
   );
 }
 
-export function SkeletonOrderSummaryDisclosure() {
+interface SkeletonSummaryDisclosureProps {
+  className?: string;
+}
+
+export function SkeletonSummaryDisclosure({
+  className,
+}: SkeletonSummaryDisclosureProps) {
   return (
     <div
       className={cn(
-        "-mx-large-200 p-large-200 gap-base flex justify-between",
+        "p-large-200 gap-base flex justify-between",
         "bg-base-background-subdued border-base-border border-b",
+        className,
       )}>
       <SkeletonText />
       <SkeletonText inlineSize="small" />

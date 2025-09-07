@@ -1,70 +1,49 @@
 "use client";
 
-import {usePathname} from "next/navigation";
-import type {BreadcrumbsProps} from "react-aria-components";
-
-import {Breadcrumbs} from "@/components/Breadcrumbs";
+import {BreadcrumbLink, Breadcrumbs} from "@/components/Breadcrumbs";
 import {Routes} from "@/consts/routes";
-import {useBasePath} from "@/hooks/use-base-path";
-import {useIntl} from "@/i18n/react-intl";
-import {joinPathSegments} from "@/utils/pathname";
+import {useAppPathname} from "@/hooks/use-app-pathname";
+import {FormattedMessage} from "@/i18n/react-intl";
 
-type BreadcrumbItem =
-  React.ComponentProps<typeof Breadcrumbs> extends BreadcrumbsProps<infer T>
-    ? T
-    : never;
+type BreadcrumbLinkProps = React.ComponentProps<typeof BreadcrumbLink>;
 
 export function CheckoutBreadcrumbs() {
-  const pathname = usePathname();
-  const basePath = useBasePath();
-  const intl = useIntl();
-  const items = getBreadcrumbItems();
-  const currentItemIndex = items.findIndex(
-    (item) => joinPathSegments(...basePath, item.href) === pathname,
-  );
+  const pathname = useAppPathname();
+  function getBreadcrumbLinkProps(href: string): BreadcrumbLinkProps {
+    return {
+      href,
+      isDisabled: getBreadcrumbIndex(href) > getBreadcrumbIndex(pathname),
+    };
+  }
   return (
-    <Breadcrumbs
-      key={pathname}
-      items={items.map((item, i) => ({
-        ...item,
-        isDisabled: i > currentItemIndex,
-      }))}
-    />
+    <Breadcrumbs>
+      <BreadcrumbLink {...getBreadcrumbLinkProps(Routes.cart)}>
+        <FormattedMessage id="2tqQFl" defaultMessage="Cart" />
+      </BreadcrumbLink>
+      <BreadcrumbLink {...getBreadcrumbLinkProps(Routes.checkout.information)}>
+        <FormattedMessage id="E80WrK" defaultMessage="Information" />
+      </BreadcrumbLink>
+      <BreadcrumbLink {...getBreadcrumbLinkProps(Routes.checkout.delivery)}>
+        <FormattedMessage id="drqP2L" defaultMessage="Delivery" />
+      </BreadcrumbLink>
+      <BreadcrumbLink {...getBreadcrumbLinkProps(Routes.checkout.billing)}>
+        <FormattedMessage id="Tbo377" defaultMessage="Billing" />
+      </BreadcrumbLink>
+    </Breadcrumbs>
   );
-  function getBreadcrumbItems() {
-    return [
-      {
-        id: Routes.cart,
-        href: Routes.cart,
-        label: intl.formatMessage({
-          id: "2tqQFl",
-          defaultMessage: "Cart",
-        }),
-      },
-      {
-        id: Routes.checkout.information,
-        href: Routes.checkout.information,
-        label: intl.formatMessage({
-          id: "E80WrK",
-          defaultMessage: "Information",
-        }),
-      },
-      {
-        id: Routes.checkout.delivery,
-        href: Routes.checkout.delivery,
-        label: intl.formatMessage({
-          id: "drqP2L",
-          defaultMessage: "Delivery",
-        }),
-      },
-      {
-        id: Routes.checkout.billing,
-        href: Routes.checkout.billing,
-        label: intl.formatMessage({
-          id: "Tbo377",
-          defaultMessage: "Billing",
-        }),
-      },
-    ] satisfies BreadcrumbItem[];
+}
+
+function getBreadcrumbIndex(href: string): number {
+  switch (href) {
+    case Routes.cart:
+      return 0;
+    case Routes.checkout.information:
+      return 1;
+    case Routes.checkout.delivery:
+      return 2;
+    case Routes.checkout.billing:
+      return 3;
+    default:
+      return -1;
   }
 }

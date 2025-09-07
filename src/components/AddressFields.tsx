@@ -75,6 +75,7 @@ export function AddressFields({
       : localeToCountryCode(locale),
   );
   const [isPending, startTransition] = useTransition();
+  const {countries} = use(ChannelContext);
   const {
     countryAreaChoices,
     cityChoices,
@@ -102,7 +103,7 @@ export function AddressFields({
             startTransition(() => setCountryCode(key));
           }
         }}>
-        {use(ChannelContext).countries.map(({code, country}) => (
+        {countries.map(({code, country}) => (
           <SelectItem key={code} id={code} textValue={country}>
             {country}
           </SelectItem>

@@ -6,7 +6,7 @@ import {Button} from "react-aria-components";
 import {Avatar} from "@/components/Avatar";
 import {Menu, MenuItem, MenuTrigger} from "@/components/Menu";
 import {Routes} from "@/consts/routes";
-import {useBasePath} from "@/hooks/use-base-path";
+import {usePathnameContext} from "@/hooks/use-pathname-context";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {ChevronDownIcon} from "@/icons/ChevronDownIcon";
 import {ChevronUpIcon} from "@/icons/ChevronUpIcon";
@@ -16,7 +16,7 @@ import {logOut} from "../_actions/log-out";
 import {LogoutDialog} from "./LogoutDialog";
 
 export function ProfileSwitcher() {
-  const basePath = useBasePath();
+  const pathnameContext = usePathnameContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const logoutDialogId = useId();
@@ -46,7 +46,7 @@ export function ProfileSwitcher() {
           onAction={async (action) => {
             if (action === logoutDialogId) {
               setIsLogoutDialogOpen(true);
-              await logOut(...basePath);
+              await logOut(...pathnameContext);
             }
           }}>
           <MenuItem href={Routes.account.profile}>

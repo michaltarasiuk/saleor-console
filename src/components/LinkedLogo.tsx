@@ -1,13 +1,14 @@
+"use client";
+
 import Image from "next/image";
 
 import {IntlLink} from "@/i18n/components/IntlLink";
-import type {Locale} from "@/i18n/consts";
-import {getIntl} from "@/i18n/utils/get-intl";
+import {useIntl} from "@/i18n/react-intl";
 
 import {Routes} from "../consts/routes";
 
-export async function LinkedLogo({locale}: {locale: Locale}) {
-  const intl = await getIntl(locale);
+export function LinkedLogo() {
+  const intl = useIntl();
   return (
     <IntlLink href={Routes.home}>
       <Image

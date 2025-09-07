@@ -40,8 +40,8 @@ export function Contact({checkout}: ContactProps) {
         type="email"
         defaultValue={data.email ?? undefined}
         label={intl.formatMessage({
-          id: "KinTIy",
-          defaultMessage: "Enter email",
+          id: "N/nrM1",
+          defaultMessage: "Email or phone number",
         })}
         isRequired
       />

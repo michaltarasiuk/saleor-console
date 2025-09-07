@@ -29723,6 +29723,23 @@ export type AddPromoCodeMutation = {
   } | null;
 };
 
+export type BillingAddressUpdateMutationVariables = Exact<{
+  id: Scalars["ID"]["input"];
+  billingAddress: AddressInput;
+}>;
+
+export type BillingAddressUpdateMutation = {
+  __typename?: "Mutation";
+  checkoutBillingAddressUpdate?: {
+    __typename?: "CheckoutBillingAddressUpdate";
+    errors: Array<{
+      __typename?: "CheckoutError";
+      field?: string | null;
+      message?: string | null;
+    }>;
+  } | null;
+};
+
 export type DeliveryMethodUpdateMutationVariables = Exact<{
   id: Scalars["ID"]["input"];
   deliveryMethodId: Scalars["ID"]["input"];
@@ -29917,6 +29934,22 @@ export type CheckoutInformation_CheckoutQuery = {
         };
       })
     | null;
+};
+
+export type CheckoutLayout_CheckoutQueryVariables = Exact<{
+  id: Scalars["ID"]["input"];
+}>;
+
+export type CheckoutLayout_CheckoutQuery = {
+  __typename?: "Query";
+  checkout?: {
+    __typename?: "Checkout";
+    totalPrice: {__typename?: "TaxedMoney"} & {
+      " $fragmentRefs"?: {
+        TaxedMoney_TaxedMoneyFragment: TaxedMoney_TaxedMoneyFragment;
+      };
+    };
+  } | null;
 };
 
 export type AddressFields_AddressFragment = {
@@ -31066,6 +31099,106 @@ export const AddPromoCodeDocument = {
   AddPromoCodeMutation,
   AddPromoCodeMutationVariables
 >;
+export const BillingAddressUpdateDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: {kind: "Name", value: "BillingAddressUpdate"},
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {kind: "Variable", name: {kind: "Name", value: "id"}},
+          type: {
+            kind: "NonNullType",
+            type: {kind: "NamedType", name: {kind: "Name", value: "ID"}},
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: {kind: "Name", value: "billingAddress"},
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: {kind: "Name", value: "AddressInput"},
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "checkoutBillingAddressUpdate"},
+            arguments: [
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "id"},
+                value: {kind: "Variable", name: {kind: "Name", value: "id"}},
+              },
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "billingAddress"},
+                value: {
+                  kind: "Variable",
+                  name: {kind: "Name", value: "billingAddress"},
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: {kind: "Name", value: "errors"},
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: {kind: "Name", value: "CheckoutValidationError"},
+                        directives: [
+                          {
+                            kind: "Directive",
+                            name: {kind: "Name", value: "unmask"},
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "CheckoutValidationError"},
+      typeCondition: {
+        kind: "NamedType",
+        name: {kind: "Name", value: "CheckoutError"},
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "field"}},
+          {kind: "Field", name: {kind: "Name", value: "message"}},
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  BillingAddressUpdateMutation,
+  BillingAddressUpdateMutationVariables
+>;
 export const DeliveryMethodUpdateDocument = {
   kind: "Document",
   definitions: [
@@ -31877,6 +32010,120 @@ export const CheckoutInformation_CheckoutDocument = {
 } as unknown as DocumentNode<
   CheckoutInformation_CheckoutQuery,
   CheckoutInformation_CheckoutQueryVariables
+>;
+export const CheckoutLayout_CheckoutDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: {kind: "Name", value: "CheckoutLayout_Checkout"},
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {kind: "Variable", name: {kind: "Name", value: "id"}},
+          type: {
+            kind: "NonNullType",
+            type: {kind: "NamedType", name: {kind: "Name", value: "ID"}},
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "checkout"},
+            arguments: [
+              {
+                kind: "Argument",
+                name: {kind: "Name", value: "id"},
+                value: {kind: "Variable", name: {kind: "Name", value: "id"}},
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: {kind: "Name", value: "totalPrice"},
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: {kind: "Name", value: "TaxedMoney_TaxedMoney"},
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "Money_Money"},
+      typeCondition: {kind: "NamedType", name: {kind: "Name", value: "Money"}},
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {kind: "Field", name: {kind: "Name", value: "currency"}},
+          {kind: "Field", name: {kind: "Name", value: "amount"}},
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: {kind: "Name", value: "TaxedMoney_TaxedMoney"},
+      typeCondition: {
+        kind: "NamedType",
+        name: {kind: "Name", value: "TaxedMoney"},
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "net"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: {kind: "Name", value: "Money_Money"},
+                  directives: [
+                    {kind: "Directive", name: {kind: "Name", value: "unmask"}},
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {kind: "Name", value: "gross"},
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: {kind: "Name", value: "Money_Money"},
+                  directives: [
+                    {kind: "Directive", name: {kind: "Name", value: "unmask"}},
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  CheckoutLayout_CheckoutQuery,
+  CheckoutLayout_CheckoutQueryVariables
 >;
 export const AddressValidationRulesDocument = {
   kind: "Document",

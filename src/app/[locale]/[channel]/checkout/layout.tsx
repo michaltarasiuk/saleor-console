@@ -1,26 +1,23 @@
+import {Suspense} from "react";
+
 import {Footer} from "@/components/Footer";
 import {HeadingGroup} from "@/components/Heading";
 import {LinkedLogo} from "@/components/LinkedLogo";
-import {OrderSummaryDisclosure} from "@/components/OrderSummaryDisclosure";
-import {ProductList} from "@/components/ProductList";
-import type {Locale} from "@/i18n/consts";
+import {SkeletonSummaryDisclosure} from "@/components/SummaryDisclosure";
 import {cn} from "@/utils/cn";
 
-import {AddPromoCodeForm} from "./_components/AddPromoCodeForm";
 import {CheckoutBreadcrumbs} from "./_components/CheckoutBreadcrumbs";
+import {
+  CheckoutSummary,
+  CheckoutSummaryDisclosure,
+  SkeletonCheckoutSummary,
+} from "./_components/CheckoutSummary";
 
 interface CheckoutLayoutProps {
   children: React.ReactNode;
-  params: Promise<{
-    locale: Locale;
-  }>;
 }
 
-export default async function CheckoutLayout({
-  children,
-  params,
-}: CheckoutLayoutProps) {
-  const {locale} = await params;
+export default async function CheckoutLayout({children}: CheckoutLayoutProps) {
   return (
     <div
       className={cn(
@@ -34,9 +31,11 @@ export default async function CheckoutLayout({
             "md:max-w-shell-main-inline-size md:px-large-500 md:pt-large-500",
           )}>
           <header className={cn("p-large-200 flex", "md:mb-large-200 md:p-0")}>
-            <LinkedLogo locale={locale} />
+            <LinkedLogo />
           </header>
-          <OrderSummaryDisclosure className={cn("md:hidden")} />
+          <Suspense fallback={<SkeletonSummaryDisclosure />}>
+            <CheckoutSummaryDisclosure />
+          </Suspense>
           <main
             className={cn(
               "p-large-200 space-y-large-300 mb-large-200 grow",
@@ -53,8 +52,9 @@ export default async function CheckoutLayout({
           className={cn(
             "max-w-shell-order-summary-inline-size p-large-500 space-y-large-200",
           )}>
-          <ProductList />
-          <AddPromoCodeForm />
+          <Suspense fallback={<SkeletonCheckoutSummary />}>
+            <CheckoutSummary />
+          </Suspense>
         </aside>
       </div>
     </div>
