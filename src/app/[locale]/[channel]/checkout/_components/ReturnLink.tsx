@@ -9,7 +9,9 @@ interface ReturnLinkProps {
 
 export function ReturnLink({href, children}: ReturnLinkProps) {
   return (
-    <IntlLink href={href}>
+    <IntlLink
+      href={href}
+      className={cn("gap-small-200 flex items-center justify-center")}>
       <ChevronLeftIcon aria-hidden className={cn("stroke-base-accent")} />
       {children}
     </IntlLink>

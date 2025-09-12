@@ -44,6 +44,7 @@ export function BreadcrumbLink({
         isDisabled={isDisabled}
         {...props}
         className={cn(
+          "gap-small-200 flex items-center justify-center",
           "hover:no-underline",
           "data-route-match:text-base-text",
           props.className,

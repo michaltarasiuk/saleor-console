@@ -22,6 +22,12 @@ const iconButton = cva(
         warning: "focus-visible:ring-warning-border",
         critical: "focus-visible:ring-critical-border",
       },
+      variant: {
+        outline: [
+          "border-control-border border transition-all",
+          "focus-visible:ring-control-accent/50 focus-visible:border-control-accent outline-none focus-visible:ring-3",
+        ],
+      },
     },
     defaultVariants: {
       appearance: "base",
@@ -33,7 +39,12 @@ interface IconButtonProps
   extends ButtonProps,
     VariantProps<typeof iconButton> {}
 
-export function IconButton({children, appearance, ...props}: IconButtonProps) {
+export function IconButton({
+  children,
+  appearance,
+  variant,
+  ...props
+}: IconButtonProps) {
   return (
     <Button
       {...props}
@@ -41,6 +52,7 @@ export function IconButton({children, appearance, ...props}: IconButtonProps) {
         cn(
           iconButton({
             appearance,
+            variant,
           }),
         ),
         props.className,
@@ -52,7 +64,12 @@ export function IconButton({children, appearance, ...props}: IconButtonProps) {
 
 interface IconLinkProps extends LinkProps, VariantProps<typeof iconButton> {}
 
-export function IconLink({children, appearance, ...props}: IconLinkProps) {
+export function IconLink({
+  children,
+  appearance,
+  variant,
+  ...props
+}: IconLinkProps) {
   return (
     <IntlLink
       {...props}
@@ -60,6 +77,7 @@ export function IconLink({children, appearance, ...props}: IconLinkProps) {
         cn(
           iconButton({
             appearance,
+            variant,
           }),
         ),
         props.className,
