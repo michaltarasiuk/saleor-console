@@ -1,18 +1,27 @@
 "use client";
 
+import {usePathname} from "next/navigation";
+
 import {BreadcrumbLink, Breadcrumbs} from "@/components/Breadcrumbs";
 import {Routes} from "@/consts/routes";
-import {useAppPathname} from "@/hooks/use-app-pathname";
+import {usePathnameContext} from "@/hooks/use-pathname-context";
 import {FormattedMessage} from "@/i18n/react-intl";
+import {joinPathSegments} from "@/utils/pathname";
 
 type BreadcrumbLinkProps = React.ComponentProps<typeof BreadcrumbLink>;
 
 export function CheckoutBreadcrumbs() {
-  const pathname = useAppPathname();
+  const pathname = usePathname();
+  const [locale, channel] = usePathnameContext();
+  const pathWithoutLocaleAndChannel = pathname
+    .replace(joinPathSegments(locale), "")
+    .replace(joinPathSegments(channel), "");
   function getBreadcrumbLinkProps(href: string): BreadcrumbLinkProps {
     return {
       href,
-      isDisabled: getBreadcrumbIndex(href) > getBreadcrumbIndex(pathname),
+      isDisabled:
+        getBreadcrumbIndex(href) >
+        getBreadcrumbIndex(pathWithoutLocaleAndChannel),
     };
   }
   return (
