@@ -1,7 +1,7 @@
 "use client";
 
 import {type QueryRef, useReadQuery} from "@apollo/client";
-import {notFound} from "next/navigation";
+import {notFound, redirect} from "next/navigation";
 import {useActionState, useTransition} from "react";
 import invariant from "tiny-invariant";
 
@@ -11,9 +11,11 @@ import {Form} from "@/components/Form";
 import {LocaleField} from "@/components/LocaleField";
 import {Routes} from "@/consts/routes";
 import type {CheckoutBilling_CheckoutQuery} from "@/graphql/codegen/graphql";
+import {usePathnameContext} from "@/hooks/use-pathname-context";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
+import {joinPathSegments} from "@/utils/pathname";
 
 import {updateBilling} from "../../_actions/update-billing";
 import {ReturnLink} from "../../_components/ReturnLink";
@@ -25,8 +27,11 @@ export function CheckoutBillingForm({
   queryRef: QueryRef<CheckoutBilling_CheckoutQuery>;
 }) {
   const {data} = useReadQuery(queryRef);
+  const pathnameContext = usePathnameContext();
   if (!isDefined(data.checkout)) {
     notFound();
+  } else if (!isDefined(data.checkout.deliveryMethod)) {
+    redirect(joinPathSegments(...pathnameContext, Routes.checkout.delivery));
   }
   const [{errors}, formAction] = useActionState(updateBilling, {
     errors: {},

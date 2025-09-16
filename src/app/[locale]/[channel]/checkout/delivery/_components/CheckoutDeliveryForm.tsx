@@ -1,7 +1,7 @@
 "use client";
 
 import {type QueryRef, useReadQuery} from "@apollo/client";
-import {notFound} from "next/navigation";
+import {notFound, redirect} from "next/navigation";
 import {useActionState, useTransition} from "react";
 import invariant from "tiny-invariant";
 
@@ -11,9 +11,11 @@ import {Form} from "@/components/Form";
 import {LocaleField} from "@/components/LocaleField";
 import {Routes} from "@/consts/routes";
 import type {CheckoutDelivery_CheckoutQuery} from "@/graphql/codegen/graphql";
+import {usePathnameContext} from "@/hooks/use-pathname-context";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
+import {joinPathSegments} from "@/utils/pathname";
 
 import {updateDelivery} from "../../_actions/update-delivery";
 import {ReturnLink} from "../../_components/ReturnLink";
@@ -26,8 +28,11 @@ export function CheckoutDeliveryForm({
   queryRef: QueryRef<CheckoutDelivery_CheckoutQuery>;
 }) {
   const {data} = useReadQuery(queryRef);
+  const pathnameContext = usePathnameContext();
   if (!isDefined(data.checkout)) {
     notFound();
+  } else if (!isDefined(data.checkout.shippingAddress)) {
+    redirect(joinPathSegments(...pathnameContext, Routes.checkout.information));
   }
   const [{errors}, formAction] = useActionState(updateDelivery, {
     errors: {},

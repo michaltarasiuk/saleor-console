@@ -4230,7 +4230,30 @@ export type CheckoutFilterShippingMethods = Event & {
   version?: Maybe<Scalars["String"]["output"]>;
 };
 
-/** Event sent when checkout is fully paid with transactions. The checkout is considered as fully paid when the checkout `charge_status` is `FULL` or `OVERCHARGED`. The event is not sent when the checkout authorization flow strategy is used. */
+/**
+ * Event sent when a checkout was fully authorized. A checkout is considered fully authorized when its `authorizeStatus` is `FULL`.
+ *
+ * It is triggered only for checkouts whose payments are processed through the Transaction API.
+ */
+export type CheckoutFullyAuthorized = Event & {
+  __typename?: "CheckoutFullyAuthorized";
+  /** The checkout the event relates to. */
+  checkout?: Maybe<Checkout>;
+  /** Time of the event. */
+  issuedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** The user or application that triggered the event. */
+  issuingPrincipal?: Maybe<IssuingPrincipal>;
+  /** The application receiving the webhook. */
+  recipient?: Maybe<App>;
+  /** Saleor version that triggered the event. */
+  version?: Maybe<Scalars["String"]["output"]>;
+};
+
+/**
+ * Event sent when a checkout was fully paid. A checkout is considered fully paid when its `chargeStatus` is `FULL` or `OVERCHARGED`. This event is not sent if payments are only authorized but not fully charged.
+ *
+ * It is triggered only for checkouts whose payments are processed through the Transaction API.
+ */
 export type CheckoutFullyPaid = Event & {
   __typename?: "CheckoutFullyPaid";
   /** The checkout the event relates to. */
@@ -25333,6 +25356,14 @@ export type Subscription = {
    */
   checkoutCreated?: Maybe<CheckoutCreated>;
   /**
+   * Event sent when checkout is fully authorized.
+   *
+   * Added in Saleor 3.21.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  checkoutFullyAuthorized?: Maybe<CheckoutFullyAuthorized>;
+  /**
    * Event sent when checkout is fully-paid.
    *
    * Added in Saleor 3.21.
@@ -25481,6 +25512,10 @@ export type Subscription = {
 };
 
 export type SubscriptionCheckoutCreatedArgs = {
+  channels?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
+
+export type SubscriptionCheckoutFullyAuthorizedArgs = {
   channels?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
@@ -28794,6 +28829,17 @@ export enum WebhookEventTypeAsyncEnum {
   ChannelUpdated = "CHANNEL_UPDATED",
   /** A new checkout is created. */
   CheckoutCreated = "CHECKOUT_CREATED",
+  /**
+   * A checkout was fully authorized (its `authorizeStatus` is `FULL`).
+   *
+   * This event is emitted only for checkouts whose payments are processed through the Transaction API.
+   */
+  CheckoutFullyAuthorized = "CHECKOUT_FULLY_AUTHORIZED",
+  /**
+   * A checkout was fully paid (its `chargeStatus` is `FULL` or `OVERCHARGED`). This event is not sent if payments are only authorized but not fully charged.
+   *
+   * This event is emitted only for checkouts whose payments are processed through the Transaction API.
+   */
   CheckoutFullyPaid = "CHECKOUT_FULLY_PAID",
   /** A checkout metadata is updated. */
   CheckoutMetadataUpdated = "CHECKOUT_METADATA_UPDATED",
@@ -29092,6 +29138,17 @@ export enum WebhookEventTypeEnum {
   CheckoutCreated = "CHECKOUT_CREATED",
   /** Filter shipping methods for checkout. */
   CheckoutFilterShippingMethods = "CHECKOUT_FILTER_SHIPPING_METHODS",
+  /**
+   * A checkout was fully authorized (its `authorizeStatus` is `FULL`).
+   *
+   * This event is emitted only for checkouts whose payments are processed through the Transaction API.
+   */
+  CheckoutFullyAuthorized = "CHECKOUT_FULLY_AUTHORIZED",
+  /**
+   * A checkout was fully paid (its `chargeStatus` is `FULL` or `OVERCHARGED`). This event is not sent if payments are only authorized but not fully charged.
+   *
+   * This event is emitted only for checkouts whose payments are processed through the Transaction API.
+   */
   CheckoutFullyPaid = "CHECKOUT_FULLY_PAID",
   /** A checkout metadata is updated. */
   CheckoutMetadataUpdated = "CHECKOUT_METADATA_UPDATED",
@@ -29427,6 +29484,7 @@ export enum WebhookSampleEventTypeEnum {
   ChannelStatusChanged = "CHANNEL_STATUS_CHANGED",
   ChannelUpdated = "CHANNEL_UPDATED",
   CheckoutCreated = "CHECKOUT_CREATED",
+  CheckoutFullyAuthorized = "CHECKOUT_FULLY_AUTHORIZED",
   CheckoutFullyPaid = "CHECKOUT_FULLY_PAID",
   CheckoutMetadataUpdated = "CHECKOUT_METADATA_UPDATED",
   CheckoutUpdated = "CHECKOUT_UPDATED",
@@ -29825,7 +29883,13 @@ export type CheckoutBilling_CheckoutQueryVariables = Exact<{
 export type CheckoutBilling_CheckoutQuery = {
   __typename?: "Query";
   checkout?:
-    | ({__typename?: "Checkout"} & {
+    | ({
+        __typename?: "Checkout";
+        deliveryMethod?:
+          | {__typename: "ShippingMethod"}
+          | {__typename: "Warehouse"}
+          | null;
+      } & {
         " $fragmentRefs"?: {
           BillingAddress_CheckoutFragment: BillingAddress_CheckoutFragment;
         };
@@ -29895,7 +29959,10 @@ export type CheckoutDelivery_CheckoutQueryVariables = Exact<{
 export type CheckoutDelivery_CheckoutQuery = {
   __typename?: "Query";
   checkout?:
-    | ({__typename?: "Checkout"} & {
+    | ({
+        __typename?: "Checkout";
+        shippingAddress?: {__typename: "Address"} | null;
+      } & {
         " $fragmentRefs"?: {
           Delivery_CheckoutFragment: Delivery_CheckoutFragment;
         };
@@ -29934,22 +30001,6 @@ export type CheckoutInformation_CheckoutQuery = {
         };
       })
     | null;
-};
-
-export type CheckoutLayout_CheckoutQueryVariables = Exact<{
-  id: Scalars["ID"]["input"];
-}>;
-
-export type CheckoutLayout_CheckoutQuery = {
-  __typename?: "Query";
-  checkout?: {
-    __typename?: "Checkout";
-    totalPrice: {__typename?: "TaxedMoney"} & {
-      " $fragmentRefs"?: {
-        TaxedMoney_TaxedMoneyFragment: TaxedMoney_TaxedMoneyFragment;
-      };
-    };
-  } | null;
 };
 
 export type AddressFields_AddressFragment = {
@@ -31558,6 +31609,19 @@ export const CheckoutBilling_CheckoutDocument = {
               kind: "SelectionSet",
               selections: [
                 {
+                  kind: "Field",
+                  name: {kind: "Name", value: "deliveryMethod"},
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: {kind: "Name", value: "__typename"},
+                      },
+                    ],
+                  },
+                },
+                {
                   kind: "FragmentSpread",
                   name: {kind: "Name", value: "BillingAddress_Checkout"},
                 },
@@ -31679,6 +31743,19 @@ export const CheckoutDelivery_CheckoutDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: {kind: "Name", value: "shippingAddress"},
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: {kind: "Name", value: "__typename"},
+                      },
+                    ],
+                  },
+                },
                 {
                   kind: "FragmentSpread",
                   name: {kind: "Name", value: "Delivery_Checkout"},
@@ -32010,120 +32087,6 @@ export const CheckoutInformation_CheckoutDocument = {
 } as unknown as DocumentNode<
   CheckoutInformation_CheckoutQuery,
   CheckoutInformation_CheckoutQueryVariables
->;
-export const CheckoutLayout_CheckoutDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: {kind: "Name", value: "CheckoutLayout_Checkout"},
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {kind: "Variable", name: {kind: "Name", value: "id"}},
-          type: {
-            kind: "NonNullType",
-            type: {kind: "NamedType", name: {kind: "Name", value: "ID"}},
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: {kind: "Name", value: "checkout"},
-            arguments: [
-              {
-                kind: "Argument",
-                name: {kind: "Name", value: "id"},
-                value: {kind: "Variable", name: {kind: "Name", value: "id"}},
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: {kind: "Name", value: "totalPrice"},
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: {kind: "Name", value: "TaxedMoney_TaxedMoney"},
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: {kind: "Name", value: "Money_Money"},
-      typeCondition: {kind: "NamedType", name: {kind: "Name", value: "Money"}},
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {kind: "Field", name: {kind: "Name", value: "currency"}},
-          {kind: "Field", name: {kind: "Name", value: "amount"}},
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: {kind: "Name", value: "TaxedMoney_TaxedMoney"},
-      typeCondition: {
-        kind: "NamedType",
-        name: {kind: "Name", value: "TaxedMoney"},
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: {kind: "Name", value: "net"},
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: {kind: "Name", value: "Money_Money"},
-                  directives: [
-                    {kind: "Directive", name: {kind: "Name", value: "unmask"}},
-                  ],
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: {kind: "Name", value: "gross"},
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: {kind: "Name", value: "Money_Money"},
-                  directives: [
-                    {kind: "Directive", name: {kind: "Name", value: "unmask"}},
-                  ],
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CheckoutLayout_CheckoutQuery,
-  CheckoutLayout_CheckoutQueryVariables
 >;
 export const AddressValidationRulesDocument = {
   kind: "Document",

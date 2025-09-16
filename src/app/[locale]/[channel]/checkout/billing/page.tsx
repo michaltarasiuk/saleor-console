@@ -14,6 +14,9 @@ import {
 const CheckoutBilling_CheckoutQuery = graphql(`
   query CheckoutBilling_Checkout($id: ID!) {
     checkout(id: $id) {
+      deliveryMethod {
+        __typename
+      }
       ...BillingAddress_Checkout
     }
   }
