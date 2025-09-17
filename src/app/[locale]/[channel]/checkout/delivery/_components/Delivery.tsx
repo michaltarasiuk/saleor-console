@@ -4,8 +4,8 @@ import {type FragmentType, useFragment} from "@apollo/client";
 import {useId, useState} from "react";
 
 import {Heading, HeadingGroup, SkeletonHeading} from "@/components/Heading";
-import {Radio} from "@/components/Radio";
-import {RadioGroup} from "@/components/RadioGroup";
+import {Radio, SkeletonRadio} from "@/components/Radio";
+import {RadioGroup, SkeletonRadioGroup} from "@/components/RadioGroup";
 import {graphql} from "@/graphql/codegen";
 import type {Delivery_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
@@ -90,6 +90,17 @@ export function SkeletonDelivery() {
   return (
     <div className={cn("space-y-base")}>
       <SkeletonHeading />
+      <SkeletonRadioGroup variant="group">
+        <SkeletonRadio />
+        <SkeletonRadio />
+      </SkeletonRadioGroup>
+      <SkeletonRadioGroup variant="group" label>
+        <SkeletonRadio />
+        <SkeletonRadio />
+        <SkeletonRadio />
+        <SkeletonRadio />
+        <SkeletonRadio />
+      </SkeletonRadioGroup>
     </div>
   );
 }

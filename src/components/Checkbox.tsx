@@ -27,7 +27,7 @@ export function Checkbox({
     <AriaCheckbox
       {...props}
       className={cn(
-        "gap-small-100 relative flex cursor-pointer transition-all",
+        "gap-small-100 relative flex cursor-pointer items-center transition-all",
         "disabled:cursor-default disabled:opacity-50",
         "group-data-[variant=group]:p-base group-data-[variant=group]:border-control-border group-data-[variant=group]:bg-base-background group-data-[variant=group]:border",
         "group-data-[variant=group]:after:absolute group-data-[variant=group]:after:inset-[-1px] group-data-[variant=group]:after:border group-data-[variant=group]:after:border-transparent group-data-[variant=group]:after:transition-all",
@@ -93,7 +93,12 @@ export function Checkbox({
 
 export function SkeletonCheckbox() {
   return (
-    <div className={cn("gap-small-100 flex items-center")}>
+    <div
+      className={cn(
+        "gap-small-100 flex items-center",
+        "group-data-[variant=group]:p-base group-data-[variant=group]:border-base-border group-data-[variant=group]:bg-base-background group-data-[variant=group]:border",
+        "group-data-[variant=group]:first:rounded-t-base group-data-[variant=group]:last:rounded-b-base group-data-[variant=group]:not-first:border-t-0",
+      )}>
       <div
         className={cn(
           "border-base-border rounded-small size-5 shrink-0 border",

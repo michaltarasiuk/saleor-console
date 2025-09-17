@@ -58,9 +58,9 @@ export function Select<T extends object>({
               "rounded-base border-control-border bg-control-background h-input p-small-100 relative flex w-full cursor-pointer items-center justify-between border transition-all",
               {
                 "pt-6": isDefined(selectedKey),
+                "border-critical ring-critical ring-1": isInvalid,
                 "ring-control-accent/50 border-control-accent shadow-none ring-3 outline-none":
                   isFocused,
-                "border-critical ring-critical ring-1": isInvalid,
                 "bg-disabled-input-background opacity-50": isDisabled,
               },
             )}>

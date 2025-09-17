@@ -10,6 +10,7 @@ import {
 import {text} from "../styles/text";
 import {cn} from "../utils/cn";
 import {isDefined} from "../utils/is-defined";
+import {SkeletonText} from "./Text";
 
 const checkboxGroup = cva("group", {
   variants: {
@@ -65,5 +66,32 @@ export function CheckboxGroup({
         </>
       )}
     </AriaCheckboxGroup>
+  );
+}
+
+interface SkeletonCheckboxGroupProps
+  extends VariantProps<typeof checkboxGroup> {
+  children: React.ReactNode;
+  label?: boolean;
+}
+
+export function SkeletonCheckboxGroup({
+  children,
+  variant,
+  label,
+}: SkeletonCheckboxGroupProps) {
+  return (
+    <>
+      {label && <SkeletonText />}
+      <div
+        data-variant={variant}
+        className={cn(
+          checkboxGroup({
+            variant,
+          }),
+        )}>
+        {children}
+      </div>
+    </>
   );
 }

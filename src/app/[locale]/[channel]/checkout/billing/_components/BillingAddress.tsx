@@ -9,8 +9,8 @@ import {
   SkeletonAddressFields,
 } from "@/components/AddressFields";
 import {Heading, SkeletonHeading} from "@/components/Heading";
-import {Radio} from "@/components/Radio";
-import {RadioGroup} from "@/components/RadioGroup";
+import {Radio, SkeletonRadio} from "@/components/Radio";
+import {RadioGroup, SkeletonRadioGroup} from "@/components/RadioGroup";
 import {graphql} from "@/graphql/codegen";
 import type {BillingAddress_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
@@ -85,6 +85,10 @@ export function SkeletonBillingAddress() {
   return (
     <div className={cn("space-y-base")}>
       <SkeletonHeading />
+      <SkeletonRadioGroup variant="group">
+        <SkeletonRadio />
+        <SkeletonRadio />
+      </SkeletonRadioGroup>
     </div>
   );
 }

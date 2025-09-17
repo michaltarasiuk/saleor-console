@@ -9,6 +9,7 @@ import {isDefined} from "@/utils/is-defined";
 
 import {text} from "../styles/text";
 import {cn} from "../utils/cn";
+import {SkeletonText} from "./Text";
 
 interface RadioProps extends AriaRadioProps {
   primaryContent?: React.ReactNode;
@@ -25,7 +26,7 @@ export function Radio({
     <AriaRadio
       {...props}
       className={cn(
-        "gap-small-100 group relative flex cursor-pointer",
+        "gap-small-100 group relative flex cursor-pointer items-center",
         "disabled:cursor-default disabled:opacity-50",
         "group-data-[variant=group]:p-base group-data-[variant=group]:border-control-border group-data-[variant=group]:bg-base-background group-data-[variant=group]:border",
         "group-data-[variant=group]:after:absolute group-data-[variant=group]:after:inset-[-1px] group-data-[variant=group]:after:border group-data-[variant=group]:after:border-transparent group-data-[variant=group]:after:transition-all",
@@ -80,5 +81,23 @@ export function Radio({
         </>
       )}
     </AriaRadio>
+  );
+}
+
+export function SkeletonRadio() {
+  return (
+    <div
+      className={cn(
+        "gap-small-100 flex items-center",
+        "group-data-[variant=group]:p-base group-data-[variant=group]:border-base-border group-data-[variant=group]:bg-base-background group-data-[variant=group]:border",
+        "group-data-[variant=group]:first:rounded-t-base group-data-[variant=group]:last:rounded-b-base group-data-[variant=group]:not-first:border-t-0",
+      )}>
+      <div
+        className={cn(
+          "rounded-fully border-base-border bg-control-background size-5 shrink-0 border",
+        )}
+      />
+      <SkeletonText />
+    </div>
   );
 }

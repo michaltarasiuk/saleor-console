@@ -5,8 +5,8 @@ import {useId} from "react";
 
 import {Heading, SkeletonHeading} from "@/components/Heading";
 import {Money} from "@/components/Money";
-import {Radio} from "@/components/Radio";
-import {RadioGroup} from "@/components/RadioGroup";
+import {Radio, SkeletonRadio} from "@/components/Radio";
+import {RadioGroup, SkeletonRadioGroup} from "@/components/RadioGroup";
 import {graphql} from "@/graphql/codegen";
 import type {ShippingMethods_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
@@ -91,6 +91,13 @@ export function SkeletonShippingMethods() {
   return (
     <div className={cn("space-y-base")}>
       <SkeletonHeading />
+      <SkeletonRadioGroup variant="group" label>
+        <SkeletonRadio />
+        <SkeletonRadio />
+        <SkeletonRadio />
+        <SkeletonRadio />
+        <SkeletonRadio />
+      </SkeletonRadioGroup>
     </div>
   );
 }

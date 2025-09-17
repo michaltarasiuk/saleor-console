@@ -10,6 +10,7 @@ import {
 import {text} from "../styles/text";
 import {cn} from "../utils/cn";
 import {isDefined} from "../utils/is-defined";
+import {SkeletonText} from "./Text";
 
 const radioGroup = cva("group", {
   variants: {
@@ -65,5 +66,31 @@ export function RadioGroup({
         </>
       )}
     </AriaRadioGroup>
+  );
+}
+
+interface SkeletonRadioGroupProps extends VariantProps<typeof radioGroup> {
+  children: React.ReactNode;
+  label?: boolean;
+}
+
+export function SkeletonRadioGroup({
+  children,
+  label,
+  variant,
+}: SkeletonRadioGroupProps) {
+  return (
+    <>
+      {label && <SkeletonText />}
+      <div
+        data-variant={variant}
+        className={cn(
+          radioGroup({
+            variant,
+          }),
+        )}>
+        {children}
+      </div>
+    </>
   );
 }
