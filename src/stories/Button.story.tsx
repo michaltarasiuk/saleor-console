@@ -35,6 +35,16 @@ const meta = {
         "extraLarge",
       ] satisfies ButtonProps["size"][],
     },
+    isDisabled: {
+      control: {
+        type: "boolean",
+      },
+    },
+    isPending: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
 } satisfies Meta<typeof Button>;
 

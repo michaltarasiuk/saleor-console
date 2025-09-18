@@ -27,7 +27,7 @@ export function Checkbox({
     <AriaCheckbox
       {...props}
       className={cn(
-        "gap-small-100 relative flex cursor-pointer items-center transition-all",
+        "gap-small-100 relative flex cursor-pointer items-center",
         "disabled:cursor-default disabled:opacity-50",
         "read-only:opacity-50",
         "group-data-[variant=group]:p-base group-data-[variant=group]:border-control-border group-data-[variant=group]:bg-base-background group-data-[variant=group]:border",

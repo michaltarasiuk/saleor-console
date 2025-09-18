@@ -1,5 +1,3 @@
-import "@/styles/globals.css";
-
 import {notFound} from "next/navigation";
 
 import {getClient} from "@/graphql/apollo-client";
