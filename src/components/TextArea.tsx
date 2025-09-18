@@ -51,6 +51,7 @@ export function TextArea({label, description, ...props}: TextAreaProps) {
             "focus:ring-control-accent/50 focus:border-control-accent outline-none focus:ring-3",
             "invalid:border-critical invalid:ring-critical invalid:ring-1",
             "disabled:bg-disabled-input-background disabled:opacity-50",
+            "read-only:bg-disabled-input-background read-only:opacity-50",
             text({
               appearance: "control",
             }),

@@ -2,6 +2,10 @@
 
 import {
   Tab as AriaTab,
+  TabList as AriaTabList,
+  type TabListProps,
+  TabPanel as AriaTabPanel,
+  type TabPanelProps,
   type TabProps as AriaTabProps,
 } from "react-aria-components";
 
@@ -10,7 +14,26 @@ import {text} from "@/styles/text";
 import {cn} from "../utils/cn";
 import {isDefined} from "../utils/is-defined";
 
-export {TabList, TabPanel, Tabs} from "react-aria-components";
+export {Tabs} from "react-aria-components";
+
+export function TabList<T extends object>({
+  children,
+  ...props
+}: TabListProps<T>) {
+  return (
+    <AriaTabList<T> {...props} className={cn("gap-base flex", props.className)}>
+      {children}
+    </AriaTabList>
+  );
+}
+
+export function TabPanel({children, ...props}: TabPanelProps) {
+  return (
+    <AriaTabPanel {...props} className={cn("outline-none", props.className)}>
+      {children}
+    </AriaTabPanel>
+  );
+}
 
 interface TabProps extends AriaTabProps {
   textValue: string;

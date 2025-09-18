@@ -19,14 +19,14 @@ import {SearchField} from "./SearchField";
 interface AutocompleteProps<T>
   extends AriaAutocompleteProps,
     Pick<MenuProps<T>, "selectionMode" | "selectedKeys" | "onAction"> {
-  placeholder?: string;
+  label?: string;
 }
 
 export function Autocomplete<T>({
   children,
   selectionMode,
   selectedKeys,
-  placeholder,
+  label,
   onAction,
   ...props
 }: AutocompleteProps<T>) {
@@ -36,7 +36,7 @@ export function Autocomplete<T>({
   return (
     <div className={cn("space-y-base")}>
       <AriaAutocomplete filter={contains} {...props}>
-        <SearchField aria-label={placeholder} placeholder={placeholder} />
+        <SearchField aria-label={label} label={label} />
         <Menu
           selectionMode={selectionMode}
           selectedKeys={selectedKeys}

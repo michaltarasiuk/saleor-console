@@ -18,8 +18,7 @@ export function OrderStatusTabs() {
         aria-label={intl.formatMessage({
           id: "C9WQ46",
           defaultMessage: "Order Status Tabs",
-        })}
-        className={cn("gap-base flex")}>
+        })}>
         <Tab
           id={confirmedTabId}
           icon={OrderBoxIcon}

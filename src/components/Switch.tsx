@@ -13,6 +13,7 @@ export function Switch({children, ...props}: SwitchProps) {
       className={cn(
         "gap-small-100 flex cursor-pointer items-center",
         "disabled:opacity-50",
+        "read-only:opacity-50",
         text(),
         props.className,
       )}>

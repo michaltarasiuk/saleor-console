@@ -86,7 +86,7 @@ function LanguageSelectorAutocomplete() {
     <Autocomplete
       selectionMode="single"
       selectedKeys={[currentLocale]}
-      placeholder={intl.formatMessage({
+      label={intl.formatMessage({
         id: "xmcVZ0",
         defaultMessage: "Search",
       })}

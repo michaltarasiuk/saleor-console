@@ -2,12 +2,23 @@
 
 import {
   ToggleButton as AriaToggleButton,
+  ToggleButtonGroup as AriaToggleButtonGroup,
+  type ToggleButtonGroupProps,
   type ToggleButtonProps,
 } from "react-aria-components";
 
 import {cn} from "@/utils/cn";
 
-export {ToggleButtonGroup} from "react-aria-components";
+export function ToggleButtonGroup({
+  children,
+  ...props
+}: ToggleButtonGroupProps) {
+  return (
+    <AriaToggleButtonGroup className={cn("gap-base flex", props.className)}>
+      {children}
+    </AriaToggleButtonGroup>
+  );
+}
 
 export function ToggleButton({children, ...props}: ToggleButtonProps) {
   return (

@@ -6,6 +6,7 @@ import {globalIgnores} from "eslint/config";
 import formatjs from "eslint-plugin-formatjs";
 import reactRefresh from "eslint-plugin-react-refresh";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
+import storybook from "eslint-plugin-storybook";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -83,12 +84,13 @@ const eslintConfig = [
     },
   },
   {
-    files: ["src/app/**/layout.tsx", "src/app/**/page.tsx"],
+    files: ["src/app/**/layout.tsx", "src/app/**/page.tsx", "**/*.story.tsx"],
     rules: {
       "react-refresh/only-export-components": "off",
     },
   },
   globalIgnores([".next"]),
+  ...storybook.configs["flat/recommended"],
 ];
 export default eslintConfig;
 

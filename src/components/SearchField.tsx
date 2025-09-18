@@ -16,15 +16,11 @@ import {IconButton} from "./IconButton";
 import {Input} from "./Input";
 
 interface SearchFieldProps extends AriaSearchFieldProps {
-  placeholder?: string;
+  label?: string;
   description?: string;
 }
 
-export function SearchField({
-  placeholder,
-  description,
-  ...props
-}: SearchFieldProps) {
+export function SearchField({label, description, ...props}: SearchFieldProps) {
   return (
     <AriaSearchField {...props}>
       {({isEmpty}) => (
@@ -35,7 +31,7 @@ export function SearchField({
               className={cn("start-small-100 pointer-events-none absolute")}
             />
             <Input
-              placeholder={placeholder}
+              placeholder={label}
               className={cn(
                 "py-small-300 px-large-500",
                 "appearance-none [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden",
