@@ -9,7 +9,7 @@ import {isDefined} from "@/utils/is-defined";
 import {
   CheckoutDeliveryForm,
   SkeletonCheckoutDeliveryForm,
-} from "./_components/CheckoutDeliveryForm";
+} from "./_components/CheckoutDelivery";
 
 const CheckoutDelivery_CheckoutQuery = graphql(`
   query CheckoutDelivery_Checkout($id: ID!) {

@@ -38,6 +38,7 @@ export function Delivery({checkout}: DeliveryProps) {
     fragmentName: "Delivery_Checkout",
     from: checkout,
   });
+  const headingId = useId();
   const shipId = useId();
   const pickUpId = useId();
   const [value, setValue] = useState(
@@ -50,10 +51,14 @@ export function Delivery({checkout}: DeliveryProps) {
   }
   return (
     <section className={cn("space-y-base")}>
-      <Heading>
+      <Heading id={headingId}>
         <FormattedMessage id="drqP2L" defaultMessage="Delivery" />
       </Heading>
-      <RadioGroup variant="group" value={value} onChange={setValue}>
+      <RadioGroup
+        variant="group"
+        value={value}
+        onChange={setValue}
+        aria-labelledby={headingId}>
         <Radio
           value={shipId}
           secondaryContent={

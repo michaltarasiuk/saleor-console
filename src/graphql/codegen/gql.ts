@@ -18,6 +18,7 @@ type Documents = {
   "\n  mutation Signup($input: AccountRegisterInput!) {\n    accountRegister(input: $input) {\n      requiresConfirmation\n      errors {\n        ...AccountValidationError @unmask\n      }\n    }\n  }\n": typeof types.SignupDocument;
   "\n  mutation ConfirmAccount($email: String!, $token: String!) {\n    confirmAccount(email: $email, token: $token) {\n      user {\n        isActive\n      }\n    }\n  }\n": typeof types.ConfirmAccountDocument;
   "\n  mutation AddPromoCode($id: ID!, $promoCode: String!) {\n    checkoutAddPromoCode(id: $id, promoCode: $promoCode) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n": typeof types.AddPromoCodeDocument;
+  "\n  mutation CompleteCheckout($id: ID!) {\n    checkoutComplete(id: $id) {\n      errors {\n        __typename\n      }\n    }\n  }\n": typeof types.CompleteCheckoutDocument;
   "\n  mutation BillingAddressUpdate($id: ID!, $billingAddress: AddressInput!) {\n    checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n": typeof types.BillingAddressUpdateDocument;
   "\n  mutation DeliveryMethodUpdate($id: ID!, $deliveryMethodId: ID!) {\n    checkoutDeliveryMethodUpdate(id: $id, deliveryMethodId: $deliveryMethodId) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n": typeof types.DeliveryMethodUpdateDocument;
   "\n  mutation EmailUpdate($id: ID!, $email: String!) {\n    checkoutEmailUpdate(id: $id, email: $email) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n": typeof types.EmailUpdateDocument;
@@ -51,6 +52,8 @@ const documents: Documents = {
     types.ConfirmAccountDocument,
   "\n  mutation AddPromoCode($id: ID!, $promoCode: String!) {\n    checkoutAddPromoCode(id: $id, promoCode: $promoCode) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n":
     types.AddPromoCodeDocument,
+  "\n  mutation CompleteCheckout($id: ID!) {\n    checkoutComplete(id: $id) {\n      errors {\n        __typename\n      }\n    }\n  }\n":
+    types.CompleteCheckoutDocument,
   "\n  mutation BillingAddressUpdate($id: ID!, $billingAddress: AddressInput!) {\n    checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n":
     types.BillingAddressUpdateDocument,
   "\n  mutation DeliveryMethodUpdate($id: ID!, $deliveryMethodId: ID!) {\n    checkoutDeliveryMethodUpdate(id: $id, deliveryMethodId: $deliveryMethodId) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n":
@@ -137,6 +140,12 @@ export function graphql(
 export function graphql(
   source: "\n  mutation AddPromoCode($id: ID!, $promoCode: String!) {\n    checkoutAddPromoCode(id: $id, promoCode: $promoCode) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  mutation AddPromoCode($id: ID!, $promoCode: String!) {\n    checkoutAddPromoCode(id: $id, promoCode: $promoCode) {\n      errors {\n        ...CheckoutValidationError @unmask\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation CompleteCheckout($id: ID!) {\n    checkoutComplete(id: $id) {\n      errors {\n        __typename\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation CompleteCheckout($id: ID!) {\n    checkoutComplete(id: $id) {\n      errors {\n        __typename\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

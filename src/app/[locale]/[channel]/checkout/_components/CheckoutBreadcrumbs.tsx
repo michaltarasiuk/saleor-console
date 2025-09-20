@@ -16,6 +16,7 @@ export function CheckoutBreadcrumbs() {
   const pathWithoutLocaleAndChannel = pathname
     .replace(joinPathSegments(locale), "")
     .replace(joinPathSegments(channel), "");
+  const isReviewPage = Routes.checkout.review === pathWithoutLocaleAndChannel;
   function getBreadcrumbLinkProps(href: string): BreadcrumbLinkProps {
     return {
       href,
@@ -38,6 +39,11 @@ export function CheckoutBreadcrumbs() {
       <BreadcrumbLink {...getBreadcrumbLinkProps(Routes.checkout.billing)}>
         <FormattedMessage id="Tbo377" defaultMessage="Billing" />
       </BreadcrumbLink>
+      {isReviewPage && (
+        <BreadcrumbLink href={Routes.checkout.review}>
+          <FormattedMessage id="R+J5ox" defaultMessage="Review" />
+        </BreadcrumbLink>
+      )}
     </Breadcrumbs>
   );
 }
@@ -52,6 +58,8 @@ function getBreadcrumbIndex(href: string): number {
       return 2;
     case Routes.checkout.billing:
       return 3;
+    case Routes.checkout.review:
+      return 4;
     default:
       return -1;
   }
