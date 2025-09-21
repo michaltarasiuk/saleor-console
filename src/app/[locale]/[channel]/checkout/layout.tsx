@@ -44,7 +44,7 @@ export default async function CheckoutLayout({children}: CheckoutLayoutProps) {
       <div className={cn("bg-base-background-subdued hidden", "md:block")}>
         <aside
           className={cn(
-            "max-w-shell-order-summary-inline-size p-large-500 space-y-large-200",
+            "max-w-shell-order-summary-inline-size p-large-500 space-y-large-200 sticky top-0",
           )}>
           <CheckoutSummary />
         </aside>
