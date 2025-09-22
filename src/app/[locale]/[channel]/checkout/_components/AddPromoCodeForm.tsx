@@ -5,6 +5,7 @@ import invariant from "tiny-invariant";
 
 import {Button} from "@/components/Button";
 import {Form} from "@/components/Form";
+import {SkeletonInput} from "@/components/Input";
 import {TextField} from "@/components/TextField";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
@@ -35,7 +36,7 @@ export function AddPromoCodeForm() {
           id: "CyOkb5",
           defaultMessage: "Promo Code",
         })}
-        className={cn("w-full")}
+        className={cn("flex-1")}
         isRequired
       />
       <Button
@@ -46,5 +47,16 @@ export function AddPromoCodeForm() {
         <FormattedMessage id="EWw/tK" defaultMessage="Apply" />
       </Button>
     </Form>
+  );
+}
+
+export function SkeletonAddPromoCodeForm() {
+  return (
+    <div className={cn("gap-base flex")}>
+      <SkeletonInput className={cn("flex-1")} />
+      <Button isDisabled>
+        <FormattedMessage id="EWw/tK" defaultMessage="Apply" />
+      </Button>
+    </div>
   );
 }

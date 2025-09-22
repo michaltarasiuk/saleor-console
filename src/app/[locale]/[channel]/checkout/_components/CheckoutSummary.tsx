@@ -2,7 +2,11 @@ import {ProductList} from "@/components/ProductList";
 import {SummaryDisclosure} from "@/components/SummaryDisclosure";
 import {cn} from "@/utils/cn";
 
-import {AddPromoCodeForm} from "./AddPromoCodeForm";
+import {AddPromoCodeForm, SkeletonAddPromoCodeForm} from "./AddPromoCodeForm";
+import {
+  CheckoutMoneyLines,
+  SkeletonCheckoutMoneyLines,
+} from "./CheckoutMoneyLines";
 
 export function CheckoutSummaryDisclosure() {
   return (
@@ -22,10 +26,16 @@ export function CheckoutSummary() {
     <>
       <ProductList />
       <AddPromoCodeForm />
+      <CheckoutMoneyLines />
     </>
   );
 }
 
 export function SkeletonCheckoutSummary() {
-  return null;
+  return (
+    <>
+      <SkeletonAddPromoCodeForm />
+      <SkeletonCheckoutMoneyLines />
+    </>
+  );
 }

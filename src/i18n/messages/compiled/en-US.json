@@ -5,6 +5,18 @@
       "value": "Ship to"
     }
   ],
+  "/+LHBr": [
+    {
+      "type": 0,
+      "value": "Estimated taxes"
+    }
+  ],
+  "/Da0uc": [
+    {
+      "type": 0,
+      "value": "Enter shipping address"
+    }
+  ],
   "/GCoTA": [
     {
       "type": 0,
@@ -275,6 +287,18 @@
       "value": "Delete"
     }
   ],
+  "L8seEc": [
+    {
+      "type": 0,
+      "value": "Subtotal"
+    }
+  ],
+  "MJ2jZQ": [
+    {
+      "type": 0,
+      "value": "Total"
+    }
+  ],
   "MRNNXA": [
     {
       "type": 0,
@@ -303,6 +327,12 @@
     {
       "type": 0,
       "value": "Phone"
+    }
+  ],
+  "PRlD0A": [
+    {
+      "type": 0,
+      "value": "Shipping"
     }
   ],
   "PlBReU": [

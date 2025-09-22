@@ -27,6 +27,7 @@ export function Text({
       elementType="span"
       {...props}
       className={cn(
+        "inline-block",
         text({
           appearance,
           emphasis,

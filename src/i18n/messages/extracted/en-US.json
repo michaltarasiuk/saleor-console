@@ -2,6 +2,12 @@
   "+JsDiH": {
     "defaultMessage": "Ship to"
   },
+  "/+LHBr": {
+    "defaultMessage": "Estimated taxes"
+  },
+  "/Da0uc": {
+    "defaultMessage": "Enter shipping address"
+  },
   "/GCoTA": {
     "defaultMessage": "Clear"
   },
@@ -125,6 +131,12 @@
   "K3r6DQ": {
     "defaultMessage": "Delete"
   },
+  "L8seEc": {
+    "defaultMessage": "Subtotal"
+  },
+  "MJ2jZQ": {
+    "defaultMessage": "Total"
+  },
   "MRNNXA": {
     "defaultMessage": "Return to cart"
   },
@@ -139,6 +151,9 @@
   },
   "O95R3Z": {
     "defaultMessage": "Phone"
+  },
+  "PRlD0A": {
+    "defaultMessage": "Shipping"
   },
   "PlBReU": {
     "defaultMessage": "Log out"
