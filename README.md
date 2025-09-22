@@ -1,6 +1,6 @@
 # Saleor Storefront
 
-Working on Saleor Storefronts using GraphQL data masking, render-as-you-fetch pattern, partial pre-rendering, and streaming. For the UI components, using React Aria for the components. The storefront has branding through CSS variables.
+Working on Saleor Storefronts using GraphQL data masking, render-as-you-fetch pattern and streaming. For the UI components, using React Aria for the components. The storefront has branding through CSS variables.
 
 ## Design Files
 
