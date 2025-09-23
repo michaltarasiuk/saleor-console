@@ -21,7 +21,7 @@ const DeactivateAllTokensMutation = graphql(`
   }
 `);
 
-export async function tokensDeactivateAll(locale: Locale, channel: string) {
+export async function deactivateAllTokens(locale: Locale, channel: string) {
   const accessToken = await getAccessToken();
   await getClient().mutate({
     mutation: DeactivateAllTokensMutation,

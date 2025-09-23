@@ -5,7 +5,7 @@ import {DialogTrigger} from "@/components/Dialog";
 import {usePathnameContext} from "@/hooks/use-pathname-context";
 import {FormattedMessage} from "@/i18n/react-intl";
 
-import {tokensDeactivateAll} from "../../_actions/tokens-deactivate-all";
+import {deactivateAllTokens} from "../../_actions/deactivate-all-tokens";
 import {LogoutDialog} from "../../_components/LogoutDialog";
 
 export function DeactivateAllTokensButton() {
@@ -14,7 +14,7 @@ export function DeactivateAllTokensButton() {
     <DialogTrigger>
       <Button
         kind="secondary"
-        onClick={() => tokensDeactivateAll(...pathnameContext)}>
+        onClick={() => deactivateAllTokens(...pathnameContext)}>
         <FormattedMessage id="s3O2Si" defaultMessage="Log out everywhere" />
       </Button>
       <LogoutDialog />
