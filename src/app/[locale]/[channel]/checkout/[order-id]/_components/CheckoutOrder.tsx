@@ -41,8 +41,7 @@ export function CheckoutOrder({
       }>
       <div
         className={cn(
-          "rounded-base overflow-hidden",
-          "border-base-border border",
+          "rounded-base border-base-border overflow-hidden border",
         )}>
         <OrderDetails />
         <Divider size="small" />
@@ -72,8 +71,7 @@ export function SkeletonCheckoutOrder() {
     <div className={cn("space-y-large-300")}>
       <div
         className={cn(
-          "rounded-base overflow-hidden",
-          "border-base-border border",
+          "rounded-base border-base-border overflow-hidden border",
         )}>
         <SkeletonOrderDetails />
         <Divider size="small" />
