@@ -25,7 +25,9 @@ export default async function CheckoutLayout({
           <header className={cn("p-large-200 flex", "md:mb-large-200 md:p-0")}>
             <LinkedLogo />
           </header>
-          <CheckoutSummaryDisclosure />
+          <div className={cn("md:hidden")}>
+            <CheckoutSummaryDisclosure />
+          </div>
           <main
             className={cn(
               "p-large-200 space-y-large-300 mb-0 grow",
