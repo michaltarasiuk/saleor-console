@@ -19,8 +19,8 @@ const CheckoutOrder_OrderQuery = graphql(`
 
 export default async function CheckoutOrderPage({
   params,
-}: PageProps<"/[locale]/[channel]/checkout/[order-id]">) {
-  const {"order-id": id} = await params;
+}: PageProps<"/[locale]/[channel]/checkout/[id]">) {
+  const {id} = await params;
   return (
     <PreloadQuery
       query={CheckoutOrder_OrderQuery}

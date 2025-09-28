@@ -14,7 +14,7 @@ import {
   ReviewList,
   SkeletonReviewItem,
   SkeletonReviewList,
-} from "../../../_components/ReviewList";
+} from "../../_components/ReviewList";
 
 const DeliveryReviewList_CheckoutFragment = graphql(`
   fragment DeliveryReviewList_Checkout on Checkout {
