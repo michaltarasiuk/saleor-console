@@ -14,8 +14,8 @@ import {
 const CheckoutInformation_CheckoutQuery = graphql(`
   query CheckoutInformation_Checkout($id: ID!) {
     checkout(id: $id) {
-      ...Contact_Checkout
-      ...ShippingAddress_Checkout
+      ...CheckoutSummary_Checkout
+      ...CheckoutInformationForm_Checkout
     }
   }
 `);

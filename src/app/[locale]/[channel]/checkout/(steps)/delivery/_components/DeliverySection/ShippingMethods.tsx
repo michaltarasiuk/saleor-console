@@ -4,67 +4,82 @@ import {type FragmentType, useFragment} from "@apollo/client";
 import {useId} from "react";
 
 import {Heading, SkeletonHeading} from "@/components/Heading";
+import {Money} from "@/components/Money";
 import {Radio, SkeletonRadio} from "@/components/Radio";
 import {RadioGroup, SkeletonRadioGroup} from "@/components/RadioGroup";
 import {graphql} from "@/graphql/codegen";
-import type {CollectionPoints_CheckoutFragment} from "@/graphql/codegen/graphql";
+import type {ShippingMethods_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 
-import {isCollectionPoint} from "../../_utils/delivery-method";
+import {isShippingMethod} from "../../../_utils/delivery-method";
+import {DeliveryDays} from "./DeliveryDays";
 
-const CollectionPoints_CheckoutFragment = graphql(`
-  fragment CollectionPoints_Checkout on Checkout {
+const ShippingMethods_CheckoutFragment = graphql(`
+  fragment ShippingMethods_Checkout on Checkout {
     id
     deliveryMethod {
       __typename
-      ... on Warehouse {
+      ... on ShippingMethod {
         id
       }
     }
-    availableCollectionPoints {
+    shippingMethods {
       id
-      address {
-        companyName
+      name
+      price {
+        ...Money_Money @unmask
       }
+      ...DeliveryDays_ShippingMethod
     }
   }
 `);
 
-interface CollectionPointsProps {
-  checkout: FragmentType<CollectionPoints_CheckoutFragment>;
+interface ShippingMethodsProps {
+  checkout: FragmentType<ShippingMethods_CheckoutFragment>;
 }
 
-export function CollectionPoints({checkout}: CollectionPointsProps) {
+export function ShippingMethods({checkout}: ShippingMethodsProps) {
   const {data, complete} = useFragment({
-    fragment: CollectionPoints_CheckoutFragment,
-    fragmentName: "CollectionPoints_Checkout",
+    fragment: ShippingMethods_CheckoutFragment,
+    fragmentName: "ShippingMethods_Checkout",
     from: checkout,
   });
   const headingId = useId();
   if (!complete) {
-    return <SkeletonCollectionPoints />;
+    return <SkeletonShippingMethods />;
   }
   return (
     <section className={cn("space-y-base")}>
       <Heading id={headingId}>
-        <FormattedMessage id="pRVSgm" defaultMessage="Collection points" />
+        <FormattedMessage id="RzsKm8" defaultMessage="Shipping methods" />
       </Heading>
       <RadioGroup
         variant="group"
         name="deliveryMethodId"
         defaultValue={
           isDefined(data.deliveryMethod) &&
-          isCollectionPoint(data.deliveryMethod)
+          isShippingMethod(data.deliveryMethod)
             ? data.deliveryMethod.id
             : undefined
         }
         aria-labelledby={headingId}
         isRequired>
-        {data.availableCollectionPoints.map((collectionPoint) => (
-          <Radio key={collectionPoint.id} value={collectionPoint.id}>
-            {collectionPoint.address.companyName}
+        {data.shippingMethods.map((shippingMethod) => (
+          <Radio
+            key={shippingMethod.id}
+            value={shippingMethod.id}
+            primaryContent={
+              <DeliveryDays
+                slot="description"
+                shippingMethod={shippingMethod}
+              />
+            }
+            secondaryContent={
+              <Money slot="description" money={shippingMethod.price} />
+            }>
+            {shippingMethod.name}
           </Radio>
         ))}
       </RadioGroup>
@@ -72,7 +87,7 @@ export function CollectionPoints({checkout}: CollectionPointsProps) {
   );
 }
 
-export function SkeletonCollectionPoints() {
+export function SkeletonShippingMethods() {
   return (
     <div className={cn("space-y-base")}>
       <SkeletonHeading />

@@ -17,8 +17,8 @@ const CheckoutBilling_CheckoutQuery = graphql(`
       deliveryMethod {
         __typename
       }
-      ...BillingReviewList_Checkout
-      ...BillingAddress_Checkout
+      ...CheckoutSummary_Checkout
+      ...CheckoutBillingForm_Checkout
     }
   }
 `);

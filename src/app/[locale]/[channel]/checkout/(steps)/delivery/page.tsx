@@ -17,8 +17,8 @@ const CheckoutDelivery_CheckoutQuery = graphql(`
       shippingAddress {
         __typename
       }
-      ...DeliveryReviewList_Checkout
-      ...Delivery_Checkout
+      ...CheckoutSummary_Checkout
+      ...CheckoutDeliveryForm_Checkout
     }
   }
 `);

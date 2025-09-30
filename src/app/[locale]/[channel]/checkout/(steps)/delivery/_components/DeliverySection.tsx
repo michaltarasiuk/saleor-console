@@ -7,7 +7,7 @@ import {Heading, HeadingGroup, SkeletonHeading} from "@/components/Heading";
 import {Radio, SkeletonRadio} from "@/components/Radio";
 import {RadioGroup, SkeletonRadioGroup} from "@/components/RadioGroup";
 import {graphql} from "@/graphql/codegen";
-import type {Delivery_CheckoutFragment} from "@/graphql/codegen/graphql";
+import type {DeliverySection_CheckoutFragment} from "@/graphql/codegen/graphql";
 import {FormattedMessage} from "@/i18n/react-intl";
 import {StoreIcon} from "@/icons/StoreIcon";
 import {TruckIcon} from "@/icons/TruckIcon";
@@ -15,11 +15,11 @@ import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 
 import {isCollectionPoint} from "../../_utils/delivery-method";
-import {CollectionPoints} from "./CollectionPoints";
-import {ShippingMethods} from "./ShippingMethods";
+import {CollectionPoints} from "./DeliverySection/CollectionPoints";
+import {ShippingMethods} from "./DeliverySection/ShippingMethods";
 
-const Delivery_CheckoutFragment = graphql(`
-  fragment Delivery_Checkout on Checkout {
+const DeliverySection_CheckoutFragment = graphql(`
+  fragment DeliverySection_Checkout on Checkout {
     deliveryMethod {
       __typename
     }
@@ -28,14 +28,14 @@ const Delivery_CheckoutFragment = graphql(`
   }
 `);
 
-interface DeliveryProps {
-  checkout: FragmentType<Delivery_CheckoutFragment>;
+interface DeliverySectionProps {
+  checkout: FragmentType<DeliverySection_CheckoutFragment>;
 }
 
-export function Delivery({checkout}: DeliveryProps) {
+export function DeliverySection({checkout}: DeliverySectionProps) {
   const {data, complete} = useFragment({
-    fragment: Delivery_CheckoutFragment,
-    fragmentName: "Delivery_Checkout",
+    fragment: DeliverySection_CheckoutFragment,
+    fragmentName: "DeliverySection_Checkout",
     from: checkout,
   });
   const headingId = useId();
@@ -47,7 +47,7 @@ export function Delivery({checkout}: DeliveryProps) {
       : shipId,
   );
   if (!complete) {
-    return <SkeletonDelivery />;
+    return <SkeletonDeliverySection />;
   }
   return (
     <section className={cn("space-y-base")}>
@@ -91,7 +91,7 @@ export function Delivery({checkout}: DeliveryProps) {
   );
 }
 
-export function SkeletonDelivery() {
+export function SkeletonDeliverySection() {
   return (
     <div className={cn("space-y-base")}>
       <SkeletonHeading />

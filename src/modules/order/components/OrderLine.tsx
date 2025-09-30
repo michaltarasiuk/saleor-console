@@ -1,6 +1,7 @@
 "use client";
 
 import {type FragmentType, useFragment} from "@apollo/client";
+import invariant from "tiny-invariant";
 
 import {
   ProductThumbnail,
@@ -39,9 +40,10 @@ export function OrderLine({orderLine}: OrderLineProps) {
     fragmentName: "OrderLine_Order",
     from: orderLine,
   });
-  if (!isDefined(data.variant) || !complete) {
+  if (!complete) {
     return <SkeletonOrderLine />;
   }
+  invariant(isDefined(data.variant));
   return (
     <div className={cn("gap-base flex items-center justify-between")}>
       <ProductThumbnail product={data.variant.product} />

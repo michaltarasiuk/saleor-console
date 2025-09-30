@@ -13,7 +13,7 @@ export function LinkedLogo() {
   return (
     <IntlLink href={Routes.home} className={cn("flex")}>
       <Image
-        src="/logo/saleor.svg"
+        src="/saleor-logo.svg"
         alt={intl.formatMessage({
           id: "k81S1y",
           defaultMessage: "Logo",

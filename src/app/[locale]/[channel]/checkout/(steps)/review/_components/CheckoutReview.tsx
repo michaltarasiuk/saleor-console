@@ -7,34 +7,46 @@ import type {CheckoutReview_CheckoutQuery} from "@/graphql/codegen/graphql";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 
+import {CheckoutLayout} from "../../../_components/CheckoutLayout";
+import {CheckoutBreadcrumbs} from "../../_components/CheckoutBreadcrumbs";
+import {
+  CheckoutSummary,
+  SkeletonCheckoutSummary,
+} from "../../_components/CheckoutSummary";
 import {
   CompleteOrderButton,
   SkeletonCompleteOrderButton,
 } from "./CompleteOrderButton";
 import {OrderReviewList, SkeletonOrderReviewList} from "./OrderReviewList";
 
-export function CheckoutReview({
-  queryRef,
-}: {
+interface CheckoutReviewProps {
   queryRef: QueryRef<CheckoutReview_CheckoutQuery>;
-}) {
+}
+
+export function CheckoutReview({queryRef}: CheckoutReviewProps) {
   const {data} = useReadQuery(queryRef);
   if (!isDefined(data.checkout)) {
     notFound();
   }
   return (
-    <div className={cn("space-y-large-300")}>
-      <OrderReviewList checkout={data.checkout} />
-      <CompleteOrderButton />
-    </div>
+    <CheckoutLayout summary={<CheckoutSummary checkout={data.checkout} />}>
+      <CheckoutBreadcrumbs />
+      <div className={cn("space-y-large-300")}>
+        <OrderReviewList checkout={data.checkout} />
+        <CompleteOrderButton />
+      </div>
+    </CheckoutLayout>
   );
 }
 
 export function SkeletonCheckoutReview() {
   return (
-    <div className={cn("space-y-large-300")}>
-      <SkeletonOrderReviewList />
-      <SkeletonCompleteOrderButton />
-    </div>
+    <CheckoutLayout summary={<SkeletonCheckoutSummary />}>
+      <CheckoutBreadcrumbs />
+      <div className={cn("space-y-large-300")}>
+        <SkeletonOrderReviewList />
+        <SkeletonCompleteOrderButton />
+      </div>
+    </CheckoutLayout>
   );
 }

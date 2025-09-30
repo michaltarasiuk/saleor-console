@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import "@/styles/brands/saleor.css";
+import "@/styles/themes/saleor-theme.css";
 
 import type {Viewport} from "next";
 

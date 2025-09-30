@@ -14,6 +14,7 @@ import {
 const CheckoutReview_CheckoutQuery = graphql(`
   query CheckoutReview_Checkout($id: ID!) {
     checkout(id: $id) {
+      ...CheckoutSummary_Checkout
       ...OrderReviewList_Checkout
     }
   }

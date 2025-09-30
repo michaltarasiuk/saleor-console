@@ -13,11 +13,11 @@ import {
 } from "./CheckoutOrderForm";
 import {OrderSummary, SkeletonOrderSummary} from "./OrderSummary";
 
-export function CheckoutOrder({
-  queryRef,
-}: {
+interface CheckoutOrderProps {
   queryRef: QueryRef<CheckoutOrder_OrderQuery>;
-}) {
+}
+
+export function CheckoutOrder({queryRef}: CheckoutOrderProps) {
   const {data} = useReadQuery(queryRef);
   if (!isDefined(data.order)) {
     notFound();
