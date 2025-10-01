@@ -5,7 +5,7 @@ import type {TooltipProps} from "react-aria-components";
 import {Button} from "@/components/Button";
 import {Tooltip, TooltipTrigger} from "@/components/Tooltip";
 
-type TooltipExampleProps = Pick<
+type TooltipStoryProps = Pick<
   TooltipTriggerProps,
   "defaultOpen" | "delay" | "closeDelay" | "isDisabled"
 > &
@@ -14,13 +14,13 @@ type TooltipExampleProps = Pick<
     "placement" | "containerPadding" | "offset" | "shouldFlip"
   >;
 
-function TooltipDemo({
+function TooltipStory({
   defaultOpen,
   delay,
   closeDelay,
   isDisabled,
   ...props
-}: TooltipExampleProps) {
+}: TooltipStoryProps) {
   return (
     <TooltipTrigger
       defaultOpen={defaultOpen}
@@ -34,7 +34,7 @@ function TooltipDemo({
 }
 
 const meta = {
-  component: TooltipDemo,
+  component: TooltipStory,
   argTypes: {
     defaultOpen: {
       control: "boolean",
@@ -73,7 +73,7 @@ const meta = {
         "end",
         "end top",
         "end bottom",
-      ] satisfies TooltipExampleProps["placement"][],
+      ] satisfies TooltipStoryProps["placement"][],
     },
     containerPadding: {
       control: "number",
@@ -91,7 +91,7 @@ const meta = {
         "Whether the element should flip its orientation (e.g. top to bottom or left to right) when there is insufficient space to render",
     },
   },
-} satisfies Meta<typeof TooltipDemo>;
+} satisfies Meta<typeof TooltipStory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

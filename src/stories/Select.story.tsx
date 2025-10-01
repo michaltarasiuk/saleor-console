@@ -14,7 +14,7 @@ const Countries = [
   country: new Intl.DisplayNames(["en"], {type: "region"}).of(code),
 }));
 
-function SelectDemo(props: React.ComponentProps<typeof Select>) {
+function SelectStory(props: React.ComponentProps<typeof Select>) {
   return (
     <Select {...props}>
       {Countries.map(({code, country}) => (
@@ -27,7 +27,7 @@ function SelectDemo(props: React.ComponentProps<typeof Select>) {
 }
 
 const meta = {
-  component: SelectDemo,
+  component: SelectStory,
   argTypes: {
     description: {
       control: "text",
@@ -45,7 +45,7 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof SelectDemo>;
+} satisfies Meta<typeof SelectStory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

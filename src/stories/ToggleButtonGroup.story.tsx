@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/nextjs-vite";
 import {Text} from "@/components/Text";
 import {ToggleButton, ToggleButtonGroup} from "@/components/ToggleButtonGroup";
 
-function ToggleButtonGroupDemo() {
+function ToggleButtonGroupStory() {
   return (
     <ToggleButtonGroup>
       <ToggleButton>
@@ -26,8 +26,8 @@ function ToggleButtonGroupDemo() {
 }
 
 const meta = {
-  component: ToggleButtonGroupDemo,
-} satisfies Meta<typeof ToggleButtonGroupDemo>;
+  component: ToggleButtonGroupStory,
+} satisfies Meta<typeof ToggleButtonGroupStory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

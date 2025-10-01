@@ -5,7 +5,7 @@ import {RadioGroup} from "@/components/RadioGroup";
 
 type RadioGroupProps = React.ComponentProps<typeof RadioGroup>;
 
-function RadioGroupDemo(props: RadioGroupProps) {
+function RadioGroupStory(props: RadioGroupProps) {
   return (
     <RadioGroup {...props}>
       <Radio value="1">Label 1</Radio>
@@ -16,7 +16,7 @@ function RadioGroupDemo(props: RadioGroupProps) {
 }
 
 const meta = {
-  component: RadioGroupDemo,
+  component: RadioGroupStory,
   argTypes: {
     variant: {
       control: "select",
@@ -32,7 +32,7 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof RadioGroupDemo>;
+} satisfies Meta<typeof RadioGroupStory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

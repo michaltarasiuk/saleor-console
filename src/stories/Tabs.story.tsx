@@ -6,7 +6,7 @@ import {Text} from "@/components/Text";
 import {ClockIcon} from "@/icons/ClockIcon";
 import {OrderBoxIcon} from "@/icons/OrderBoxIcon";
 
-function TabsDemo() {
+function TabsStory() {
   const confirmedTabId = useId();
   const pendingTabId = useId();
   return (
@@ -26,8 +26,8 @@ function TabsDemo() {
 }
 
 const meta = {
-  component: TabsDemo,
-} satisfies Meta<typeof TabsDemo>;
+  component: TabsStory,
+} satisfies Meta<typeof TabsStory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

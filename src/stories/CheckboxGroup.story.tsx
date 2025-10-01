@@ -5,7 +5,7 @@ import {CheckboxGroup} from "@/components/CheckboxGroup";
 
 type CheckboxGroupProps = React.ComponentProps<typeof CheckboxGroup>;
 
-function CheckboxGroupDemo(props: CheckboxGroupProps) {
+function CheckboxGroupStory(props: CheckboxGroupProps) {
   return (
     <CheckboxGroup {...props}>
       <Checkbox value="1">Label 1</Checkbox>
@@ -16,7 +16,7 @@ function CheckboxGroupDemo(props: CheckboxGroupProps) {
 }
 
 const meta = {
-  component: CheckboxGroupDemo,
+  component: CheckboxGroupStory,
   argTypes: {
     variant: {
       control: "select",
@@ -32,7 +32,7 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof CheckboxGroupDemo>;
+} satisfies Meta<typeof CheckboxGroupStory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

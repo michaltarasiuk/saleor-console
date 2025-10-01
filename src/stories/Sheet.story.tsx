@@ -8,10 +8,10 @@ import {cn} from "@/utils/cn";
 type SheetTriggerProps = React.ComponentProps<typeof SheetTrigger>;
 type SheetProps = React.ComponentProps<typeof Sheet>;
 
-type SheetDemoProps = Pick<SheetTriggerProps, "defaultOpen"> &
+type SheetStoryProps = Pick<SheetTriggerProps, "defaultOpen"> &
   Pick<SheetProps, "side">;
 
-function SheetDemo({defaultOpen, side}: SheetDemoProps) {
+function SheetStory({defaultOpen, side}: SheetStoryProps) {
   return (
     <SheetTrigger defaultOpen={defaultOpen}>
       <IconButton variant="outline" className={cn("p-small-100")}>
@@ -23,7 +23,7 @@ function SheetDemo({defaultOpen, side}: SheetDemoProps) {
 }
 
 const meta = {
-  component: SheetDemo,
+  component: SheetStory,
   argTypes: {
     defaultOpen: {
       control: "boolean",
@@ -33,7 +33,7 @@ const meta = {
       options: ["start", "end"] satisfies SheetProps["side"][],
     },
   },
-} satisfies Meta<typeof SheetDemo>;
+} satisfies Meta<typeof SheetStory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

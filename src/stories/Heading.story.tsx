@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from "@storybook/nextjs-vite";
 
 import {Heading, HeadingGroup} from "@/components/Heading";
 
-function HeadingDemo() {
+function HeadingStory() {
   return (
     <>
       <Heading>Heading 1</Heading>
@@ -17,8 +17,8 @@ function HeadingDemo() {
 }
 
 const meta = {
-  component: HeadingDemo,
-} satisfies Meta<typeof HeadingDemo>;
+  component: HeadingStory,
+} satisfies Meta<typeof HeadingStory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
