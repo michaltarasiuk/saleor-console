@@ -1,6 +1,5 @@
 "use client";
 
-import {useState} from "react";
 import {Button} from "react-aria-components";
 
 import {useIsMobile} from "@/hooks/use-is-mobile";
@@ -11,7 +10,6 @@ import {useIntl} from "@/i18n/react-intl";
 import {getLanguageDisplayName} from "@/i18n/utils/get-language-display-name";
 import {isLocaleSupported} from "@/i18n/utils/is-locale-supported";
 import {ChevronDownIcon} from "@/icons/ChevronDownIcon";
-import {ChevronUpIcon} from "@/icons/ChevronUpIcon";
 import {text} from "@/styles/text";
 import {cn} from "@/utils/cn";
 
@@ -20,13 +18,12 @@ import {Dialog, DialogHeader, DialogTrigger, Modal} from "./Dialog";
 import {Popover, PopoverTrigger} from "./Popover";
 
 export function LanguageSelector() {
-  const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
   const intl = useIntl();
   if (!isMobile) {
     return (
-      <PopoverTrigger isOpen={isOpen} onOpenChange={setIsOpen}>
-        <LanguageSelectorButton isOpen={isOpen} />
+      <PopoverTrigger>
+        <LanguageSelectorButton />
         <Popover>
           <LanguageSelectorAutocomplete />
         </Popover>
@@ -34,8 +31,8 @@ export function LanguageSelector() {
     );
   }
   return (
-    <DialogTrigger isOpen={isOpen} onOpenChange={setIsOpen}>
-      <LanguageSelectorButton isOpen={isOpen} />
+    <DialogTrigger>
+      <LanguageSelectorButton />
       <Modal isDismissable>
         <Dialog className={cn("space-y-base")}>
           {({close}) => (
@@ -56,7 +53,7 @@ export function LanguageSelector() {
   );
 }
 
-export function LanguageSelectorButton({isOpen}: {isOpen?: boolean}) {
+export function LanguageSelectorButton() {
   const locale = useLocale();
   return (
     <Button
@@ -69,16 +66,15 @@ export function LanguageSelectorButton({isOpen}: {isOpen?: boolean}) {
         }),
       )}>
       {getLanguageDisplayName(locale)}
-      {isOpen ? (
-        <ChevronUpIcon aria-hidden className={cn("size-3")} />
-      ) : (
-        <ChevronDownIcon aria-hidden className={cn("size-3")} />
-      )}
+      <ChevronDownIcon
+        aria-hidden
+        className={cn("stroke-base-accent size-3")}
+      />
     </Button>
   );
 }
 
-function LanguageSelectorAutocomplete() {
+export function LanguageSelectorAutocomplete() {
   const currentLocale = useLocale();
   const {setLocale} = useSetLocale();
   const intl = useIntl();
