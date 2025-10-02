@@ -1,4 +1,4 @@
-import {cva, type VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "cva";
 
 import {text} from "@/styles/text";
 import {cn} from "@/utils/cn";

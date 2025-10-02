@@ -1,9 +1,8 @@
 import type {Meta, StoryObj} from "@storybook/nextjs-vite";
-import type {VariantProps} from "class-variance-authority";
 
 import {TextBlock} from "@/components/TextBlock";
 
-type TextBlockProps = VariantProps<typeof TextBlock>;
+type TextBlockProps = React.ComponentProps<typeof TextBlock>;
 
 const meta = {
   component: TextBlock,

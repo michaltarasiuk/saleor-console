@@ -1,6 +1,6 @@
 "use client";
 
-import {cva} from "class-variance-authority";
+import {cva} from "cva";
 import {
   Dialog,
   type DialogProps,

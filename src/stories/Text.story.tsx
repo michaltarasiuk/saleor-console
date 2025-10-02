@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from "@storybook/nextjs-vite";
-import type {VariantProps} from "class-variance-authority";
+import type {VariantProps} from "cva";
 
 import {Text} from "@/components/Text";
 

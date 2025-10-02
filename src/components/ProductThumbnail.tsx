@@ -1,7 +1,7 @@
 "use client";
 
 import {type FragmentType, useFragment} from "@apollo/client";
-import {cva, type VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "cva";
 import Image from "next/image";
 import {useState} from "react";
 

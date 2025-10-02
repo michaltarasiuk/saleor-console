@@ -1,6 +1,6 @@
 "use client";
 
-import {cva, type VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "cva";
 import {
   Text as AriaText,
   type TextProps as AriaTextProps,

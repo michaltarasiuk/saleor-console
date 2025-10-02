@@ -1,4 +1,4 @@
-import {cva, type VariantProps} from "class-variance-authority";
+import {cva, type VariantProps} from "cva";
 import {Suspense} from "react";
 
 import {IntlLink} from "@/i18n/components/IntlLink";

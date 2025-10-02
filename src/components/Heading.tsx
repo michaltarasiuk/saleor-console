@@ -1,6 +1,6 @@
 "use client";
 
-import {cva} from "class-variance-authority";
+import {cva} from "cva";
 import {createContext, use} from "react";
 import {Heading as AriaHeading, type HeadingProps} from "react-aria-components";
 
