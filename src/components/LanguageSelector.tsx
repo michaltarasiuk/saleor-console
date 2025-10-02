@@ -14,7 +14,7 @@ import {text} from "@/styles/text";
 import {cn} from "@/utils/cn";
 
 import {Autocomplete, AutocompleteItem} from "./Autocomplete";
-import {Dialog, DialogHeader, DialogTrigger, Modal} from "./Dialog";
+import {Dialog, DialogTrigger, Modal} from "./Dialog";
 import {Popover, PopoverTrigger} from "./Popover";
 
 export function LanguageSelector() {
@@ -34,19 +34,12 @@ export function LanguageSelector() {
     <DialogTrigger>
       <LanguageSelectorButton />
       <Modal isDismissable>
-        <Dialog className={cn("space-y-base")}>
-          {({close}) => (
-            <>
-              <DialogHeader
-                title={intl.formatMessage({
-                  id: "ZMXbRJ",
-                  defaultMessage: "Select Language",
-                })}
-                onClose={close}
-              />
-              <LanguageSelectorAutocomplete />
-            </>
-          )}
+        <Dialog
+          heading={intl.formatMessage({
+            id: "ZMXbRJ",
+            defaultMessage: "Select Language",
+          })}>
+          <LanguageSelectorAutocomplete />
         </Dialog>
       </Modal>
     </DialogTrigger>

@@ -4,7 +4,7 @@ import {Suspense} from "react";
 import {Button} from "react-aria-components";
 
 import {AddressFields, SkeletonAddressFields} from "@/components/AddressFields";
-import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
+import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
 import {useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
@@ -32,20 +32,13 @@ export function EditAddressDialog({children}: {children: React.ReactNode}) {
         </div>
       </Button>
       <Modal size="large" isDismissable>
-        <Dialog className={cn("space-y-base")}>
+        <Dialog
+          heading={intl.formatMessage({
+            id: "ex+q9+",
+            defaultMessage: "Edit address",
+          })}>
           {({close}) => (
-            <>
-              <DialogHeader
-                title={intl.formatMessage({
-                  id: "ex+q9+",
-                  defaultMessage: "Edit address",
-                })}
-                onClose={close}
-              />
-              <EditAddressForm
-                cancelButton={<CancelButton onClick={close} />}
-              />
-            </>
+            <EditAddressForm cancelButton={<CancelButton onClick={close} />} />
           )}
         </Dialog>
       </Modal>

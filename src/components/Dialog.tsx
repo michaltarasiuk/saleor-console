@@ -6,44 +6,47 @@ import {
   ModalOverlay,
   type ModalOverlayProps,
 } from "react-aria-components";
-import {Dialog as AriaDialog, type DialogProps} from "react-aria-components";
+import {
+  Dialog as AriaDialog,
+  type DialogProps as AriaDialogProps,
+} from "react-aria-components";
 
 import {CloseIcon} from "@/icons/CloseIcon";
 import {cn} from "@/utils/cn";
+import {isDefined} from "@/utils/is-defined";
 
 import {Heading} from "./Heading";
 import {IconButton} from "./IconButton";
 
 export {DialogTrigger} from "react-aria-components";
 
-export function Dialog({children, ...props}: DialogProps) {
+interface DialogProps extends AriaDialogProps {
+  heading?: string;
+}
+
+export function Dialog({heading, children, ...props}: DialogProps) {
   return (
     <AriaDialog
       {...props}
       className={cn(
-        "bg-base-background p-large-200 size-full",
+        "bg-base-background p-large-200 space-y-base size-full",
         "outline-none",
         props.className,
       )}>
-      {children}
+      {(renderProps) => (
+        <>
+          {isDefined(heading) && (
+            <header className={cn("flex items-center justify-between")}>
+              <Heading level={2}>{heading}</Heading>
+              <IconButton className={cn("size-6")} onClick={renderProps.close}>
+                <CloseIcon aria-hidden />
+              </IconButton>
+            </header>
+          )}
+          {typeof children === "function" ? children(renderProps) : children}
+        </>
+      )}
     </AriaDialog>
-  );
-}
-
-export function DialogHeader({
-  title,
-  onClose,
-}: {
-  title: string;
-  onClose: () => void;
-}) {
-  return (
-    <header className={cn("flex items-center justify-between")}>
-      <Heading level={2}>{title}</Heading>
-      <IconButton className={cn("size-6")} onClick={onClose}>
-        <CloseIcon aria-hidden />
-      </IconButton>
-    </header>
   );
 }
 

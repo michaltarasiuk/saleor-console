@@ -1,5 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/nextjs-vite";
 
+import {ContentPlaceholder} from "@/components/ContentPlaceholder";
 import {IconButton} from "@/components/IconButton";
 import {Sheet, SheetTrigger} from "@/components/Sheet";
 import {HamburgerIcon} from "@/icons/HamburgerIcon";
@@ -17,7 +18,9 @@ function SheetStory({defaultOpen, side}: SheetStoryProps) {
       <IconButton variant="outline" className={cn("p-small-100")}>
         <HamburgerIcon />
       </IconButton>
-      <Sheet side={side} />
+      <Sheet side={side} className={cn("p-base")}>
+        <ContentPlaceholder />
+      </Sheet>
     </SheetTrigger>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
+import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
 import {IconButton} from "@/components/IconButton";
 import {TextField} from "@/components/TextField";
@@ -19,18 +19,13 @@ export function EditProfileDialog() {
         <PenIcon aria-hidden className={cn("stroke-base-accent")} />
       </IconButton>
       <Modal size="large" isDismissable>
-        <Dialog className={cn("space-y-base")}>
+        <Dialog
+          heading={intl.formatMessage({
+            id: "nYrKWp",
+            defaultMessage: "Edit profile",
+          })}>
           {({close}) => (
-            <>
-              <DialogHeader
-                title={intl.formatMessage({
-                  id: "nYrKWp",
-                  defaultMessage: "Edit profile",
-                })}
-                onClose={close}
-              />
-              <ProfileForm cancelButton={<CancelButton onClick={close} />} />
-            </>
+            <ProfileForm cancelButton={<CancelButton onClick={close} />} />
           )}
         </Dialog>
       </Modal>

@@ -1,7 +1,7 @@
 "use client";
 
 import {Button} from "@/components/Button";
-import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
+import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
 import {Text} from "@/components/Text";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
@@ -14,16 +14,13 @@ export function DeleteAddressDialog() {
         <FormattedMessage id="K3r6DQ" defaultMessage="Delete" />
       </Button>
       <Modal isDismissable>
-        <Dialog>
+        <Dialog
+          heading={intl.formatMessage({
+            id: "I9ur7M",
+            defaultMessage: "Delete address?",
+          })}>
           {({close}) => (
             <>
-              <DialogHeader
-                title={intl.formatMessage({
-                  id: "I9ur7M",
-                  defaultMessage: "Delete address?",
-                })}
-                onClose={close}
-              />
               <DeleteAddressDialogContent />
               <DeleteAddressDialogActions onClose={close} />
             </>

@@ -5,7 +5,7 @@ import {Button} from "react-aria-components";
 
 import {AddressFields, SkeletonAddressFields} from "@/components/AddressFields";
 import {Checkbox} from "@/components/Checkbox";
-import {Dialog, DialogHeader, DialogTrigger, Modal} from "@/components/Dialog";
+import {Dialog, DialogTrigger, Modal} from "@/components/Dialog";
 import {Form} from "@/components/Form";
 import {FormattedMessage, useIntl} from "@/i18n/react-intl";
 import {PlusIcon} from "@/icons/PlusIcon";
@@ -20,18 +20,13 @@ export function AddAddressDialog() {
     <DialogTrigger>
       <AddButton />
       <Modal size="large" isDismissable>
-        <Dialog className={cn("space-y-base")}>
+        <Dialog
+          heading={intl.formatMessage({
+            id: "v0xaYB",
+            defaultMessage: "Add address",
+          })}>
           {({close}) => (
-            <>
-              <DialogHeader
-                title={intl.formatMessage({
-                  id: "v0xaYB",
-                  defaultMessage: "Add address",
-                })}
-                onClose={close}
-              />
-              <AddAddressForm cancelButton={<CancelButton onClick={close} />} />
-            </>
+            <AddAddressForm cancelButton={<CancelButton onClick={close} />} />
           )}
         </Dialog>
       </Modal>
