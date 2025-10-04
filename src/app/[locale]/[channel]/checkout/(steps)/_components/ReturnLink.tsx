@@ -7,6 +7,7 @@ type ReturnLinkProps = React.ComponentProps<typeof IntlLink>;
 export function ReturnLink({children, ...props}: ReturnLinkProps) {
   return (
     <IntlLink
+      {...props}
       className={cn(
         props.className,
         "gap-small-200 flex items-center justify-center",
