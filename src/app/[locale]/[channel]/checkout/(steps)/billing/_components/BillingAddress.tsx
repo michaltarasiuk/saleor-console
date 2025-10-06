@@ -40,7 +40,7 @@ export function BillingAddress({checkout}: BillingAddressProps) {
     fragmentName: "BillingAddress_Checkout",
     from: checkout,
   });
-  const [value, setValue] = useState<"yes" | "no">("yes");
+  const [value, setValue] = useState<"YES" | "NO">("YES");
   const headingId = useId();
   if (!complete) {
     return <SkeletonAddressFields />;
@@ -56,25 +56,25 @@ export function BillingAddress({checkout}: BillingAddressProps) {
         value={value}
         onChange={(newValue) => setValue(newValue as typeof value)}
         aria-labelledby={headingId}>
-        <Radio value="yes">
+        <Radio value={"YES" satisfies typeof value}>
           <FormattedMessage
             id="ipwTkh"
             defaultMessage="Same as shipping address"
           />
         </Radio>
-        <Radio value="no">
+        <Radio value={"NO" satisfies typeof value}>
           <FormattedMessage
             id="o58q+n"
             defaultMessage="Use a different billing address"
           />
         </Radio>
       </RadioGroup>
-      {value === "yes" && (
+      {value === "YES" && (
         <VisuallyHidden>
           <CompletedAddressFields address={shippingAddress!} />
         </VisuallyHidden>
       )}
-      {value === "no" &&
+      {value === "NO" &&
         (isDefined(billingAddress) ? (
           <CompletedAddressFields address={billingAddress} />
         ) : (

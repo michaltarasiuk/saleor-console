@@ -39,12 +39,10 @@ export function DeliverySection({checkout}: DeliverySectionProps) {
     from: checkout,
   });
   const headingId = useId();
-  const shipId = useId();
-  const pickUpId = useId();
   const [value, setValue] = useState(
     isDefined(data.deliveryMethod) && isCollectionPoint(data.deliveryMethod)
-      ? pickUpId
-      : shipId,
+      ? ("PICK_UP" as const)
+      : ("SHIP_IT" as const),
   );
   if (!complete) {
     return <SkeletonDeliverySection />;
@@ -57,10 +55,10 @@ export function DeliverySection({checkout}: DeliverySectionProps) {
       <RadioGroup
         variant="group"
         value={value}
-        onChange={setValue}
+        onChange={(newValue) => setValue(newValue as typeof value)}
         aria-labelledby={headingId}>
         <Radio
-          value={shipId}
+          value={"SHIP_IT" satisfies typeof value}
           secondaryContent={
             <TruckIcon
               aria-hidden
@@ -70,7 +68,7 @@ export function DeliverySection({checkout}: DeliverySectionProps) {
           <FormattedMessage id="riCv7f" defaultMessage="Ship" />
         </Radio>
         <Radio
-          value={pickUpId}
+          value={"PICK_UP" satisfies typeof value}
           secondaryContent={
             <StoreIcon
               aria-hidden
@@ -81,7 +79,7 @@ export function DeliverySection({checkout}: DeliverySectionProps) {
         </Radio>
       </RadioGroup>
       <HeadingGroup>
-        {value === shipId ? (
+        {value === "SHIP_IT" ? (
           <ShippingMethods checkout={data} />
         ) : (
           <CollectionPoints checkout={data} />
