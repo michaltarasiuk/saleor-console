@@ -14,7 +14,7 @@ import type {CheckoutInformationForm_CheckoutFragment} from "@/graphql/codegen/g
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
-import {updateInformation} from "../../_actions/update-information";
+import {updateCheckoutInformation} from "../../_actions/update-information";
 import {ReturnLink} from "../../_components/ReturnLink";
 import {ContactSection, SkeletonContactSection} from "./ContactSection";
 import {ShippingAddress, SkeletonShippingAddress} from "./ShippingAddress";
@@ -34,7 +34,7 @@ interface CheckoutInformationFormProps {
 export function CheckoutInformationForm({
   checkout,
 }: CheckoutInformationFormProps) {
-  const [{errors}, formAction] = useActionState(updateInformation, {
+  const [{errors}, formAction] = useActionState(updateCheckoutInformation, {
     errors: {},
   });
   const [isPending, startTransition] = useTransition();

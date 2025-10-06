@@ -23,7 +23,10 @@ const BillingAddressUpdateMutation = graphql(`
   }
 `);
 
-export async function updateBilling(_state: unknown, formData: FormData) {
+export async function updateCheckoutBilling(
+  _state: unknown,
+  formData: FormData,
+) {
   const checkoutId = await getCheckoutId();
   if (!isDefined(checkoutId)) {
     notFound();

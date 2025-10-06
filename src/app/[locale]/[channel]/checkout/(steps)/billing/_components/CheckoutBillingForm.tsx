@@ -14,7 +14,7 @@ import type {CheckoutBillingForm_CheckoutFragment} from "@/graphql/codegen/graph
 import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 
-import {updateBilling} from "../../_actions/update-billing";
+import {updateCheckoutBilling} from "../../_actions/update-billing";
 import {ReturnLink} from "../../_components/ReturnLink";
 import {BillingAddress, SkeletonBillingAddress} from "./BillingAddress";
 import {
@@ -35,7 +35,7 @@ interface CheckoutBillingFormProps {
 }
 
 export function CheckoutBillingForm({checkout}: CheckoutBillingFormProps) {
-  const [{errors}, formAction] = useActionState(updateBilling, {
+  const [{errors}, formAction] = useActionState(updateCheckoutBilling, {
     errors: {},
   });
   const [isPending, startTransition] = useTransition();

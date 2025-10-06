@@ -2,8 +2,8 @@ import {notFound} from "next/navigation";
 
 import {getClient} from "@/graphql/apollo-client";
 import {ChannelProvider} from "@/modules/channel/ChannelProvider";
-import {getChannelContextValue} from "@/modules/channel/utils/get-channel-context-value";
-import {getChannelSlugs} from "@/modules/channel/utils/get-channel-slugs";
+import {queryActiveChannelSlugs} from "@/modules/channel/utils/query-active-channel-slugs";
+import {queryChannelContextValue} from "@/modules/channel/utils/query-channel-context-value";
 import {isDefined} from "@/utils/is-defined";
 
 export default async function ChannelLayout({
@@ -11,7 +11,7 @@ export default async function ChannelLayout({
   ...props
 }: LayoutProps<"/[locale]/[channel]">) {
   const params = await props.params;
-  const channel = await getChannelContextValue(params.channel);
+  const channel = await queryChannelContextValue(params.channel);
   if (!isDefined(channel)) {
     notFound();
   }
@@ -22,7 +22,7 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const client = getClient();
-  const channels = await getChannelSlugs(client);
+  const channels = await queryActiveChannelSlugs(client);
   return channels.map((channel) => ({
     channel,
   }));

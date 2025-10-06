@@ -6,7 +6,7 @@ import {cn} from "@/utils/cn";
 import {PageTitle} from "../_components/PageTitie";
 import {OrdersFilterSortSheet} from "./_components/OrdersFilterSortSheet";
 import {OrderStatusTabs} from "./_components/OrderStatusTabs";
-import {OrdersView, OrdersViewSkeleton} from "./_components/OrdersView";
+import {OrdersView, SkeletonOrdersView} from "./_components/OrdersView";
 import {OrderViewProvider} from "./_components/OrderViewProvider";
 import {OrderViewToggle} from "./_components/OrderViewToggle";
 
@@ -32,7 +32,7 @@ export default async function OrdersPage({
       <div className={cn("bg-base-background rounded-large mb-6 p-5")}>
         <OrderStatusTabs />
       </div>
-      <Suspense fallback={<OrdersViewSkeleton />}>
+      <Suspense fallback={<SkeletonOrdersView />}>
         <OrdersView />
       </Suspense>
     </OrderViewProvider>

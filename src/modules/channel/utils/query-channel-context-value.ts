@@ -17,7 +17,7 @@ const ChannelContextValueQuery = graphql(`
   }
 `);
 
-export async function getChannelContextValue(slug: string) {
+export async function queryChannelContextValue(slug: string) {
   const {data} = await query({
     query: ChannelContextValueQuery,
     variables: {

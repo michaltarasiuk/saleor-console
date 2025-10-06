@@ -2,10 +2,11 @@
 
 import {createContext} from "react";
 
-import type {getChannelContextValue} from "./utils/get-channel-context-value";
+import type {queryChannelContextValue} from "./utils/query-channel-context-value";
 
-type ContextValue = NonNullable<
-  Awaited<ReturnType<typeof getChannelContextValue>>
+type QueryChannelContextValueReturn = Awaited<
+  ReturnType<typeof queryChannelContextValue>
 >;
+type ContextValue = NonNullable<QueryChannelContextValueReturn>;
 
 export const ChannelContext = createContext<ContextValue>(undefined as never);

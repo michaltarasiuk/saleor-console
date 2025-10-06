@@ -5,7 +5,7 @@ import {use} from "react";
 import {assertNever} from "@/utils/assert-never";
 
 import {OrderViewContext} from "../_utils/order-view-context";
-import {OrdersGrid, OrdersGridSkeleton} from "./OrdersGrid";
+import {OrdersGrid, SkeletonOrdersGrid} from "./OrdersGrid";
 
 export function OrdersView() {
   const {orderView} = use(OrderViewContext);
@@ -19,11 +19,11 @@ export function OrdersView() {
   }
 }
 
-export function OrdersViewSkeleton() {
+export function SkeletonOrdersView() {
   const {orderView} = use(OrderViewContext);
   switch (orderView) {
     case "grid":
-      return <OrdersGridSkeleton />;
+      return <SkeletonOrdersGrid />;
     case "table":
       return null;
     default:

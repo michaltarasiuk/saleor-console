@@ -33,9 +33,9 @@ export function OrderLines({order}: OrderLinesProps) {
   }
   return (
     <ul className={cn("space-y-base")}>
-      {data.lines.map((line) => (
-        <li key={line.id}>
-          <OrderLine orderLine={line} />
+      {data.lines.map((orderLine) => (
+        <li key={orderLine.id}>
+          <OrderLine orderLine={orderLine} />
         </li>
       ))}
     </ul>

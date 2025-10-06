@@ -45,7 +45,7 @@ const skeletonText = cva("flex h-[1lh] w-full items-center", {
     inlineSize: {
       small: "max-w-20",
       base: "max-w-32",
-      large: "max-w-42",
+      large: "max-w-38",
     },
   },
   defaultVariants: {

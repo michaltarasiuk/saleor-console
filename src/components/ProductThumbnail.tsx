@@ -13,16 +13,6 @@ import {cn} from "../utils/cn";
 import {isDefined} from "../utils/is-defined";
 import {Skeleton} from "./Skeleton";
 
-const ProductThumbnail_ProductFragment = graphql(`
-  fragment ProductThumbnail_Product on Product {
-    id
-    thumbnail {
-      url
-      alt
-    }
-  }
-`);
-
 const productThumbnail = cva(
   "rounded-base border-base-border bg-base-background relative flex items-center justify-center overflow-hidden border",
   {
@@ -37,6 +27,16 @@ const productThumbnail = cva(
     },
   },
 );
+
+const ProductThumbnail_ProductFragment = graphql(`
+  fragment ProductThumbnail_Product on Product {
+    id
+    thumbnail {
+      url
+      alt
+    }
+  }
+`);
 
 interface ProductThumbnailProps extends VariantProps<typeof productThumbnail> {
   product: FragmentType<ProductThumbnail_ProductFragment>;
@@ -84,10 +84,8 @@ const skeletonProductThumbnail = cva(null, {
   },
 });
 
-type SkeletonProductThumbnailProps = VariantProps<
-  typeof skeletonProductThumbnail
->;
-
-export function SkeletonProductThumbnail(props: SkeletonProductThumbnailProps) {
+export function SkeletonProductThumbnail(
+  props: VariantProps<typeof skeletonProductThumbnail>,
+) {
   return <Skeleton className={cn(skeletonProductThumbnail(props))} />;
 }

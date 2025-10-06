@@ -22,7 +22,10 @@ const DeliveryMethodUpdateMutation = graphql(`
   }
 `);
 
-export async function updateDelivery(_state: unknown, formData: FormData) {
+export async function updateCheckoutDelivery(
+  _state: unknown,
+  formData: FormData,
+) {
   const checkoutId = await getCheckoutId();
   if (!isDefined(checkoutId)) {
     notFound();

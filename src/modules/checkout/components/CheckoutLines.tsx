@@ -33,9 +33,9 @@ export function CheckoutLines({checkout}: CheckoutLinesProps) {
   }
   return (
     <ul className={cn("space-y-base")}>
-      {data.lines.map((line) => (
-        <li key={line.id}>
-          <CheckoutLine checkoutLine={line} />
+      {data.lines.map((checkoutLine) => (
+        <li key={checkoutLine.id}>
+          <CheckoutLine checkoutLine={checkoutLine} />
         </li>
       ))}
     </ul>
