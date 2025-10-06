@@ -104,6 +104,9 @@
   "Fce58X": {
     "defaultMessage": "No delivery charge"
   },
+  "FvxRDd": {
+    "defaultMessage": "Enter your email and password to sign up."
+  },
   "HJkcfg": {
     "defaultMessage": "Return to delivery"
   },
@@ -281,9 +284,6 @@
   "o58q+n": {
     "defaultMessage": "Use a different billing address"
   },
-  "p99EyA": {
-    "defaultMessage": "Create your account by entering your email and a password"
-  },
   "pONqz8": {
     "defaultMessage": "First name"
   },
@@ -295,9 +295,6 @@
   },
   "r5sWuC": {
     "defaultMessage": "Last 12 months"
-  },
-  "rFxf+e": {
-    "defaultMessage": "Please enter your email and password to access your account"
   },
   "riCv7f": {
     "defaultMessage": "Ship"
@@ -331,6 +328,9 @@
   },
   "w8g8zN": {
     "defaultMessage": "Complete order"
+  },
+  "wFE3Rj": {
+    "defaultMessage": "Enter your email and password to sign in."
   },
   "xULK8s": {
     "defaultMessage": "Street address 2"

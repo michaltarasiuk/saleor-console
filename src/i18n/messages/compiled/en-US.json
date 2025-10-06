@@ -225,6 +225,12 @@
       "value": "No delivery charge"
     }
   ],
+  "FvxRDd": [
+    {
+      "type": 0,
+      "value": "Enter your email and password to sign up."
+    }
+  ],
   "HJkcfg": [
     {
       "type": 0,
@@ -599,12 +605,6 @@
       "value": "Use a different billing address"
     }
   ],
-  "p99EyA": [
-    {
-      "type": 0,
-      "value": "Create your account by entering your email and a password"
-    }
-  ],
   "pONqz8": [
     {
       "type": 0,
@@ -627,12 +627,6 @@
     {
       "type": 0,
       "value": "Last 12 months"
-    }
-  ],
-  "rFxf+e": [
-    {
-      "type": 0,
-      "value": "Please enter your email and password to access your account"
     }
   ],
   "riCv7f": [
@@ -699,6 +693,12 @@
     {
       "type": 0,
       "value": "Complete order"
+    }
+  ],
+  "wFE3Rj": [
+    {
+      "type": 0,
+      "value": "Enter your email and password to sign in."
     }
   ],
   "xULK8s": [

@@ -39,9 +39,8 @@ export function SigninForm({defaultEmail}: {defaultEmail?: string}) {
           defaultMessage: "Sign in",
         })}
         description={intl.formatMessage({
-          id: "rFxf+e",
-          defaultMessage:
-            "Please enter your email and password to access your account",
+          id: "wFE3Rj",
+          defaultMessage: "Enter your email and password to sign in.",
         })}
       />
       <TextField

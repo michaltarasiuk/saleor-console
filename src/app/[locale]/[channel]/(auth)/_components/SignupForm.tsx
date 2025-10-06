@@ -39,9 +39,8 @@ export function SignupForm() {
           defaultMessage: "Sign up",
         })}
         description={intl.formatMessage({
-          id: "p99EyA",
-          defaultMessage:
-            "Create your account by entering your email and a password",
+          id: "FvxRDd",
+          defaultMessage: "Enter your email and password to sign up.",
         })}
       />
       <TextField
