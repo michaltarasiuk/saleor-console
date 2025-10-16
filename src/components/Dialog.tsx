@@ -38,7 +38,7 @@ export function Dialog({heading, children, ...props}: DialogProps) {
           {isDefined(heading) && (
             <header className={cn("flex items-center justify-between")}>
               <Heading level={2}>{heading}</Heading>
-              <IconButton className={cn("size-6")} onClick={renderProps.close}>
+              <IconButton className={cn("size-6")} onPress={renderProps.close}>
                 <CloseIcon aria-hidden />
               </IconButton>
             </header>

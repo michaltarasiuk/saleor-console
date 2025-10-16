@@ -95,7 +95,7 @@ export function Banner({
               status,
             }),
           )}
-          onClick={onClose}>
+          onPress={onClose}>
           <CloseIcon aria-hidden />
         </IconButton>
       )}

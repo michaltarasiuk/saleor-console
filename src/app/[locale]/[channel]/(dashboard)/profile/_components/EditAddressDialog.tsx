@@ -38,7 +38,7 @@ export function EditAddressDialog({children}: {children: React.ReactNode}) {
             defaultMessage: "Edit address",
           })}>
           {({close}) => (
-            <EditAddressForm cancelButton={<CancelButton onClick={close} />} />
+            <EditAddressForm cancelButton={<CancelButton onPress={close} />} />
           )}
         </Dialog>
       </Modal>

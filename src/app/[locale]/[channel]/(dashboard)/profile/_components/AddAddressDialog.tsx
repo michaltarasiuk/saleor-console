@@ -26,7 +26,7 @@ export function AddAddressDialog() {
             defaultMessage: "Add address",
           })}>
           {({close}) => (
-            <AddAddressForm cancelButton={<CancelButton onClick={close} />} />
+            <AddAddressForm cancelButton={<CancelButton onPress={close} />} />
           )}
         </Dialog>
       </Modal>

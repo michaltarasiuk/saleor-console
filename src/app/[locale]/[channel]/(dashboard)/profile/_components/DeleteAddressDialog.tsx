@@ -45,7 +45,7 @@ function DeleteAddressDialogContent() {
 function DeleteAddressDialogActions({onClose}: {onClose: () => void}) {
   return (
     <div className={cn("gap-small-200 mt-base flex justify-end")}>
-      <Button kind="plain" onClick={onClose}>
+      <Button kind="plain" onPress={onClose}>
         <FormattedMessage id="cyR7Kh" defaultMessage="Back" />
       </Button>
       <Button appearance="critical">

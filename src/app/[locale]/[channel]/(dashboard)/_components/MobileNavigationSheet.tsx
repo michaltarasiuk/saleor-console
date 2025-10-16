@@ -26,30 +26,30 @@ export function MobileNavigationSheet() {
               <ProfileCard />
             </li>
             <li>
-              <MenuItemLink href={Routes.home} onClick={close}>
+              <MenuItemLink href={Routes.home} onPress={close}>
                 <FormattedMessage id="Dxd1uB" defaultMessage="Shop" />
               </MenuItemLink>
             </li>
             <li>
-              <MenuItemLink href={Routes.account.orders} onClick={close}>
+              <MenuItemLink href={Routes.account.orders} onPress={close}>
                 <FormattedMessage id="X7jl6w" defaultMessage="Orders" />
               </MenuItemLink>
             </li>
           </ul>
           <ul className={cn("pt-base gap-base flex flex-col")}>
             <li>
-              <MenuItemLink href={Routes.account.profile} onClick={close}>
+              <MenuItemLink href={Routes.account.profile} onPress={close}>
                 <FormattedMessage id="itPgxd" defaultMessage="Profile" />
               </MenuItemLink>
             </li>
             <li>
-              <MenuItemLink href={Routes.account.settings} onClick={close}>
+              <MenuItemLink href={Routes.account.settings} onPress={close}>
                 <FormattedMessage id="D3idYv" defaultMessage="Settings" />
               </MenuItemLink>
             </li>
             <li>
               <DialogTrigger>
-                <MenuItemButton onClick={() => logOut(...basePathname)}>
+                <MenuItemButton onPress={() => logOut(...basePathname)}>
                   <FormattedMessage id="PlBReU" defaultMessage="Log out" />
                 </MenuItemButton>
                 <LogoutDialog />

@@ -14,7 +14,7 @@ export function DeactivateAllTokensButton() {
     <DialogTrigger>
       <Button
         kind="secondary"
-        onClick={() => deactivateAllTokens(...basePathname)}>
+        onPress={() => deactivateAllTokens(...basePathname)}>
         <FormattedMessage id="s3O2Si" defaultMessage="Log out everywhere" />
       </Button>
       <LogoutDialog />

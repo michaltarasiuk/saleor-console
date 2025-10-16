@@ -25,7 +25,7 @@ export function EditProfileDialog() {
             defaultMessage: "Edit profile",
           })}>
           {({close}) => (
-            <ProfileForm cancelButton={<CancelButton onClick={close} />} />
+            <ProfileForm cancelButton={<CancelButton onPress={close} />} />
           )}
         </Dialog>
       </Modal>

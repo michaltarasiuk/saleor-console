@@ -18,7 +18,7 @@ export function CompleteOrderButton() {
       className={cn("w-full")}
       isDisabled={isPending}
       isPending={isPending}
-      onClick={() => startTransition(() => completeCheckout(locale, channel))}>
+      onPress={() => startTransition(() => completeCheckout(locale, channel))}>
       <FormattedMessage id="w8g8zN" defaultMessage="Complete order" />
     </Button>
   );
