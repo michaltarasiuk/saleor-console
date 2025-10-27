@@ -20,5 +20,6 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
+  reactCompiler: true,
 };
 export default nextConfig;

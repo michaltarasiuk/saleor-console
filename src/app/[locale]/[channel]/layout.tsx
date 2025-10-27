@@ -8,10 +8,10 @@ import {isDefined} from "@/utils/is-defined";
 
 export default async function ChannelLayout({
   children,
-  ...props
+  params,
 }: LayoutProps<"/[locale]/[channel]">) {
-  const params = await props.params;
-  const channel = await queryChannelContextValue(params.channel);
+  const {channel: channelParam} = await params;
+  const channel = await queryChannelContextValue(channelParam);
   if (!isDefined(channel)) {
     notFound();
   }

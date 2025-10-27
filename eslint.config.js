@@ -1,25 +1,15 @@
-import {dirname} from "node:path";
-import {fileURLToPath} from "node:url";
-
-import {FlatCompat} from "@eslint/eslintrc";
-import {globalIgnores} from "eslint/config";
+import {defineConfig, globalIgnores} from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 import formatjs from "eslint-plugin-formatjs";
 import reactRefresh from "eslint-plugin-react-refresh";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import storybook from "eslint-plugin-storybook";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-/**
- * @type {import('eslint').Linter.Config[]}
- */
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  ...storybook.configs["flat/recommended"],
   reactRefresh.configs.recommended,
   {
     rules: {
@@ -89,9 +79,8 @@ const eslintConfig = [
       "react-refresh/only-export-components": "off",
     },
   },
-  globalIgnores([".next", "next-env.d.ts"]),
-  ...storybook.configs["flat/recommended"],
-];
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+]);
 export default eslintConfig;
 
 /**

@@ -7,27 +7,9 @@ import type {CountryCode} from "@/graphql/codegen/graphql";
 import type {AddressSchema} from "@/utils/address";
 import {isDefined} from "@/utils/is-defined";
 
-const AddressValidationRulesQuery = graphql(`
-  query AddressValidationRules($countryCode: CountryCode!) {
-    addressValidationRules(countryCode: $countryCode) {
-      allowedFields
-      requiredFields
-      upperFields
-      countryAreaChoices {
-        raw
-        verbose
-      }
-      cityChoices {
-        raw
-        verbose
-      }
-      cityAreaChoices {
-        raw
-        verbose
-      }
-    }
-  }
-`);
+type AddressField =
+  | "name"
+  | Exclude<keyof z.infer<typeof AddressSchema>, "firstName" | "lastName">;
 
 export function useAddressValidationRules(countryCode: CountryCode) {
   const {data} = useSuspenseQuery(AddressValidationRulesQuery, {
@@ -56,6 +38,24 @@ export function useAddressValidationRules(countryCode: CountryCode) {
   };
 }
 
-type AddressField =
-  | "name"
-  | Exclude<keyof z.infer<typeof AddressSchema>, "firstName" | "lastName">;
+const AddressValidationRulesQuery = graphql(`
+  query AddressValidationRules($countryCode: CountryCode!) {
+    addressValidationRules(countryCode: $countryCode) {
+      allowedFields
+      requiredFields
+      upperFields
+      countryAreaChoices {
+        raw
+        verbose
+      }
+      cityChoices {
+        raw
+        verbose
+      }
+      cityAreaChoices {
+        raw
+        verbose
+      }
+    }
+  }
+`);
