@@ -89,12 +89,12 @@ export function AddressFields({
       })}>
       <Select
         name={"country" satisfies AddressField}
-        selectedKey={countryCode}
+        value={countryCode}
         label={intl.formatMessage({
           id: "vONi+O",
           defaultMessage: "Country",
         })}
-        onSelectionChange={(key) => {
+        onChange={(key) => {
           if (isCountryCode(key)) {
             startTransition(() => setCountryCode(key));
           }
@@ -208,7 +208,7 @@ export function AddressFields({
             <Select
               key={countryCode}
               name={"countryArea" satisfies AddressField}
-              defaultSelectedKey={
+              defaultValue={
                 isDefined(defaultValues) &&
                 countryCode === defaultValues.country.code
                   ? defaultValues.countryArea
@@ -260,7 +260,7 @@ export function AddressFields({
               ) : (
                 <Select
                   name={"city" satisfies AddressField}
-                  defaultSelectedKey={defaultValues?.city}
+                  defaultValue={defaultValues?.city}
                   label={intl.formatMessage({
                     id: "TE4fIS",
                     defaultMessage: "City",
@@ -293,7 +293,7 @@ export function AddressFields({
               ) : (
                 <Select
                   name={"cityArea" satisfies AddressField}
-                  defaultSelectedKey={defaultValues?.cityArea}
+                  defaultValue={defaultValues?.cityArea}
                   label={intl.formatMessage({
                     id: "BWpuSS",
                     defaultMessage: "City area",
