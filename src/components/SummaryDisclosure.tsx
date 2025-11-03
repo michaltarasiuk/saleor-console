@@ -61,8 +61,10 @@ export function SummaryDisclosure({
           </Heading>
           <DisclosurePanel
             className={cn(
-              "overflow-hidden duration-300",
-              isExpanded ? "animate-accordion-down" : "animate-accordion-up",
+              "overflow-hidden",
+              isExpanded
+                ? "supports-[interpolate-size:allow-keywords]:animate-accordion-down"
+                : "supports-[interpolate-size:allow-keywords]:animate-accordion-up",
             )}>
             <div
               className={cn(
