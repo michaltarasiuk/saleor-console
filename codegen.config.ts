@@ -10,14 +10,14 @@ const __dirname = dirname(__filename);
 
 loadEnvConfig(__dirname);
 
-const saleorGraphqlEndpoint = process.env.NEXT_PUBLIC_SALEOR_GRAPHQL_ENDPOINT;
+const schema = process.env.NEXT_PUBLIC_SALEOR_GRAPHQL_ENDPOINT;
 invariant(
-  saleorGraphqlEndpoint,
-  "Environment variable NEXT_PUBLIC_SALEOR_GRAPHQL_ENDPOINT must be defined.",
+  !!schema,
+  "Environment variable NEXT_PUBLIC_SALEOR_GRAPHQL_ENDPOINT must be defined",
 );
 
 const codegenConfig: CodegenConfig = {
-  schema: saleorGraphqlEndpoint,
+  schema,
   documents: ["src/**/*.{ts,tsx}"],
   generates: {
     "./src/graphql/codegen/": {
