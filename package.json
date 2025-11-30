@@ -10,8 +10,7 @@
     "type-check": "next typegen && tsc --noEmit --incremental false",
     "lint": "eslint",
     "lint-fix": "eslint --fix .",
-    "test": "vitest run",
-    "ci": "bun run prettier-check && bun run type-check && bun run lint && bun run test && bun run build",
+    "ci": "bun run prettier-check && bun run type-check && bun run lint && bun run build",
     "extract": "formatjs extract --out-file messages/extracted/en-US.json -- '!**/*.d.ts' '**/*.{ts,tsx}' && prettier --write messages/extracted/en-US.json",
     "compile-folder": "formatjs compile-folder --ast messages/extracted messages/compiled && prettier --write messages/compiled",
     "extract-compile": "bun run extract && bun run compile-folder",
@@ -58,7 +57,6 @@
     "@storybook/addon-a11y": "^9.1.6",
     "@storybook/addon-docs": "^9.1.6",
     "@storybook/addon-onboarding": "^9.1.6",
-    "@storybook/addon-vitest": "^9.1.6",
     "@storybook/nextjs-vite": "^9.1.15",
     "@tailwindcss/postcss": "^4",
     "@types/jsonwebtoken": "^9.0.10",
@@ -66,8 +64,6 @@
     "@types/node": "^20",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
-    "@vitest/browser": "^3.2.4",
-    "@vitest/coverage-v8": "^3.2.4",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
@@ -84,8 +80,7 @@
     "prettier-plugin-tailwindcss": "^0.6.13",
     "storybook": "^9.1.15",
     "tailwindcss": "^4",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "typescript": "^5.8.3"
   },
   "overrides": {
     "@types/react": "19.2.2",

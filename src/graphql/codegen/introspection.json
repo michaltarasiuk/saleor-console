@@ -1,5 +1,31 @@
 {
   "possibleTypes": {
+    "AppExtensionPossibleOptions": [
+      "AppExtensionOptionsNewTab",
+      "AppExtensionOptionsWidget"
+    ],
+    "AssignedAttribute": [
+      "AssignedBooleanAttribute",
+      "AssignedDateAttribute",
+      "AssignedDateTimeAttribute",
+      "AssignedFileAttribute",
+      "AssignedMultiCategoryReferenceAttribute",
+      "AssignedMultiChoiceAttribute",
+      "AssignedMultiCollectionReferenceAttribute",
+      "AssignedMultiPageReferenceAttribute",
+      "AssignedMultiProductReferenceAttribute",
+      "AssignedMultiProductVariantReferenceAttribute",
+      "AssignedNumericAttribute",
+      "AssignedPlainTextAttribute",
+      "AssignedSingleCategoryReferenceAttribute",
+      "AssignedSingleChoiceAttribute",
+      "AssignedSingleCollectionReferenceAttribute",
+      "AssignedSinglePageReferenceAttribute",
+      "AssignedSingleProductReferenceAttribute",
+      "AssignedSingleProductVariantReferenceAttribute",
+      "AssignedSwatchAttribute",
+      "AssignedTextAttribute"
+    ],
     "CheckoutLineProblem": [
       "CheckoutLineProblemInsufficientStock",
       "CheckoutLineProblemVariantNotAvailable"
@@ -274,6 +300,7 @@
       "Warehouse",
       "Webhook"
     ],
+    "ObjectWithAttributes": ["Page", "Product", "ProductVariant"],
     "ObjectWithMetadata": [
       "Address",
       "App",
@@ -312,6 +339,10 @@
       "Warehouse"
     ],
     "OrderOrCheckout": ["Checkout", "Order"],
+    "PaymentMethodDetails": [
+      "CardPaymentMethodDetails",
+      "OtherPaymentMethodDetails"
+    ],
     "PromotionEvent": [
       "PromotionCreatedEvent",
       "PromotionEndedEvent",
@@ -335,6 +366,7 @@
       "PromotionRuleDeletedEvent",
       "PromotionRuleUpdatedEvent"
     ],
+    "ReferenceType": ["PageType", "ProductType"],
     "TaxSourceLine": ["CheckoutLine", "OrderLine"],
     "TaxSourceObject": ["Checkout", "Order"],
     "TranslatableItem": [

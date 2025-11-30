@@ -11,8 +11,6 @@ import {FormattedMessage} from "@/i18n/react-intl";
 import {cn} from "@/utils/cn";
 import {isDefined} from "@/utils/is-defined";
 
-import {isShippingMethod} from "../../../utils/delivery-method";
-
 const CheckoutMoneyLines_CheckoutFragment = graphql(`
   fragment CheckoutMoneyLines_Checkout on Checkout {
     id
@@ -68,7 +66,7 @@ export function CheckoutMoneyLines({checkout}: CheckoutMoneyLinesProps) {
               defaultMessage="Select delivery method"
             />
           </Text>
-        ) : !isShippingMethod(data.deliveryMethod) ? (
+        ) : data.deliveryMethod.__typename !== "ShippingMethod" ? (
           <Text emphasis="semibold">
             <FormattedMessage id="Fce58X" defaultMessage="No delivery charge" />
           </Text>
