@@ -97,7 +97,7 @@ function noReactIntlRule() {
       fixable: "code",
       messages: {
         noDirectReactIntl:
-          'Direct import of "react-intl" is not allowed. Use "@/i18n/react-intl" instead.',
+          'Direct import of "react-intl" is not allowed. Use "#app/i18n/react-intl" instead.',
       },
     },
     create(context) {
@@ -114,7 +114,7 @@ function noReactIntlRule() {
               node: node.source,
               messageId: "noDirectReactIntl",
               fix(fixer) {
-                return fixer.replaceText(node.source, '"@/i18n/react-intl"');
+                return fixer.replaceText(node.source, '"#app/i18n/react-intl"');
               },
             });
           }
