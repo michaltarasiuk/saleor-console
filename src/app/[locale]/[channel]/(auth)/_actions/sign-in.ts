@@ -12,7 +12,7 @@ import {
 } from "#app/modules/account/utils/cookies";
 import {toValidationErrors} from "#app/modules/account/utils/validation-errors";
 import {isDefined} from "#app/utils/is-defined";
-import {basePathnameSchema, joinPathSegments} from "#app/utils/pathname";
+import {BasePathnameSchema, joinPathSegments} from "#app/utils/pathname";
 
 const SigninMutation = graphql(`
   mutation Signin($email: String!, $password: String!) {
@@ -49,7 +49,7 @@ export async function signIn(_state: unknown, formData: FormData) {
 const FormDataSchema = z.object({
   email: z.email(),
   password: z.string(),
-  ...basePathnameSchema.shape,
+  ...BasePathnameSchema.shape,
 });
 function parseFormData(formData: FormData) {
   return FormDataSchema.parse(Object.fromEntries(formData));

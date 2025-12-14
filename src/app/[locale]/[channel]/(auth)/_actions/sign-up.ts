@@ -8,7 +8,7 @@ import {getClient} from "#app/graphql/apollo-client";
 import {graphql} from "#app/graphql/codegen";
 import {localeToLanguageCode} from "#app/i18n/utils/locale-to-language-code";
 import {toValidationErrors} from "#app/modules/account/utils/validation-errors";
-import {basePathnameSchema, joinPathSegments} from "#app/utils/pathname";
+import {BasePathnameSchema, joinPathSegments} from "#app/utils/pathname";
 
 import {signIn} from "./sign-in";
 
@@ -57,7 +57,7 @@ export async function signUp(_state: unknown, formData: FormData) {
 const FormDataSchema = z.object({
   email: z.email(),
   password: z.string(),
-  ...basePathnameSchema.shape,
+  ...BasePathnameSchema.shape,
 });
 function parseFormData(formData: FormData) {
   return FormDataSchema.parse(Object.fromEntries(formData));

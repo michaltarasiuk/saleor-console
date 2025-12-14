@@ -9,7 +9,7 @@ import {graphql} from "#app/graphql/codegen";
 import {getCheckoutId} from "#app/modules/checkout/utils/cookies";
 import {toValidationErrors} from "#app/modules/checkout/utils/validation-errors";
 import {isDefined} from "#app/utils/is-defined";
-import {basePathnameSchema, joinPathSegments} from "#app/utils/pathname";
+import {BasePathnameSchema, joinPathSegments} from "#app/utils/pathname";
 
 const DeliveryMethodUpdateMutation = graphql(`
   mutation DeliveryMethodUpdate($id: ID!, $deliveryMethodId: ID!) {
@@ -48,7 +48,7 @@ export async function updateCheckoutDelivery(
 
 const FormSchema = z.object({
   deliveryMethodId: z.string(),
-  ...basePathnameSchema.shape,
+  ...BasePathnameSchema.shape,
 });
 function parseFormData(formData: FormData) {
   return FormSchema.parse(Object.fromEntries(formData));

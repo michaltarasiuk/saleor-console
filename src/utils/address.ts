@@ -2,7 +2,7 @@ import * as z from "zod";
 
 import {CountryCode} from "#app/graphql/codegen/graphql";
 
-export const addressSchema = z.object({
+export const AddressSchema = z.object({
   country: z.enum(CountryCode),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
