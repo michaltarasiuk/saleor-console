@@ -3,7 +3,7 @@
 import {redirect} from "next/navigation";
 import * as z from "zod";
 
-import {routes} from "#app/consts/routes";
+import {ROUTES} from "#app/consts/routes";
 import {getClient} from "#app/graphql/apollo-client";
 import {graphql} from "#app/graphql/codegen";
 import {
@@ -39,7 +39,7 @@ export async function signIn(_state: unknown, formData: FormData) {
   if (isDefined(token) && isDefined(refreshToken)) {
     await setAccessTokenCookie(token);
     await setRefreshTokenCookie(refreshToken);
-    redirect(joinPathSegments(locale, channel, routes.account.orders));
+    redirect(joinPathSegments(locale, channel, ROUTES.account.orders));
   }
   return {
     errors: toValidationErrors(errors),

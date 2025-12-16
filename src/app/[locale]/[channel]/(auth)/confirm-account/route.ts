@@ -1,6 +1,6 @@
 import {type NextRequest, NextResponse} from "next/server";
 
-import {routes} from "#app/consts/routes";
+import {ROUTES} from "#app/consts/routes";
 import {getClient} from "#app/graphql/apollo-client";
 import {graphql} from "#app/graphql/codegen";
 import type {ConfirmAccountMutationVariables} from "#app/graphql/codegen/graphql";
@@ -29,7 +29,7 @@ export async function GET({nextUrl}: NextRequest) {
   const redirectUrl = new URL(
     joinPathSegments(
       ...getBasePathname(nextUrl.pathname),
-      routes.account.signin,
+      ROUTES.account.signin,
     ),
     nextUrl.origin,
   );

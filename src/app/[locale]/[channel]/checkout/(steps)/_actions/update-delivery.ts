@@ -3,7 +3,7 @@
 import {notFound, redirect} from "next/navigation";
 import * as z from "zod";
 
-import {routes} from "#app/consts/routes";
+import {ROUTES} from "#app/consts/routes";
 import {getClient} from "#app/graphql/apollo-client";
 import {graphql} from "#app/graphql/codegen";
 import {getCheckoutId} from "#app/modules/checkout/utils/cookies";
@@ -39,7 +39,7 @@ export async function updateCheckoutDelivery(
   });
   const {errors = []} = data?.checkoutDeliveryMethodUpdate ?? {};
   if (!errors.length) {
-    redirect(joinPathSegments(locale, channel, routes.checkout.billing));
+    redirect(joinPathSegments(locale, channel, ROUTES.checkout.billing));
   }
   return {
     errors: toValidationErrors(errors),

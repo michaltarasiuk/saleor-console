@@ -2,7 +2,7 @@
 
 import {redirect} from "next/navigation";
 
-import {routes} from "#app/consts/routes";
+import {ROUTES} from "#app/consts/routes";
 import {getClient} from "#app/graphql/apollo-client";
 import {graphql} from "#app/graphql/codegen";
 import type {Locale} from "#app/i18n/consts";
@@ -34,5 +34,5 @@ export async function deactivateAllTokens(locale: Locale, channel: string) {
     },
   });
   await removeSessionCookies();
-  redirect(joinPathSegments(locale, channel, routes.account.signin));
+  redirect(joinPathSegments(locale, channel, ROUTES.account.signin));
 }

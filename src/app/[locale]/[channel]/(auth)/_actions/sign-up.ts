@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 
-import {routes} from "#app/consts/routes";
+import {ROUTES} from "#app/consts/routes";
 import {env} from "#app/env";
 import {getClient} from "#app/graphql/apollo-client";
 import {graphql} from "#app/graphql/codegen";
@@ -28,7 +28,7 @@ export async function signUp(_state: unknown, formData: FormData) {
   const languageCode = localeToLanguageCode(locale);
   const redirectUrl = String(
     new URL(
-      joinPathSegments(locale, channel, routes.account.confirmAccount),
+      joinPathSegments(locale, channel, ROUTES.account.confirmAccount),
       env.NEXT_PUBLIC_SITE_URL,
     ),
   );

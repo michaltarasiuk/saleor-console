@@ -1,7 +1,7 @@
 import {IconButton} from "#app/components/IconButton";
 import {LinkedLogo} from "#app/components/LinkedLogo";
 import {SheetTrigger} from "#app/components/Sheet";
-import {routes} from "#app/consts/routes";
+import {ROUTES} from "#app/consts/routes";
 import {FormattedMessage} from "#app/i18n/react-intl";
 import {HamburgerIcon} from "#app/icons/HamburgerIcon";
 import {cn} from "#app/utils/cn";
@@ -21,10 +21,10 @@ export async function Header() {
         <nav className={cn("gap-large-500 flex items-center")}>
           <LinkedLogo />
           <div className={cn("gap-small-300 flex items-center")}>
-            <MenuItemLink href={routes.home}>
+            <MenuItemLink href={ROUTES.home}>
               <FormattedMessage id="Dxd1uB" defaultMessage="Shop" />
             </MenuItemLink>
-            <MenuItemLink href={routes.account.orders}>
+            <MenuItemLink href={ROUTES.account.orders}>
               <FormattedMessage id="X7jl6w" defaultMessage="Orders" />
             </MenuItemLink>
           </div>

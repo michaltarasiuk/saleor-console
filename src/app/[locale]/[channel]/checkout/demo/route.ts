@@ -1,6 +1,6 @@
 import {type NextRequest, NextResponse} from "next/server";
 
-import {routes} from "#app/consts/routes";
+import {ROUTES} from "#app/consts/routes";
 import {getClient} from "#app/graphql/apollo-client";
 import {graphql} from "#app/graphql/codegen";
 import type {CheckoutLineInput} from "#app/graphql/codegen/graphql";
@@ -38,7 +38,7 @@ export async function GET({nextUrl: {origin}}: NextRequest) {
   const pathname = joinPathSegments(
     DefaultLocale,
     DefaultChannel,
-    routes.checkout.information,
+    ROUTES.checkout.information,
   );
   return NextResponse.redirect(new URL(pathname, origin));
 }

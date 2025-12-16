@@ -4,7 +4,7 @@ import type {ApolloClient} from "@apollo/client";
 import {notFound, redirect} from "next/navigation";
 import * as z from "zod";
 
-import {routes} from "#app/consts/routes";
+import {ROUTES} from "#app/consts/routes";
 import {getClient} from "#app/graphql/apollo-client";
 import {graphql} from "#app/graphql/codegen";
 import type {
@@ -67,7 +67,7 @@ export async function updateCheckoutInformation(
     ...(emailUpdate?.errors ?? []),
   ];
   if (!errors.length) {
-    redirect(joinPathSegments(locale, channel, routes.checkout.delivery));
+    redirect(joinPathSegments(locale, channel, ROUTES.checkout.delivery));
   }
   return {
     errors: toValidationErrors(errors),
