@@ -1,7 +1,3 @@
-# Saleor Console
-
-Platform for Saleor featuring checkout flow and dashboard management. Built using GraphQL data masking, render-as-you-fetch pattern and streaming. UI components powered by React Aria with customizable branding through CSS variables.
-
 ## Design Files
 
 - [Checkout screens](https://www.figma.com/community/file/1304882138535535616)
